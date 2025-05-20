@@ -1,0 +1,108 @@
+[
+    {
+      "id": "1",
+      "nome": "Partido Popular Monárquico",
+      "sigla": "PPM",
+      "descricao": "Partido que defende o regime monárquico em Portugal.",
+      "imagem": "/imagens/ppm.png"
+    },
+    {
+      "id": "2",
+      "nome": "Livre",
+      "sigla": "L",
+      "descricao": "Partido de esquerda com foco em democracia participativa e ecologia.",
+      "imagem": "/imagens/livre.png"
+    },
+    {
+      "id": "3",
+      "nome": "Partido Socialista",
+      "sigla": "PS",
+      "descricao": "Partido do centro-esquerda, atualmente um dos maiores partidos em Portugal.",
+      "imagem": "/imagens/ps.png"
+    },
+    {
+      "id": "4",
+      "nome": "Alternativa Democrática Nacional",
+      "sigla": "ADN",
+      "descricao": "Partido conservador com foco em valores tradicionais.",
+      "imagem": "/imagens/adn.png"
+    },
+    {
+      "id": "5",
+      "nome": "AD - Coligação PSD/CDS",
+      "sigla": "PSD/CDS-PP",
+      "descricao": "Aliança entre partidos de centro-direita para eleições legislativas.",
+      "imagem": "/imagens/ad.png"
+    },
+    {
+      "id": "6",
+      "nome": "Volt Portugal",
+      "sigla": "VP",
+      "descricao": "Partido pan-europeu progressista com foco em reformas e integração europeia.",
+      "imagem": "/imagens/volt.png"
+    },
+    {
+      "id": "7",
+      "nome": "Juntos pelo Povo",
+      "sigla": "JPP",
+      "descricao": "Partido regionalista nascido na Madeira, com foco na proximidade ao cidadão.",
+      "imagem": "/imagens/jpp.png"
+    },
+    {
+      "id": "8",
+      "nome": "Pessoas-Animais-Natureza",
+      "sigla": "PAN",
+      "descricao": "Partido com foco em direitos dos animais, ambiente e justiça social.",
+      "imagem": "/imagens/pan.png"
+    },
+    {
+      "id": "9",
+      "nome": "Chega",
+      "sigla": "CH",
+      "descricao": "Partido de direita radical com foco em segurança e imigração.",
+      "imagem": "/imagens/chega.png"
+    },
+    {
+      "id": "10",
+      "nome": "Ergue-te",
+      "sigla": "E",
+      "descricao": "Partido de matriz cristã e patriótica.",
+      "imagem": "/imagens/ergue-te.png"
+    },
+    {
+      "id": "11",
+      "nome": "Iniciativa Liberal",
+      "sigla": "IL",
+      "descricao": "Partido liberal com foco na liberdade económica e individual.",
+      "imagem": "/imagens/il.png"
+    },
+    {
+      "id": "12",
+      "nome": "CDU - Coligação Democrática Unitária",
+      "sigla": "PCP-PEV",
+      "descricao": "Coligação entre o Partido Comunista Português e os Verdes.",
+      "imagem": "/imagens/cdu.png"
+    },
+    {
+      "id": "13",
+      "nome": "Bloco de Esquerda",
+      "sigla": "BE",
+      "descricao": "Partido de esquerda progressista e defensor dos direitos sociais.",
+      "imagem": "/imagens/be.png"
+    },
+    {
+      "id": "14",
+      "nome": "Nova Direita",
+      "sigla": "ND",
+      "descricao": "Novo partido de direita com foco em identidade nacional e soberania.",
+      "imagem": "/imagens/nd.png"
+    },
+    {
+      "id": "15",
+      "nome": "Reagir, Incluir, Reciclar",
+      "sigla": "RIR",
+      "descricao": "Partido centrado na cidadania ativa e na sustentabilidade.",
+      "imagem": "/imagens/rir.png"
+    }
+  ]
+  
