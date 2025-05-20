@@ -1,5 +1,11 @@
 @import "./variables.css";  /* Importa o CSS dentro do CSS, não no JS */
 
+html, body, #root {
+  background-color: var(--primary); /* ou a cor de fundo da tua app */
+  margin: 0;
+  padding: 0;
+  height: 100dvh;
+}
 
 
 .loading-wrapper {

@@ -19,22 +19,29 @@
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  overflow: hidden;
+  height: 100vh;
+  width: 100vw;
 }
+
+html, body, #root {
+
+  margin: 0;
+  padding: 0;
+  height: 100dvh;
+}
+
+
 
 body {
-  background-attachment: fixed;
-
-  margin: 0 auto;
+  margin: 0;
   display: flex;
+
   place-items: center;
-
-  min-width: 320px;
-  min-height: 100vh;
-
-  max-width: var(--max-text-width);
   color: inherit;
-  background-color: inherit;
 }
+
+
 
 /* Preferência para modo claro */
 @media (prefers-color-scheme: light) {
@@ -54,7 +61,4 @@ body {
 /*--------- TABLET -------------*/
 @media (max-width: 768px) {
   
-  body {
-    padding: 1rem 0.5rem;                /* padding horizontal mais estreito */
-  }
 }

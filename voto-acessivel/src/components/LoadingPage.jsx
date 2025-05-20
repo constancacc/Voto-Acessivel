@@ -1,5 +1,6 @@
 import React from 'react';
 import "../styles/LoadingPage.css";
+import FullscreenButton from './FullscreenButton';
 
 export default function LoadingPage() {
   return (
@@ -32,6 +33,7 @@ export default function LoadingPage() {
 
       <h1 className="title">Voto Acessível</h1>
       <p className="subtitle">— plataforma de voto acessível —</p>
+      <FullscreenButton/>
     </div>
   );
 }

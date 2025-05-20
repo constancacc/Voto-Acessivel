@@ -4,7 +4,7 @@ import viteLogo from '/vite.svg'
 import './App.css'
 import OrientationWarning from './components/OrientationWarning';
 import LoadingPage from './components/LoadingPage';
-import FullscreenButton from './components/FullscreenButton';
+
 
 
 function App() {
@@ -13,7 +13,7 @@ function App() {
   return (
     <>
      <div style={{ width: '100vw', height: '100vh' }}>
-      <FullscreenButton />
+
        <OrientationWarning />
        <LoadingPage></LoadingPage>
     </div>
