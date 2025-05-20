@@ -1,12 +1,20 @@
+@import './styles/variables.css';
+
 :root {
-  font-family: system-ui, Avenir, Helvetica, Arial, sans-serif;
-  line-height: 1.5;
+  /* Tipografia */
+  font-family: var(--font-family);
   font-weight: 400;
+  font-size: var(--font-base-size);
+  line-height: var(--line-height-multiplier);
+  letter-spacing: var(--letter-spacing);
+  word-spacing: var(--word-spacing);
 
+  /* Cores */
+  color: var(--black);
+  background-color: var(--white);
+
+  /* Renderização */
   color-scheme: light dark;
-  color: rgba(255, 255, 255, 0.87);
-  background-color: #242424;
-
   font-synthesis: none;
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
@@ -14,18 +22,38 @@
 }
 
 body {
-  margin: 0;
+  margin: 0 auto;
+  padding: 1rem;
   display: flex;
   place-items: center;
+
   min-width: 320px;
   min-height: 100vh;
+
+  max-width: var(--max-text-width);
+  color: inherit;
+  background-color: inherit;
 }
 
-
+/* Preferência para modo claro */
 @media (prefers-color-scheme: light) {
   :root {
-    color: #213547;
-    background-color: #ffffff;
+    color: var(--black);
+    background-color: var(--white);
   }
+}
 
+/* Preferência para modo escuro */
+@media (prefers-color-scheme: dark) {
+  :root {
+    color: var(--white);
+    background-color: var(--black);
+  }
+}
+/*--------- TABLET -------------*/
+@media (max-width: 768px) {
+  
+  body {
+    padding: 1rem 0.5rem;                /* padding horizontal mais estreito */
+  }
 }

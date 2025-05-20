@@ -1,0 +1,24 @@
+:root {
+    /*Cores*/
+    --active: #327353;
+    --screen-reader-active: #004682;
+
+    --destructive: #DE3321;
+
+    --primary: #F9D849;
+    --primary-stroke: #8F6F00 ;
+    --secundary: #E0E0E0;
+    --secundary-stroke:#767676 ;
+    
+    --white: #FFFFFF;
+    --black: #000000;
+
+    /* Tipografia */
+    --font-base-size: 16px;             /* tamanho base da fonte */
+    --line-height-multiplier: 1.5;     /* altura da linha: 16px * 1.5 = 24px */
+    --paragraph-margin-multiplier: 2;  /* margem inferior do parágrafo: 16px * 2 = 32px */ 
+    --max-text-width: 80ch;  /*  largura máxima do texto para legibilidade 50-80 caracteres */
+
+    --font-family: 'Atkinson Hyperlegible', Arial, sans-serif;
+  }
+  
