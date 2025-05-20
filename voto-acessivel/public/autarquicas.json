@@ -1,0 +1,24 @@
+[
+    {
+      "id": "1",
+      "nome": "Partido Socialista",
+      "sigla": "PS",
+      "descricao": "Candidatura do Partido Socialista às eleições autárquicas em Miranda do Douro.",
+      "imagem": "/imagens/partidos/PS.png"
+    },
+    {
+      "id": "2",
+      "nome": "Unidos por Miranda",
+      "sigla": "PSD/CDS-PP",
+      "descricao": "Candidatura conjunta do PSD e CDS-PP para o município de Miranda do Douro.",
+      "imagem": "/imagens/partidos/PSD/CDS-PP.png"
+    },
+    {
+      "id": "3",
+      "nome": "CDU - Coligação Democrática Unitária",
+      "sigla": "PCP-PEV",
+      "descricao": "Candidatura da CDU para o concelho de Miranda do Douro.",
+      "imagem": "/imagens/partidos/PCP-PEV.png"
+    }
+  ]
+  
