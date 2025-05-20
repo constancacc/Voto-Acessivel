@@ -22,8 +22,9 @@
 }
 
 body {
+  background-attachment: fixed;
+
   margin: 0 auto;
-  padding: 1rem;
   display: flex;
   place-items: center;
 
