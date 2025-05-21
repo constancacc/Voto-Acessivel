@@ -1,0 +1,21 @@
+.loader-container {
+  position: relative;
+  top: 20rem;
+}
+
+.loader-segment {
+  position: absolute;
+  background-color: black;
+  border-radius: 30%;
+  transform-origin: bottom center;
+  animation: fade 1.2s linear infinite;
+}
+
+@keyframes fade {
+  0%, 39%, 100% {
+    opacity: 0.2;
+  }
+  40% {
+    opacity: 1;
+  }
+}

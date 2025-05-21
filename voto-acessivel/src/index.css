@@ -24,15 +24,6 @@
   width: 100vw;
 }
 
-html, body, #root {
-
-  margin: 0;
-  padding: 0;
-  height: 100dvh;
-}
-
-
-
 body {
   margin: 0;
   display: flex;
@@ -43,13 +34,6 @@ body {
 
 
 
-/* Preferência para modo claro */
-@media (prefers-color-scheme: light) {
-  :root {
-    color: var(--black);
-    background-color: var(--white);
-  }
-}
 
 /* Preferência para modo escuro */
 @media (prefers-color-scheme: dark) {
@@ -58,6 +42,7 @@ body {
     background-color: var(--black);
   }
 }
+
 /*--------- TABLET -------------*/
 @media (max-width: 768px) {
   

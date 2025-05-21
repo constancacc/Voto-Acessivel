@@ -1,11 +1,15 @@
 import React from 'react';
 import "../styles/LoadingPage.css";
-import FullscreenButton from './FullscreenButton';
+import FullscreenButton from '../components/FullscreenButton';
+import OrientationWarning from '../components/OrientationWarning';
+import Loader from '../components/Loader';
 
 export default function LoadingPage() {
   return (
     <div className="loading-wrapper">
+      <OrientationWarning />
       <div className="logo-container" aria-label="Logo Voto Acessível">
+        {/* logo */}
         <svg
           xmlns="http://www.w3.org/2000/svg"
           width="140"
@@ -31,9 +35,15 @@ export default function LoadingPage() {
         </svg>
       </div>
 
-      <h1 className="title">Voto Acessível</h1>
-      <p className="subtitle">— plataforma de voto acessível —</p>
+      {/* titles */}
+      <h1 className="loading_title">Voto Acessível</h1>
+      <p className="loading_subtitle">— plataforma de voto acessível —</p>
+
+      {/* button */}
       <FullscreenButton/>
+
+      {/* loader */}
+      <Loader/>
     </div>
   );
 }
