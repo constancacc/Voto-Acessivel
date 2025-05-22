@@ -1,3 +1,5 @@
+/*----- IDENTIDADE --------*/
+
 :root {
     /*Cores*/
     --active: #327353;
@@ -19,6 +21,82 @@
     --paragraph-margin-multiplier: 2;  /* margem inferior do parágrafo: 16px * 2 = 32px */ 
     --max-text-width: 80ch;  /*  largura máxima do texto para legibilidade 50-80 caracteres */
 
-    --font-family: 'Atkinson Hyperlegible', Arial, sans-serif;
+    --font-family: 'Atkinson Hyperlegible', sans-serif;
+  }
+  h1,h2,h3,p{
+    color:#000;
+    text-align: left;
+    margin:0;
   }
   
+  h1{
+    font-size: 30px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: 60px; /* 200% */
+  }
+
+  h2{
+    font-size: 28px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+  }
+
+  h3{
+    font-family: "Atkinson Hyperlegible";
+    font-size: 26px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+  }
+
+  .custom-button {
+  display: inline-flex;
+  align-items: center;
+  gap: 16px;
+  height: 75px;
+  padding: 10px 24px;
+  border-radius: 10px;
+  border: 2px solid #8F6F00;
+  background: #F9D849;
+  cursor: pointer;
+  flex-shrink: 0;
+}
+
+.custom-button-text {
+  color: #000;
+  font-family: "Atkinson Hyperlegible", sans-serif;
+  font-size: 18px;
+  font-weight: 700;
+  line-height: normal;
+}
+
+.custom-button-icon {
+  width: 30px;
+  height: 30px;
+  aspect-ratio: 1 / 1;
+}
+
+.icon-button {
+  display: flex;
+  width: 44px;
+  height: 44px;
+  padding: 9px 10px;
+  justify-content: space-between;
+  align-items: center;
+  flex-shrink: 0;
+  aspect-ratio: 1/1;
+  
+  border-radius: 22px;
+  border: 2px solid var(--secundary-stroke);
+  background: var(--secundary);  
+}
+
+.icon-button-img{
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+
+

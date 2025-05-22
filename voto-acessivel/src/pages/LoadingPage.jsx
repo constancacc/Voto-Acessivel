@@ -43,9 +43,6 @@ export default function LoadingPage() {
         {/* SVG logo aqui... */}
         <img src="/imagens/logo.svg" alt="Logo Voto Acessível"className="logo-svg"/>
       </div>
-
-      {/* Titles */}
-      <h1 className="loading_title">Voto Acessível</h1>
       <p className="loading_subtitle">— plataforma de voto acessível —</p>
 
       {/* Botão para entrar em fullscreen */}
