@@ -1,0 +1,17 @@
+@import "./variables.css";
+
+.collapse-toggle {
+  display: inline-flex;
+  align-items: center;
+  gap: 16px;
+  padding-bottom: 40px;
+  cursor: pointer;
+  width: 100%;
+}
+
+.collapse-content {
+  overflow: hidden;
+  transition: max-height 0.4s ease;
+}
+
+

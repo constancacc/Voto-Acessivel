@@ -23,7 +23,7 @@ return (
       </div>
       
        <div style={{gridColumn: "9 /span 5", gridRow: "11", justifySelf: "end"}}>
-      <Button text="Começar eleição" icon={seta}/> 
+      <Button text="Começar eleição" variant="primary" icon={seta}/> 
       </div>
 
       <div style={{gridColumn: "13 / span 1", gridRow: "12", alignSelf: "end", justifySelf: "end"}}>
