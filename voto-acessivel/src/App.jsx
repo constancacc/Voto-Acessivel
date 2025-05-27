@@ -4,6 +4,7 @@ import './App.css'
 import OrientationWarning from './components/OrientationWarning';
 import LoadingPage from './pages/LoadingPage';
 import SliderIntroContainer  from "./components/SliderIntroContainer";
+import Eleicao from "./pages/SelecionarEleicao";
 
 
 
@@ -16,6 +17,7 @@ function App() {
       <Routes>
         <Route path="/" element={ <LoadingPage />} />
         <Route path="/intro" element={<SliderIntroContainer />} />
+        <Route path="/eleicao" element={<Eleicao />} />
 
       </Routes>
      </Router>

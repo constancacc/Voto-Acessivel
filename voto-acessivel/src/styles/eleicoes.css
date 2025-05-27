@@ -1,0 +1,16 @@
+@import "./variables.css";  /* Importa o CSS dentro do CSS, não no JS */
+
+.btn-legislativas,.btn-autarquicas{
+    width: 100%;
+}
+
+.election-btn{
+display: inline-flex;
+padding: 1rem;
+flex-direction: column;
+align-items: flex-start;
+gap: 12.167px;
+
+border-radius: 12.167px;
+border: 2.433px solid var(--secundary-stroke);
+}

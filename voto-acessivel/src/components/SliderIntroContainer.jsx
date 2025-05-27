@@ -1,4 +1,5 @@
 import React, { useState, useEffect, useRef } from "react";
+import { useNavigate } from "react-router-dom"; // <-- IMPORTANTE
 import Intro from "../pages/Intro";
 import Intro2 from "../pages/Intro2";
 import Intro3 from "../pages/Intro3";
@@ -7,12 +8,21 @@ export default function SliderIntroContainer() {
   const [activeIndex, setActiveIndex] = useState(0);
   const totalPages = 3;
   const timerRef = useRef(null);
+  const navigate = useNavigate(); // <-- INICIALIZA
 
   // Timer para avançar sozinho a cada 40 segundos
   const startTimer = () => {
     if (timerRef.current) clearInterval(timerRef.current);
     timerRef.current = setInterval(() => {
-      setActiveIndex((prev) => (prev < totalPages - 1 ? prev + 1 : prev));
+      setActiveIndex((prev) => {
+        if (prev < totalPages - 1) {
+          return prev + 1;
+        } else {
+          // Última página → navegar
+          navigate("/eleicao");
+          return prev;
+        }
+      });
     }, 40000);
   };
 
