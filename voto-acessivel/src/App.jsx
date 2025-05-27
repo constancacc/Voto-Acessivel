@@ -3,7 +3,7 @@ import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import './App.css'
 import OrientationWarning from './components/OrientationWarning';
 import LoadingPage from './pages/LoadingPage';
-import Intro from './pages/Intro';
+import SliderIntroContainer  from "./components/SliderIntroContainer";
 
 
 
@@ -15,7 +15,8 @@ function App() {
      <Router>
       <Routes>
         <Route path="/" element={ <LoadingPage />} />
-        <Route path="/intro" element={ <Intro />} />
+        <Route path="/intro" element={<SliderIntroContainer />} />
+
       </Routes>
      </Router>
     </>

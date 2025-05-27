@@ -1,18 +1,16 @@
 import React from "react";
 import "../styles/variables.css";
 
-export default function SliderIndicators({ activeIndex = 0, total = 3 }) {
+export default function SliderIndicators({ activeIndex = 0, total = 3, onSelect }) {
   return (
     <div className="slider-container" style={{ width: `${total * 60}px` }}>
       <div className="slider-indicators">
         {[...Array(total)].map((_, index) => (
           <div
             key={index}
-            className={
-              index <= activeIndex
-                ? "slider-indicator active"
-                : "slider-indicator inactive"
-            }
+            className={`slider-indicator ${index === activeIndex ? "active" : "inactive"}`}
+            onClick={() => onSelect && onSelect(index)}
+            style={{ cursor: "pointer" }}
           />
         ))}
       </div>
@@ -22,3 +20,4 @@ export default function SliderIndicators({ activeIndex = 0, total = 3 }) {
     </div>
   );
 }
+

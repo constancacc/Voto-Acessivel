@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+import { useNavigate } from 'react-router-dom'; // Importa o hook de navegação
 import "../styles/LoadingPage.css";
 import FullscreenButton from '../components/FullscreenButton';
 import OrientationWarning from '../components/OrientationWarning';
@@ -6,8 +7,17 @@ import Loader from '../components/Loader';
 
 export default function LoadingPage() {
   const [isFullscreen, setIsFullscreen] = useState(false);
+  const navigate = useNavigate(); // Inicializa o hook
 
-  // Verifica e atualiza o estado do fullscreen
+  useEffect(() => {
+    // Redireciona para a página de introdução após 3 segundos
+    const timeout = setTimeout(() => {
+      navigate("/intro"); // <-- certifica-te de que esta rota está definida no teu router
+    }, 5000);
+
+    return () => clearTimeout(timeout);
+  }, [navigate]);
+
   const checkFullscreen = () => {
     const fsElement = document.fullscreenElement ||
                       document.webkitFullscreenElement ||
@@ -17,10 +27,8 @@ export default function LoadingPage() {
   };
 
   useEffect(() => {
-    // Verifica inicialmente
     checkFullscreen();
 
-    // Escuta mudanças no estado de fullscreen
     document.addEventListener('fullscreenchange', checkFullscreen);
     document.addEventListener('webkitfullscreenchange', checkFullscreen);
     document.addEventListener('mozfullscreenchange', checkFullscreen);
@@ -37,18 +45,11 @@ export default function LoadingPage() {
   return (
     <div className="loading-wrapper">
       <OrientationWarning />
-
-      {/* Logo */}
       <div className="logo-container" aria-label="Logo Voto Acessível">
-        {/* SVG logo aqui... */}
-        <img src="/imagens/logo.svg" alt="Logo Voto Acessível"className="logo-svg"/>
+        <img src="/imagens/logo.svg" alt="Logo Voto Acessível" className="logo-svg"/>
       </div>
       <p className="loading_subtitle">— plataforma de voto acessível —</p>
-
-      {/* Botão para entrar em fullscreen */}
       <FullscreenButton />
-
-      {/* Loader só aparece em fullscreen */}
       {isFullscreen && <Loader />}
     </div>
   );
