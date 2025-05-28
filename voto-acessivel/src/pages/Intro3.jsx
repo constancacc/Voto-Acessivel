@@ -22,19 +22,20 @@ return (
         <p>Pode ajustar o <b>tamanho</b> e o <b>tipo de letra</b>, as <b>cores</b> e o <b>idioma</b> de leitura. Todas estas opções foram pensadas para melhorar a leitura e a navegação na plataforma.</p>
       </div>
       
-       <div style={{gridColumn: "9 /span 5", gridRow: "11", justifySelf: "end"}}>
-      <Button text="Começar eleição" icon={seta}  variant="primary"/> 
-      </div>
-
-      <div style={{gridColumn: "13 / span 1", gridRow: "12", alignSelf: "end", justifySelf: "end"}}>
-      <IconButton alt="botão de definições de acessibilidade" icon={accessibility} /> 
-      </div>
-
-      <div style={{gridColumn: "6 / span 4", gridRow: "12", alignSelf: "end"}}>
+      <div style={{gridColumn: "6 / span 4", gridRow: "11", alignSelf: "end"}}>
         <SliderIndicators activeIndex={activeIndex} total={3} onSelect={setActiveIndex} />
-      
-
       </div>
+
+        {/*footer*/}
+          <div style={{gridColumn: "9 /span 5", gridRow: "12", justifySelf: "end"}}>
+          <Button text="Começar eleição" variant="primary" icon={seta}/> 
+          </div>
+
+          <div style={{gridColumn: "2/ span 1", gridRow: "12", alignSelf: "end"}}>
+          <IconButton alt="botão de definições de acessibilidade" icon={accessibility}/> 
+          </div>
+ 
+
 
     </div>
   );

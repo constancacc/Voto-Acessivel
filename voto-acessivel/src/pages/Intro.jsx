@@ -24,18 +24,22 @@ return (
       <div style={{gridColumn: "2 /span 10", gridRow: "9"}}>
         <p>Criada para garantir que <b>todos</b> podem votar de forma <b>segura</b>, <b>independente</b> e adaptada às <b>suas necessidades</b>.</p>
       </div>
-      
-       <div style={{gridColumn: "9 /span 5", gridRow: "11", justifySelf: "end"}}>
-      <Button text="Começar eleição" variant="primary" icon={seta}/> 
+
+      <div style={{gridColumn: "6 / span 4", gridRow: "11", alignSelf: "end"}}>
+        <SliderIndicators activeIndex={activeIndex} total={3} onSelect={setActiveIndex} />
       </div>
 
-      <div style={{gridColumn: "13 / span 1", gridRow: "12", alignSelf: "end", justifySelf: "end"}}>
-      <IconButton alt="botão de definições de acessibilidade" icon={accessibility}/> 
-      </div>
+        {/*footer*/}
+          <div style={{gridColumn: "9 /span 5", gridRow: "12", justifySelf: "end"}}>
+          <Button text="Começar eleição" variant="primary" icon={seta}/> 
+          </div>
 
-      <div style={{gridColumn: "6 / span 4", gridRow: "12", alignSelf: "end"}}>
-      <SliderIndicators activeIndex={activeIndex} total={3} onSelect={setActiveIndex} />
-      </div>
+          <div style={{gridColumn: "2/ span 1", gridRow: "12", alignSelf: "end"}}>
+          <IconButton alt="botão de definições de acessibilidade" icon={accessibility}/> 
+          </div>
+ 
+
+
 
     </div>
   );
