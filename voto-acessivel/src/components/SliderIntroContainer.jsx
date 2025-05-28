@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useRef } from "react";
-import { useNavigate } from "react-router-dom"; // <-- IMPORTANTE
+import { useNavigate } from "react-router-dom"; 
 import Intro from "../pages/Intro";
 import Intro2 from "../pages/Intro2";
 import Intro3 from "../pages/Intro3";
@@ -8,7 +8,7 @@ export default function SliderIntroContainer() {
   const [activeIndex, setActiveIndex] = useState(0);
   const totalPages = 3;
   const timerRef = useRef(null);
-  const navigate = useNavigate(); // <-- INICIALIZA
+  const navigate = useNavigate(); 
 
   // Timer para avançar sozinho a cada 40 segundos
   const startTimer = () => {

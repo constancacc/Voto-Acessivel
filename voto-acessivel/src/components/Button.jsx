@@ -5,10 +5,9 @@ import "../styles/variables.css";
 export default function Button({ text, icon, variant, onClick }) {
   const navigate = useNavigate();
 
-  // Este handleClick pode ser usado para navegação condicional
   const handleClick = () => {
     if (onClick) {
-      onClick(); // Usa o onClick que vem da prop
+      onClick();
       return;
     }
 
@@ -22,7 +21,7 @@ export default function Button({ text, icon, variant, onClick }) {
   return (
     <button
       className={`custom-button ${variant || ""}`}
-      onClick={handleClick}  // <<< Aqui está o segredo
+      onClick={handleClick} 
     >
       <span className="custom-button-text">{text}</span>
       {icon && <img src={icon} alt="" className="custom-button-icon" />}
