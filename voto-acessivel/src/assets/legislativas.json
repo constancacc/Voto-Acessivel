@@ -32,7 +32,7 @@
       "nome": "AD - Coligação PSD/CDS",
       "sigla": "PSD/CDS-PP",
       "descricao": "Aliança entre partidos de centro-direita para eleições/partidos.",
-      "imagem": "/imagens/partidos/PPSD:CDS-PP.png"
+      "imagem": "/imagens/partidos/PSD:CDS-PP.png"
     },
     {
       "id": "6",
@@ -103,6 +103,21 @@
       "sigla": "RIR",
       "descricao": "Partido centrado na cidadania ativa e na sustentabilidade.",
       "imagem": "/imagens/partidos/RIR.png"
+    },
+    {
+      "id": "16",
+      "nome": "Voto Nulo",
+      "sigla": "",
+      "descricao": "",
+      "imagem": "/imagens/partidos/Nulo.png"
+    }
+    ,
+    {
+      "id": "17",
+      "nome": "Voto em Branco",
+      "sigla": "",
+      "descricao": "",
+      "imagem": "/imagens/partidos/Branco.png"
     }
   ]
   

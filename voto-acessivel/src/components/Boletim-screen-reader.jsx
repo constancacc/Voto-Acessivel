@@ -29,7 +29,7 @@ export default function BoletimVoto() {
     <div className="boletim-wrapper">
       <div className="boletim-card">
         <div className="boletim-content">
-          <div className="boletim-nome">{partido.nome}</div>
+          <div className="boletim-nome">{partido.id}. {partido.nome}</div>
 
           <div className="boletim-info">
             <div className="boletim-sigla">{partido.sigla}</div>
@@ -40,6 +40,8 @@ export default function BoletimVoto() {
               src={partido.imagem}
             />
 
+            <div className={`boletim-checkbox ${ votoSelecionado === partido.id ? "selecionado" : ""}`} />
+
           </div>
         </div>
       </div>
@@ -48,6 +50,12 @@ export default function BoletimVoto() {
         <Button text="Partido Anterior" icon={leftArrow} variant="secondary" onClick={irParaAnterior} />
         <Button text="Partido Seguinte" icon={rightArrow} variant="secondary" onClick={irParaSeguinte} />
       </div>
+
+      <div className="boletim-indicadores">
+        <p>{index > 0 ? `Anterior: ${partidosData[index - 1].nome}` : "Início do boletim"}</p>
+        <p>{index < partidosData.length - 1 ? `Seguinte: ${partidosData[index + 1].nome}` : "Fim do boletim"}</p>
+      </div>
+
     </div>
   );
 }

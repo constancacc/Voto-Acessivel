@@ -25,6 +25,7 @@
   font-weight: bold;
   font-size: 1rem;
   color: white;
+  text-align: start;
 }
 
 .boletim-info {
@@ -32,6 +33,7 @@
   align-items: center;
   gap: 2.5rem;
 }
+
 
 .boletim-sigla {
   width: 100px;
@@ -64,4 +66,12 @@
     width: 100%;
     margin-top: 40px;
     align-items: center;
+}
+
+.boletim-indicadores {
+  margin-top: 1rem;
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  max-width: 650px;
 }
