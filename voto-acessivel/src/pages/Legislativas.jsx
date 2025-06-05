@@ -53,13 +53,14 @@ export default function Legislativas() {
         </div>
       </div>
 
-      <div style={{gridColumn: "9 /span 5", gridRow: "11", justifySelf: "end"}}>
-        <Button text="Iniciar boletim" icon={seta}  variant="primary"/> 
-      </div>
-
-      <div style={{ gridColumn: "13 / span 1", gridRow: "12", alignSelf: "end", justifySelf: "end" }}>
-        <IconButton alt="botão de definições de acessibilidade" icon={accessibility} />
-      </div>
+       {/*footer*/}
+                <div style={{gridColumn: "9 /span 5", gridRow: "12", justifySelf: "end"}}>
+                <Button text="Iniciar boletim" variant="primary" icon={seta}/> 
+                </div>
+      
+                <div style={{gridColumn: "2/ span 1", gridRow: "12", alignSelf: "end"}}>
+                <IconButton alt="botão de definições de acessibilidade" icon={accessibility}/> 
+                </div>
     </div>
   );
 }

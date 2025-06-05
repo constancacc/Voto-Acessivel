@@ -35,9 +35,10 @@ export default function Eleicao() {
         </button>
       </div>
 
-      <div style={{ gridColumn: "13 / span 1", gridRow: "12", alignSelf: "end", justifySelf: "end" }}>
-        <IconButton alt="botão de definições de acessibilidade" icon={accessibility} />
-      </div>
+       {/*footer*/}
+                <div style={{gridColumn: "2/ span 1", gridRow: "12", alignSelf: "end"}}>
+                <IconButton alt="botão de definições de acessibilidade" icon={accessibility}/> 
+                </div>
     </div>
   );
 }
