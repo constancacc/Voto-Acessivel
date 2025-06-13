@@ -2,9 +2,7 @@ import React, { useState } from "react";
 import partidosData from "../assets/legislativas.json";
 
 import "../styles/boletim-screen-reader.css";
-import rightArrow from "../assets/right-circle-2.svg";
-import leftArrow from "../assets/left-circle-2.svg";
-import Button from "../components/Button"
+import seta from "../assets/ArrowIcon.svg";
 
 export default function BoletimVoto() {
   const [index, setIndex] = useState(0);
@@ -13,13 +11,16 @@ export default function BoletimVoto() {
   const partido = partidosData[index];
 
   const irParaAnterior = () => {
-    if (index > 0) setIndex(index - 1);
+    setIndex((prevIndex) =>
+      prevIndex === 0 ? partidosData.length - 1 : prevIndex - 1
+    );
   };
 
   const irParaSeguinte = () => {
-    if (index < partidosData.length - 1) setIndex(index + 1);
+    setIndex((prevIndex) =>
+      prevIndex === partidosData.length - 1 ? 0 : prevIndex + 1
+    );
   };
-
   const selecionarVoto = () => {
     setVotoSelecionado(partido.id);
     alert(`Voto selecionado: ${partido.nome}`);
@@ -47,13 +48,28 @@ export default function BoletimVoto() {
       </div>
 
       <div className="boletim-botoes">
-        <Button text="Partido Anterior" icon={leftArrow} variant="secondary" onClick={irParaAnterior} />
-        <Button text="Partido Seguinte" icon={rightArrow} variant="secondary" onClick={irParaSeguinte} />
-      </div>
+        {/*PARTIDO ANTERIOR*/}
+        <button className="custom-button secondary partido-anterior" onClick={irParaAnterior}>
+          <div className="custom-button-content-2">
+            <img src={seta} alt="Ajuda" style={{transform: "scaleX(-1)"}}/>
+            <span className="custom-button-text" style={{fontWeight: 700}}>Partido Anterior</span>
+          </div>
+          <p className="button-leg">
+            {`${partidosData[(index - 1 + partidosData.length) % partidosData.length].nome}`}
+            </p>
+        </button>
 
-      <div className="boletim-indicadores">
-        <p>{index > 0 ? `Anterior: ${partidosData[index - 1].nome}` : "Início do boletim"}</p>
-        <p>{index < partidosData.length - 1 ? `Seguinte: ${partidosData[index + 1].nome}` : "Fim do boletim"}</p>
+        {/*PARTIDO SEGUINTE*/}
+          <button className="custom-button secondary partido-anterior" onClick={irParaSeguinte}>
+          <div className="custom-button-content-2">
+            <img src={seta} alt="Ajuda"/>
+            <span className="custom-button-text" style={{fontWeight: 700}}>Partido Seguinte</span>
+          </div>
+          <p className="button-leg">
+            {` ${partidosData[(index + 1) % partidosData.length].nome}`}
+            </p>
+        </button>
+
       </div>
 
     </div>

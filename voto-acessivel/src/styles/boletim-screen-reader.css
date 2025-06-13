@@ -75,3 +75,40 @@
   width: 100%;
   max-width: 650px;
 }
+
+.partido-anterior{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center; /* centraliza verticalmente */
+  gap: 8px; /* espaço entre o botão principal e a legenda */
+  text-align: center;
+  height: fit-content;
+}
+
+.custom-button-content-2{
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+
+.custom-buttom-content-2 p{
+  font-weight: 700;
+}
+
+.button-leg{
+  color: #000;
+  text-align: center;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  flex-shrink: 0;
+
+  margin:0;
+  width: 211px;
+  height: 34px;
+}

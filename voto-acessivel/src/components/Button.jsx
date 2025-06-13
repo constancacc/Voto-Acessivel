@@ -2,7 +2,7 @@ import React from "react";
 import { useNavigate } from "react-router-dom";
 import "../styles/variables.css";
 
-export default function Button({ text, icon, variant, onClick }) {
+export default function Button({ text, icon, variant, onClick, legenda }) {
   const navigate = useNavigate();
 
   const handleClick = () => {
@@ -25,6 +25,7 @@ export default function Button({ text, icon, variant, onClick }) {
     >
       <span className="custom-button-text">{text}</span>
       {icon && <img src={icon} alt="" className="custom-button-icon" />}
+      
     </button>
   );
 }
