@@ -3,7 +3,7 @@ import "../styles/variables.css";
 
 export default function SliderIndicators({ activeIndex = 0, total = 3, onSelect }) {
   return (
-    <div className="slider-container" style={{ width: `${total * 60}px` }}>
+    <div className="slider-container">
       <div className="slider-indicators">
         {[...Array(total)].map((_, index) => (
           <div
@@ -15,7 +15,7 @@ export default function SliderIndicators({ activeIndex = 0, total = 3, onSelect 
         ))}
       </div>
       <div className="slider-page-text">
-        {activeIndex + 1} de {total} páginas
+        {activeIndex + 1}/{total}
       </div>
     </div>
   );

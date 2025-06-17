@@ -22,7 +22,7 @@ return (
         <p>Pode ajustar o <b>tamanho</b> e o <b>tipo de letra</b>, as <b>cores</b> e o <b>idioma</b> de leitura. Todas estas opções foram pensadas para melhorar a leitura e a navegação na plataforma.</p>
       </div>
       
-      <div style={{gridColumn: "6 / span 4", gridRow: "11", alignSelf: "end"}}>
+      <div style={{gridColumn: "7 / span 3", gridRow: "10"}}>
         <SliderIndicators activeIndex={activeIndex} total={3} onSelect={setActiveIndex} />
       </div>
 

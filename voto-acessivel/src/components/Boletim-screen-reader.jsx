@@ -21,57 +21,55 @@ export default function BoletimVoto() {
       prevIndex === partidosData.length - 1 ? 0 : prevIndex + 1
     );
   };
+
   const selecionarVoto = () => {
     setVotoSelecionado(partido.id);
-    alert(`Voto selecionado: ${partido.nome}`);
   };
 
   return (
     <div className="boletim-wrapper">
-      <div className="boletim-card">
+      <div className="boletim-card" onClick={selecionarVoto} style={{ cursor: "pointer" }}>
         <div className="boletim-content">
           <div className="boletim-nome">{partido.id}. {partido.nome}</div>
 
           <div className="boletim-info">
             <div className="boletim-sigla">{partido.sigla}</div>
-
             <img
               className="boletim-logo"
               alt={`Símbolo eleitoral de ${partido.nome}`}
               src={partido.imagem}
             />
-
-            <div className={`boletim-checkbox ${ votoSelecionado === partido.id ? "selecionado" : ""}`} />
-
+            <div className={`boletim-checkbox ${votoSelecionado === partido.id ? "selecionado" : ""}`} />
           </div>
         </div>
       </div>
 
-      <div className="boletim-botoes">
-        {/*PARTIDO ANTERIOR*/}
-        <button className="custom-button secondary partido-anterior" onClick={irParaAnterior}>
-          <div className="custom-button-content-2">
-            <img src={seta} alt="Ajuda" style={{transform: "scaleX(-1)"}}/>
-            <span className="custom-button-text" style={{fontWeight: 700}}>Partido Anterior</span>
-          </div>
-          <p className="button-leg">
-            {`${partidosData[(index - 1 + partidosData.length) % partidosData.length].nome}`}
+      {/* Mostrar botões só se nenhum voto foi selecionado */}
+      {votoSelecionado === null && (
+        <div className="boletim-botoes">
+          {/*PARTIDO ANTERIOR*/}
+          <button className="custom-button secondary partido-anterior" onClick={irParaAnterior}>
+            <div className="custom-button-content-2">
+              <img src={seta} alt="Anterior" style={{ transform: "scaleX(-1)" }} />
+              <span className="custom-button-text" style={{ fontWeight: 700 }}>Partido Anterior</span>
+            </div>
+            <p className="button-leg">
+              {`${partidosData[(index - 1 + partidosData.length) % partidosData.length].nome}`}
             </p>
-        </button>
+          </button>
 
-        {/*PARTIDO SEGUINTE*/}
+          {/*PARTIDO SEGUINTE*/}
           <button className="custom-button secondary partido-anterior" onClick={irParaSeguinte}>
-          <div className="custom-button-content-2">
-            <img src={seta} alt="Ajuda"/>
-            <span className="custom-button-text" style={{fontWeight: 700}}>Partido Seguinte</span>
-          </div>
-          <p className="button-leg">
-            {` ${partidosData[(index + 1) % partidosData.length].nome}`}
+            <div className="custom-button-content-2">
+              <img src={seta} alt="Seguinte" />
+              <span className="custom-button-text" style={{ fontWeight: 700 }}>Partido Seguinte</span>
+            </div>
+            <p className="button-leg">
+              {`${partidosData[(index + 1) % partidosData.length].nome}`}
             </p>
-        </button>
-
-      </div>
-
+          </button>
+        </div>
+      )}
     </div>
   );
 }

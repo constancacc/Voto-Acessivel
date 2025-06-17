@@ -22,9 +22,9 @@ return (
         <p>A plataforma possui um <b>leitor de ecrã</b> que é ativado <b>automaticamente</b> ao iniciar, <b>lendo todos os elementos</b> apresentados.</p>
       </div>
 
-       <div style={{gridColumn: "6 / span 4", gridRow: "11", alignSelf: "end"}}>
-          <SliderIndicators activeIndex={activeIndex} total={3} onSelect={setActiveIndex} />
-        </div>
+      <div style={{gridColumn: "7 / span 3", gridRow: "10"}}>
+        <SliderIndicators activeIndex={activeIndex} total={3} onSelect={setActiveIndex} />
+      </div>
       
               {/*footer*/}
                 <div style={{gridColumn: "9 /span 5", gridRow: "12", justifySelf: "end"}}>

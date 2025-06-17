@@ -6,7 +6,6 @@ import Button from '../components/Button.jsx';
 import IconButton from '../components/IconButton.jsx';
 import BoletimVoto from '../components/Boletim-screen-reader.jsx';
 
-
 /*partidos*/
 import partidosData from "../assets/legislativas.json";
 

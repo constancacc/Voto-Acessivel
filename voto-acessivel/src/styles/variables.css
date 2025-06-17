@@ -114,10 +114,6 @@
   align-items: center;
   flex-shrink: 0;
   aspect-ratio: 1/1;
-  
-  border-radius: 22px;
-  border: 2px solid var(--secundary-stroke);
-  background: var(--secundary);  
 }
 
 .icon-button-img{
@@ -131,14 +127,14 @@
 }
 
 /*------- SLIDERS --------*/
-.slider-container {
-  height: 44px;
-  flex-shrink: 0;
+.slider-container{
+  width: fit-content;
+
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  /* width controlado pelo inline style */
+  column-gap: 8px;
 }
 
 .slider-indicators {
@@ -146,28 +142,28 @@
   justify-content: space-between;
   align-items: center;
   width: 100%;
+  column-gap: 8px;
 }
 
 .slider-indicator {
-  width: 52px;
-  height: 7px;
-  border-radius: 30px;
-  border: 2px solid #878787;
-  background: #E0E0E0;
+  width: 12px;
+  height: 12px;
+  border-radius: 100px;
+  background: var(--secundary-stroke);
   flex-shrink: 0;
-  transition: background 0.3s ease, border-color 0.3s ease;
 }
 
 .slider-indicator.active {
-  background: #878787;
+  background: #000;
+  width: 1rem;
+  height: 1rem;
 }
 
 .slider-page-text {
   margin-top: 6px;
-  font-family: "Atkinson Hyperlegible", sans-serif;
   font-size: 14px;
-  font-weight: 400;
-  color: #000;
+  font-weight: 700;
+  color: var(--secundary-stroke);
   user-select: none;
   text-align: center;
   width: 100%;
