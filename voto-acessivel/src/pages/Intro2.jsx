@@ -14,11 +14,44 @@ return (
       <div style={{gridColumn: "5 /span 6", gridRow: "4/ span 4", padding: "1rem"}}>
           <img src="/imagens/instrucoes/leitor-de-ecra.svg" alt="Logo Voto Acessível" className="logo-svg"/>
       </div>
-      <div style={{gridColumn: "2 /span 7", gridRow: "8", alignSelf: "end"}}>
+    {/*
+      <div style={{gridColumn: "13 /span 1", gridRow: "7", rotate: "-90deg"}}>
+          <img
+            src={next}
+            onClick={() => {
+              if (activeIndex > 2) {
+                setActiveIndex(activeIndex - 1);
+              } else {
+                window.location.href = "/intro"; // Ou iniciar a eleição
+              }
+            }}
+            style={{ cursor: "pointer" }}
+            alt="Recuar"
+          />
+      
+      </div>
+
+       <div style={{gridColumn: "13 /span 1", gridRow: "7", rotate: "-90deg"}}>
+              <img
+                src={next}
+                onClick={() => {
+                  if (activeIndex < 2) {
+                    setActiveIndex(activeIndex + 1);
+                  } else {
+                    window.location.href = "/intro3"; // Ou iniciar a eleição
+                  }
+                }}
+                style={{ cursor: "pointer" }}
+                alt="Avançar"
+              />
+      
+            </div>
+*/}
+      <div style={{gridColumn: "3 /span 7", gridRow: "8", alignSelf: "end"}}>
         <h3>Navegação com leitor de ecrã</h3>
       </div>
 
-      <div style={{gridColumn: "2 /span 10", gridRow: "9"}}>
+      <div style={{gridColumn: "3 /span 10", gridRow: "9"}}>
         <p>A plataforma possui um <b>leitor de ecrã</b> que é ativado <b>automaticamente</b> ao iniciar, <b>lendo todos os elementos</b> apresentados.</p>
       </div>
 

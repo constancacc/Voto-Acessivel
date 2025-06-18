@@ -22,7 +22,18 @@ return (
       </div>
 
       <div style={{gridColumn: "13 /span 1", gridRow: "7", rotate: "-90deg"}}>
-        <img src={next} onClick={() => window.location.href = "/intro2"}></img> 
+        <img
+          src={next}
+          onClick={() => {
+            if (activeIndex < 2) {
+              setActiveIndex(activeIndex + 1);
+            } else {
+              window.location.href = "/intro2"; // Ou iniciar a eleição
+            }
+          }}
+          style={{ cursor: "pointer" }}
+          alt="Avançar"
+        />
 
       </div>
 
