@@ -8,7 +8,7 @@ import IconButton from '../components/IconButton.jsx';
 import SliderIndicators from '../components/Slider.jsx';
 
 import "../styles/intro.css";
-import "../styles/grid.css";
+import "../styles/variables.css";
 
 
 export default function IntroSlider() {

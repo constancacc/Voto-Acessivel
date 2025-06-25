@@ -3,7 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import accessibility from "../assets/accessibility.svg";
 import IconButton from '../components/IconButton.jsx';
 import '../styles/intro.css';
-import '../styles/grid.css';
+import '../styles/variables.css';
 import '../styles/eleicoes.css';
 
 export default function Eleicao() {

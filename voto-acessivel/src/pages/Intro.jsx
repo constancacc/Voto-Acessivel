@@ -6,7 +6,7 @@ import IconButton from '../components/IconButton.jsx';
 import SliderIndicators from '../components/Slider.jsx';
 import next from '../assets/collapse-open.svg';
 import  '../styles/intro.css';
-import  '../styles/grid.css';
+import  '../styles/variables.css';
 
 export default function Intro({ activeIndex, setActiveIndex }) {
 

@@ -12,7 +12,7 @@ import partidosData from "../assets/legislativas.json";
 
 /*styles*/
 import '../styles/intro.css';
-import '../styles/grid.css';
+import '../styles/variables.css';
 
 export default function Boletim() {
   return (
