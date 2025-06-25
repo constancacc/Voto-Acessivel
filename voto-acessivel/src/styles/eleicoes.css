@@ -4,13 +4,58 @@
     width: 100%;
 }
 
-.election-btn{
-display: inline-flex;
-padding: 1rem;
-flex-direction: column;
-align-items: flex-start;
-gap: 12.167px;
+.election-container{
+    display: flex;
 
-border-radius: 12.167px;
-border: 2.433px solid var(--secundary-stroke);
+    flex-direction: row;
+    gap: 40px;
+    justify-content: center;
+    align-items: center;
+    flex-shrink: 0;
 }
+.election-btn{
+    display: flex;
+
+    width: 265px;
+    height: 351px;
+    padding: 20px;
+
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    flex-shrink: 0;
+
+    border-radius: 10px;
+    border: 2px solid var(--secundary-stroke);
+}
+
+.logo-legislativas{
+    width: 150.653px;
+    height: 186.107px;
+    flex-shrink: 0;
+    aspect-ratio: 150.65/186.11;
+
+    margin-bottom: 2rem;
+}
+
+.btn-title{
+    text-align: center;
+    font-size: 18px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: normal;
+    margin-bottom: 1rem;
+}
+
+.logo-autarquicas{
+    width: 150.65px;
+    height: 171.788px;
+    flex-shrink: 0;
+    aspect-ratio: 150.65/171.79;
+
+    margin-bottom: 3rem;
+}
+
+
+
+
