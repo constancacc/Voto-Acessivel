@@ -2,7 +2,6 @@ import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom'; // Importa o hook de navegação
 import "../styles/LoadingPage.css";
 import FullscreenButton from '../components/FullscreenButton';
-import OrientationWarning from '../components/OrientationWarning';
 import Loader from '../components/Loader';
 
 export default function LoadingPage() {
@@ -44,7 +43,6 @@ export default function LoadingPage() {
 
   return (
     <div className="loading-wrapper">
-      <OrientationWarning />
       <div className="logo-container" aria-label="Logo Voto Acessível">
        <svg xmlns="http://www.w3.org/2000/svg" width="109" height="85" viewBox="0 0 109 85" fill="none">
                 <path d="M103.889 26.7837L76.6375 60.3311L61.3887 45.6726" stroke="black" stroke-width="8.87205" stroke-linecap="round" stroke-linejoin="round"/>

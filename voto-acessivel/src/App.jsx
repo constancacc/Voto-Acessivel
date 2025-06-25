@@ -1,7 +1,6 @@
 import { useState } from 'react'
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import './App.css'
-import OrientationWarning from './components/OrientationWarning';
 import LoadingPage from './pages/LoadingPage';
 import Eleicao from "./pages/SelecionarEleicao";
 import Legislativas from "./pages/Legislativas";
