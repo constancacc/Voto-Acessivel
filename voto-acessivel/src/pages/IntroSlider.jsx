@@ -50,7 +50,7 @@ export default function IntroSlider() {
       content: (
         <>
             <div style={{ gridColumn: "3 / span 12", gridRow: "3" }}>
-                <h1>Informações de Leitor de Ecrã</h1>
+                <h1>Informaçãos de Leitor de Ecrã</h1>
             </div>
           <div style={{ gridColumn: "5 / span 6", gridRow: "5", padding: "1rem" }}>
             <img src="/imagens/instrucoes/leitor-de-ecra.svg" alt="Leitor de Ecrã"/>
