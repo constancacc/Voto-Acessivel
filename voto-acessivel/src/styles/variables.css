@@ -125,6 +125,22 @@
   display: block;
   margin: 0 auto; /* centraliza */
 }
+/*voltar para trás*/
+.back-container{
+  display: flex;
+  width: 44px;
+  height: 44px;
+  justify-content: space-between;
+  align-items: center;
+  flex-shrink: 0;
+}
+.back-btn{
+  width: 17.6px;
+  height: 17.6px;
+  flex-shrink: 0;
+  aspect-ratio: 17.60/17.60;
+  stroke-width: 2.8px;
+}
 
 /*------- SLIDERS --------*/
 .slider-container{

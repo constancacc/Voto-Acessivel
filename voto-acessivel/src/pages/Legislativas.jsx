@@ -24,7 +24,7 @@ export default function Legislativas() {
 
   return (
     <div className="grid-container">
-      <div style={{ gridColumn: "12 / span 2", gridRow: "2" }}>
+      <div style={{ gridColumn: "11 / span 3", gridRow: "2" }}>
         <img
           src="/imagens/legislativas-2025-logo.svg"
           alt="Botão Eleições Legislativas 2025"
