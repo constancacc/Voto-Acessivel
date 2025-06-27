@@ -51,40 +51,49 @@ export default function BoletimVoto() {
         </div>
       </div>
 
-      <div className="boletim-botoes">
-        <button
-          className="custom-button secondary partido-anterior"
-          onClick={irParaAnterior}
-        >
-          <div className="custom-button-content-2">
-            <img
-              src={seta}
-              alt="Anterior"
-              style={{ transform: "scaleX(-1)" }}
-            />
-            <span className="custom-button-text" style={{ fontWeight: 700 }}>
-              Partido Anterior
-            </span>
-          </div>
-          <p className="button-leg">
-            {`${partidosData[(index - 1 + partidosData.length) % partidosData.length].nome}`}
-          </p>
-        </button>
+      <div className="boletim-botoes-container">
 
-        <button
-          className="custom-button secondary partido-anterior"
-          onClick={irParaSeguinte}
-        >
-          <div className="custom-button-content-2">
-            <img src={seta} alt="Seguinte" />
-            <span className="custom-button-text" style={{ fontWeight: 700 }}>
-              Partido Seguinte
-            </span>
-          </div>
-          <p className="button-leg">
-            {`${partidosData[(index + 1) % partidosData.length].nome}`}
+       <div className="boletim-indicador">
+          <p className="partido-indicador">
+            {index + 1} de {partidosData.length} candidatos
           </p>
-        </button>
+        </div>
+
+        <div className="boletim-botoes">
+          <button
+            className="custom-button secondary partido-anterior"
+            onClick={irParaAnterior}
+          >
+            <div className="custom-button-content-2">
+              <img
+                src={seta}
+                alt="Anterior"
+                style={{ transform: "scaleX(-1)" }}
+              />
+              <span className="custom-button-text" style={{ fontWeight: 700 }}>
+                Partido Anterior
+              </span>
+            </div>
+            <p className="button-leg">
+              {`${partidosData[(index - 1 + partidosData.length) % partidosData.length].nome}`}
+            </p>
+          </button>
+
+          <button
+            className="custom-button secondary partido-anterior"
+            onClick={irParaSeguinte}
+          >
+            <div className="custom-button-content-2">
+              <img src={seta} alt="Seguinte" />
+              <span className="custom-button-text" style={{ fontWeight: 700 }}>
+                Partido Seguinte
+              </span>
+            </div>
+            <p className="button-leg">
+              {`${partidosData[(index + 1) % partidosData.length].nome}`}
+            </p>
+          </button>
+         </div>
       </div>
     </div>
   );
