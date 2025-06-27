@@ -107,16 +107,16 @@
     {
       "id": "16",
       "nome": "Voto Nulo",
-      "sigla": "",
-      "descricao": "",
+      "sigla": "VN",
+      "descricao": "Boletim inválido devido a erros ou sinais que comprometem o voto.",
       "imagem": "/imagens/partidos/Nulo.png"
     }
     ,
     {
       "id": "17",
       "nome": "Voto em Branco",
-      "sigla": "",
-      "descricao": "",
+      "sigla": "VB",
+      "descricao": "Boletim sem qualquer marca, indicando que o eleitor não escolheu nenhum candidato.",
       "imagem": "/imagens/partidos/Branco.png"
     }
   ]

@@ -1,12 +1,12 @@
 import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import partidosData from "../assets/legislativas.json";
-
 import "../styles/boletim-screen-reader.css";
 import seta from "../assets/ArrowIcon.svg";
 
 export default function BoletimVoto() {
   const [index, setIndex] = useState(0);
-  const [votoSelecionado, setVotoSelecionado] = useState(null);
+  const navigate = useNavigate();
 
   const partido = partidosData[index];
 
@@ -23,14 +23,21 @@ export default function BoletimVoto() {
   };
 
   const selecionarVoto = () => {
-    setVotoSelecionado(partido.id);
+    // Aqui navega para a página de confirmação e passa o partido selecionado
+    navigate('/confirmacao', { state: { partido: partido.id } });
   };
 
   return (
     <div className="boletim-wrapper">
-      <div className="boletim-card" onClick={selecionarVoto} style={{ cursor: "pointer" }}>
+      <div
+        className="boletim-card"
+        onClick={selecionarVoto}
+        style={{ cursor: "pointer" }}
+      >
         <div className="boletim-content">
-          <div className="boletim-nome">{partido.id}. {partido.nome}</div>
+          <div className="boletim-nome">
+            {partido.id}. {partido.nome}
+          </div>
 
           <div className="boletim-info">
             <div className="boletim-sigla">{partido.sigla}</div>
@@ -39,37 +46,46 @@ export default function BoletimVoto() {
               alt={`Símbolo eleitoral de ${partido.nome}`}
               src={partido.imagem}
             />
-            <div className={`boletim-checkbox ${votoSelecionado === partido.id ? "selecionado" : ""}`} />
+            <div className="boletim-checkbox" />
           </div>
         </div>
       </div>
 
-      {/* Mostrar botões só se nenhum voto foi selecionado */}
-      {votoSelecionado === null && (
-        <div className="boletim-botoes">
-          {/*PARTIDO ANTERIOR*/}
-          <button className="custom-button secondary partido-anterior" onClick={irParaAnterior}>
-            <div className="custom-button-content-2">
-              <img src={seta} alt="Anterior" style={{ transform: "scaleX(-1)" }} />
-              <span className="custom-button-text" style={{ fontWeight: 700 }}>Partido Anterior</span>
-            </div>
-            <p className="button-leg">
-              {`${partidosData[(index - 1 + partidosData.length) % partidosData.length].nome}`}
-            </p>
-          </button>
+      <div className="boletim-botoes">
+        <button
+          className="custom-button secondary partido-anterior"
+          onClick={irParaAnterior}
+        >
+          <div className="custom-button-content-2">
+            <img
+              src={seta}
+              alt="Anterior"
+              style={{ transform: "scaleX(-1)" }}
+            />
+            <span className="custom-button-text" style={{ fontWeight: 700 }}>
+              Partido Anterior
+            </span>
+          </div>
+          <p className="button-leg">
+            {`${partidosData[(index - 1 + partidosData.length) % partidosData.length].nome}`}
+          </p>
+        </button>
 
-          {/*PARTIDO SEGUINTE*/}
-          <button className="custom-button secondary partido-anterior" onClick={irParaSeguinte}>
-            <div className="custom-button-content-2">
-              <img src={seta} alt="Seguinte" />
-              <span className="custom-button-text" style={{ fontWeight: 700 }}>Partido Seguinte</span>
-            </div>
-            <p className="button-leg">
-              {`${partidosData[(index + 1) % partidosData.length].nome}`}
-            </p>
-          </button>
-        </div>
-      )}
+        <button
+          className="custom-button secondary partido-anterior"
+          onClick={irParaSeguinte}
+        >
+          <div className="custom-button-content-2">
+            <img src={seta} alt="Seguinte" />
+            <span className="custom-button-text" style={{ fontWeight: 700 }}>
+              Partido Seguinte
+            </span>
+          </div>
+          <p className="button-leg">
+            {`${partidosData[(index + 1) % partidosData.length].nome}`}
+          </p>
+        </button>
+      </div>
     </div>
   );
 }
