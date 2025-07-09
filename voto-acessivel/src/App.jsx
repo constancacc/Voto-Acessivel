@@ -12,6 +12,7 @@ import Impressao from './pages/Impressao';
 import ConclusaoPage from './pages/Conclusao';
 
 import SpeechAnnouncer from "./components/SpeechAnnouncer";
+import Acessibilidade from './pages/Acessibilidade';
 
 
 
@@ -32,6 +33,14 @@ function App() {
         <Route path="/confirmacao" element={<Confirmacao />} />
         <Route path="/impressao" element={<Impressao />} />
         <Route path="/conclusao" element={<ConclusaoPage />} />
+
+        <Route path="/acessibilidade" element={<Acessibilidade />} />
+         <Route path="/pre-definicoes" element={<PreDefinicoes />} />
+        <Route path="/codigo-perfil" element={<CodigoPerfil />} />
+        <Route path="/leitor-ecra" element={<LeitorEcra />} />
+        <Route path="/mudanca-cor" element={<MudancaCor />} />
+        <Route path="/mudanca-idioma" element={<MudancaIdioma />} />
+        <Route path="/mudanca-tipografia" element={<MudancaTipografia />} />
 
 
       </Routes>
