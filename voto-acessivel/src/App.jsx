@@ -11,6 +11,8 @@ import Confirmacao from './pages/Boletim-legislativas-confirmação';
 import Impressao from './pages/Impressao';
 import ConclusaoPage from './pages/Conclusao';
 
+import SpeechAnnouncer from "./components/SpeechAnnouncer";
+
 
 
 function App() {
@@ -19,6 +21,7 @@ function App() {
   return (
     <>
      <Router>
+      <SpeechAnnouncer/>
       <Routes>
         <Route path="/" element={ <LoadingPage />} />
         <Route path="/intro" element={<IntroSlider />} />
