@@ -55,10 +55,10 @@ export default function Confirmacao() {
       </div>
 
       {/* Logo */}
-      <div style={{ gridColumn: "12 / span 2", gridRow: "2" }}>
+      <div style={{ gridColumn: "11 / span 3", gridRow: "2" }}>
         <img
           src="/imagens/legislativas-2025-logo.svg"
-          alt="Botão Eleições Legislativas 2025"
+          alt="Logo Eleições Legislativas 2025"
           className="btn-legislativas"
         />
       </div>

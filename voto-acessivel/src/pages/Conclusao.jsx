@@ -25,7 +25,7 @@ export default function ConclusaoPage() {
   }, []);
 
   return (
-    <div className="loading-wrapper" onClick={() => navigate("/intro")} role="button" tabIndex={0}>
+    <div className="loading-wrapper" onClick={() => navigate("/")} role="button" tabIndex={0}>
       <div className="logo-container" aria-label="Logo Voto Acessível">
          <svg xmlns="http://www.w3.org/2000/svg" width="109" height="85" viewBox="0 0 109 85" fill="none">
                 <path d="M103.889 26.7837L76.6375 60.3311L61.3887 45.6726" stroke="black" stroke-width="8.87205" stroke-linecap="round" stroke-linejoin="round"/>
