@@ -1,0 +1,32 @@
+.print-cell{
+    display: flex;
+    padding: 16px;
+    justify-content: space-between;
+    align-items: center;
+    flex-shrink: 0;
+    align-self: stretch;
+
+    border-top: 2px solid #000;
+    border-bottom: 2px solid #000;
+}
+
+.print-cell > p{
+    width: 253px;
+    margin-bottom: 0;
+}
+
+@keyframes slideDownFade {
+  0% {
+    transform: translateY(300px);
+    opacity: 0;
+  }
+  100% {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+.print-cell {
+  animation: slideDownFade 3s ease-out forwards;
+  opacity: 0; /* Garantir que o valor inicial seja 0 */
+}

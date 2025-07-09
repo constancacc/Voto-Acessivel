@@ -107,13 +107,18 @@
 /*icon-btn*/
 .icon-button {
   display: flex;
+  justify-content: center;
+  align-items: center;
+
   width: 44px;
   height: 44px;
-  padding: 5px 5px;
-  justify-content: space-between;
-  align-items: center;
+  padding: 5px;
+  border-radius: 50%; /* Torna a forma circular */
+
+  background-color: var(--secundary); /* cinzento de fundo */
+  border: 2px solid var(--secundary-stroke); /* contorno */
   flex-shrink: 0;
-  aspect-ratio: 1/1;
+  cursor: pointer;
 }
 
 .icon-button-img{

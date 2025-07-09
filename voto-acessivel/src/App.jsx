@@ -8,6 +8,8 @@ import Autarquicas from "./pages/Autarquicas";
 import Boletim from './pages/Boletim-legislativas';
 import IntroSlider from './pages/IntroSlider';
 import Confirmacao from './pages/Boletim-legislativas-confirmação';
+import Impressao from './pages/Impressao';
+import ConclusaoPage from './pages/Conclusao';
 
 
 
@@ -25,6 +27,8 @@ function App() {
         <Route path="/autarquicas" element={<Autarquicas />} />
         <Route path="/boletim-legislativas" element={<Boletim />} />
         <Route path="/confirmacao" element={<Confirmacao />} />
+        <Route path="/impressao" element={<Impressao />} />
+        <Route path="/conclusao" element={<ConclusaoPage />} />
 
 
       </Routes>

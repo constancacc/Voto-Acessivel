@@ -34,7 +34,7 @@ export default function Confirmacao() {
   const partido = partidosData.find(p => p.id === partidoSelecionado);
 
   const handleConfirmar = () => {
-    alert('Voto confirmado!');
+    navigate('/impressao');
     // Aqui podes redirecionar ou guardar no backend
   };
 
