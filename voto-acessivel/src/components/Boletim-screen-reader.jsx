@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import { useNavigate } from "react-router-dom";
 import partidosData from "../assets/legislativas.json";
 import "../styles/boletim-screen-reader.css";
@@ -7,6 +7,7 @@ import seta from "../assets/ArrowIcon.svg";
 export default function BoletimVoto() {
   const [index, setIndex] = useState(0);
   const navigate = useNavigate();
+  const partidoRef = useRef(null); // Para associar o elemento DOM
 
   const partido = partidosData[index];
 
@@ -23,9 +24,15 @@ export default function BoletimVoto() {
   };
 
   const selecionarVoto = () => {
-    // Aqui navega para a página de confirmação e passa o partido selecionado
     navigate('/confirmacao', { state: { partido: partido.id } });
   };
+
+  useEffect(() => {
+    if (window.speakText && partido) {
+      const texto = `Candidato ${partido.id}, ${partido.nome}, sigla ${partido.sigla}`;
+      window.speakText(texto, partidoRef.current);
+    }
+  }, [partido]);
 
   return (
     <div className="boletim-wrapper">
@@ -33,6 +40,8 @@ export default function BoletimVoto() {
         className="boletim-card"
         onClick={selecionarVoto}
         style={{ cursor: "pointer" }}
+        tabIndex={0}
+        ref={partidoRef} // <-- Aqui a referência
       >
         <div className="boletim-content">
           <div className="boletim-nome">
@@ -52,8 +61,7 @@ export default function BoletimVoto() {
       </div>
 
       <div className="boletim-botoes-container">
-
-       <div className="boletim-indicador">
+        <div className="boletim-indicador">
           <p className="partido-indicador">
             {index + 1} de {partidosData.length} candidatos
           </p>
@@ -93,7 +101,7 @@ export default function BoletimVoto() {
               {`${partidosData[(index + 1) % partidosData.length].nome}`}
             </p>
           </button>
-         </div>
+        </div>
       </div>
     </div>
   );
