@@ -35,14 +35,6 @@ export default function Acessibilidade() {
         </button>
       </div>
 
-      <div style={{ gridColumn: "12 / span 2", gridRow: "2"}}>
-        <img
-            src="/imagens/autarquicas-2021-logo.svg"
-            alt="Botão Eleições Legislativas 2025"
-            className="btn-autarquicas"
-          />
-
-      </div>
       <div style={{ gridColumn: "2 / span 12", gridRow: "3"}}>
         <h1>Definições de Acessibilidade</h1>
         <h2>Adaptar a plataforma às suas necessidades</h2>
