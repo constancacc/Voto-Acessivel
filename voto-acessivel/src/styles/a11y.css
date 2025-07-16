@@ -1,3 +1,9 @@
+@import './variables.css';
+
+#root{
+    text-align: left;
+}
+
 .adap-list{
     display: flex;
     width: 648px;
@@ -50,4 +56,37 @@ span p {
     line-height: normal;
 
     margin-bottom: 0; 
+}
+
+/*PRÉ-DEFINIÇÕES*/
+
+.pre-def-title{
+    display: inline-flex;
+    align-items: flex-end;
+    gap: 16px;
+}
+.pre-def-content{
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 20px;
+}
+
+.adapt-info{
+    width: 100%; /* ou fixa, tipo 593px */
+    display: flex;
+    align-items: flex-start;
+    align-content: flex-start;
+    gap: 0px 20px;
+    align-self: stretch;
+    flex-wrap: wrap;
+}
+
+.adapt-info > p {
+  box-sizing: border-box;
+  width: 207px;
+  width: calc((100% - 2 * 20px) / 3); /* 3 colunas, 2 gaps */
+}
+#motoras{
+    margin-bottom: 2rem;
 }

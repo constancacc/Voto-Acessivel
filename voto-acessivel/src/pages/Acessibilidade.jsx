@@ -1,4 +1,6 @@
 import React from 'react';
+import { useNavigate } from 'react-router-dom';
+
 /*botões*/
 import seta from "../assets/ArrowIcon.svg"
 import accessibility from "../assets/accessibility.svg"
@@ -24,6 +26,7 @@ import '../styles/variables.css';
 import '../styles/a11y.css';
 
 export default function Acessibilidade() {
+  const navigate = useNavigate();
   return (
     <div className="grid-container">
         {/* Botão voltar */}

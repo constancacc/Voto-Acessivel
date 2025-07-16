@@ -13,6 +13,7 @@ import ConclusaoPage from './pages/Conclusao';
 
 import SpeechAnnouncer from "./components/SpeechAnnouncer";
 import Acessibilidade from './pages/Acessibilidade';
+import PreDefinicoes from './pages/links-acessibilidade/PreDefinicoes';
 
 
 
@@ -35,8 +36,9 @@ function App() {
         <Route path="/conclusao" element={<ConclusaoPage />} />
 
         <Route path="/acessibilidade" element={<Acessibilidade />} />
-        {/*
+        
          <Route path="/pre-definicoes" element={<PreDefinicoes />} />
+         {/*
         <Route path="/codigo-perfil" element={<CodigoPerfil />} />
         <Route path="/leitor-ecra" element={<LeitorEcra />} />
         <Route path="/mudanca-cor" element={<MudancaCor />} />

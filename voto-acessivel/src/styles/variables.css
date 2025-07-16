@@ -22,6 +22,7 @@
     --max-text-width: 80ch;  /*  largura máxima do texto para legibilidade 50-80 caracteres */
 
     --font-family: 'Atkinson Hyperlegible', sans-serif;
+    
   }
 
   /*------- TIPOGRAFIA -------------------*/
@@ -36,6 +37,7 @@
     font-style: normal;
     font-weight: 700;
     line-height: 60px; /* 200% */
+    
   }
 
   h2{
