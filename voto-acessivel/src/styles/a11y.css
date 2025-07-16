@@ -29,6 +29,7 @@
 #versao2{
     border: 2px solid var(--secundary-stroke);
     background: var(--secundary);
+    font-weight: 200;
 }
 
 .adap-title{
