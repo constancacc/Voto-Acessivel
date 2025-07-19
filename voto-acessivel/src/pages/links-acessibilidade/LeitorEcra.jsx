@@ -42,7 +42,6 @@ export default function LeitorEcra() {
       {/* main */}
 
       <div style={{ gridColumn: "2 / span 12", gridRow: "4", position: "relative" }}>
-            {/*motoras*/}
         <div id="motoras"> 
             <div className='pre-def-title'> 
                 <img src={varrimento}></img>
@@ -53,9 +52,9 @@ export default function LeitorEcra() {
                 <p> Estas opções dizem respeito à ativação da opção de varrimento e do seu tempo entre células. </p>
              </div>
 
+            <div style={{ position: "absolute" }} className="adap-list">
             <div
-            className="adap-cell"
-            id="versao2"
+            className="adap-cell ativo"
             role="button"
             tabIndex="0"
             >
@@ -63,7 +62,10 @@ export default function LeitorEcra() {
                     <p>Ativar</p>
                 </span>
             
-                <img src={next}></img>
+                <svg xmlns="http://www.w3.org/2000/svg" width="26" height="20" viewBox="0 0 26 20" fill="none">
+                <path d="M24 1.5L9.89353 18.5L2 11.0718" stroke="white" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+                
             </div>
 
             <div
@@ -92,6 +94,7 @@ export default function LeitorEcra() {
                 </span>
             
                 <img src={next}></img>
+            </div>
             </div>
         </div>
 
