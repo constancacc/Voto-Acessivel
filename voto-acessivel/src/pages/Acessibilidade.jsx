@@ -138,10 +138,10 @@ export default function Acessibilidade() {
              <div
             className="adap-cell"
             id="versao2"
-            onClick={() => navigate("/pre-definicoes")}
+            onClick={() => navigate("/tipografia")}
             role="button"
             tabIndex="0"
-            onKeyDown={(e) => { if (e.key === 'Enter') navigate("/pre-definicoes") }}
+            onKeyDown={(e) => { if (e.key === 'Enter') navigate("/tipografia") }}
             >
                 <span className="adap-title">    
                     <img src={tipografia}></img>

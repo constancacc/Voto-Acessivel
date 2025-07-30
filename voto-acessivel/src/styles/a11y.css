@@ -40,16 +40,6 @@
     border-radius: 10px;  
 }
 
-span img{
-    display: flex;
-    width: 30px;
-    height: 30px;
-    padding: 6.136px 6.818px;
-    justify-content: space-between;
-    align-items: center;
-    aspect-ratio: 1/1;
-}
-
 span p {
     font-size: var(--font-base-size);
     margin-bottom: 0; 
@@ -63,6 +53,14 @@ div.ativo > span > p {
     font-weight: 700;
    background: var(--Active-color, #327353);
    border-radius: 10px;
+}
+
+.adapt-info{
+    display: flex;
+    padding: 16px;
+    justify-content: space-between;
+    align-items: center;
+    align-self: stretch;
 }
 
 /*PRÉ-DEFINIÇÕES*/

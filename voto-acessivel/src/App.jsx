@@ -15,6 +15,7 @@ import SpeechAnnouncer from "./components/SpeechAnnouncer";
 import Acessibilidade from './pages/Acessibilidade';
 import PreDefinicoes from './pages/links-acessibilidade/PreDefinicoes';
 import LeitorEcra from './pages/links-acessibilidade/LeitorEcra';
+import Tipografia from './pages/links-acessibilidade/Tipografia';
 
 
 function App() {
@@ -39,6 +40,7 @@ function App() {
         
          <Route path="/pre-definicoes" element={<PreDefinicoes />} />
            <Route path="/leitor-ecra" element={<LeitorEcra />} />
+           <Route path="/tipografia" element={<Tipografia />} />
          {/*
         <Route path="/codigo-perfil" element={<CodigoPerfil />} />
       
