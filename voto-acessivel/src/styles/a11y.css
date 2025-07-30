@@ -18,7 +18,7 @@
     justify-content: space-between;
     align-items: center;
     align-self: stretch;
-    border-radius: 10px;
+   
 }
 
 #versao1{
@@ -30,12 +30,14 @@
     border: 2px solid var(--secundary-stroke);
     background: var(--secundary);
     font-weight: 200;
+    border-radius: 10px;
 }
 
 .adap-title{
     display: flex;
     align-items: center;
-    gap: 16px;  
+    gap: 16px;
+    border-radius: 10px;  
 }
 
 span img{
@@ -49,17 +51,18 @@ span img{
 }
 
 span p {
-    color: #000;
-    font-family: "Atkinson Hyperlegible";
-    font-size: 16px;
-    font-style: normal;
-    line-height: normal;
+    font-size: var(--font-base-size);
     margin-bottom: 0; 
 }
 
-.ativo{
+div.ativo > span > p {
     color: white;
-   background: var(--Active-color, #327353);;
+}
+
+.ativo{
+    font-weight: 700;
+   background: var(--Active-color, #327353);
+   border-radius: 10px;
 }
 
 /*PRÉ-DEFINIÇÕES*/
@@ -93,4 +96,62 @@ span p {
 }
 #motoras{
     margin-bottom: 2rem;
+}
+
+/*leitor de ecrã*/
+.icon-arrow {
+  padding: 6px 7px;
+  transition: transform 0.3s ease;
+  display: block;
+}
+
+.icon-arrow.rotated {
+  transform: rotate(180deg);
+}
+
+/* Container dos controles - animado */
+.controls-container {
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.4s ease, padding 0.4s ease;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.controls-container.open {
+  max-height: 150px; /* suficiente para mostrar o conteúdo */
+  padding: 12px 0 0 0;
+}
+
+/* Linha dos botões - centralizada */
+.buttons-row {
+  display: flex;
+  gap: 16px;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 12px;
+}
+
+/* Botões circulares preto com texto branco */
+.circle-btn {
+  background-color: black;
+  color: white;
+  border: none;
+  border-radius: 50%;
+  width: 36px;
+  height: 36px;
+  font-size: 24px;
+  font-weight: bold;
+  cursor: pointer;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  user-select: none;
+  transition: background-color 0.2s ease;
+}
+
+#confirmacao-a11y{
+    margin-bottom: 1rem;
+    padding: 5px 10px; 
 }

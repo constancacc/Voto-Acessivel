@@ -1,4 +1,5 @@
-import React from 'react';
+
+import React, { useState } from 'react'; // <- Importa useStatexs
 import { useNavigate } from 'react-router-dom';  // Faltava para navegar
 
 /* botões */
@@ -6,6 +7,8 @@ import seta from "../../assets/ArrowIcon.svg";
 import accessibility from "../../assets/accessibility.svg";
 import Button from '../../components/Button.jsx';
 import CollapseBox from '../../components/Collapse1.jsx';
+import AdaptCell from '../../components/AdaptCell.jsx'
+
 
 /* imagens */
 import varrimento from "../../assets/a11y/varrimento.svg";
@@ -22,6 +25,9 @@ import '../../styles/a11y.css';
 
 export default function LeitorEcra() {
   const navigate = useNavigate();
+  const [tempo, setTempo] = useState(2.0); // <- Valor inicial de 2.0 segundos
+  const [volume, setVolume] = useState(50.0); // Valor inicial em porcentagem
+
 
   return (
     <div className="grid-container">
@@ -68,33 +74,22 @@ export default function LeitorEcra() {
                 
             </div>
 
-            <div
-            className="adap-cell"
-            id="versao2"
-            role="button"
-            tabIndex="0"
-            >
-                <span className="adap-title">    
-                    <p>Tempo de Varrimento</p>
-                    <p>2.0s</p>
-                </span>
-            
-                <img src={next}></img>
-            </div>
+              <AdaptCell
+                title="Tempo de Varrimento"
+                value={`${tempo.toFixed(1)}s`}
+                icon={next}
+                editable={true}
+                onConfirm={(newVal) => setTempo(newVal)}
+              />
 
-            <div
-            className="adap-cell"
-            id="versao2"
-            role="button"
-            tabIndex="0"
-            >
-                <span className="adap-title">    
-                    <p>Volume</p>
-                    <p>50%</p>
-                </span>
-            
-                <img src={next}></img>
-            </div>
+              <AdaptCell
+                title="Volume"
+                value={`${volume.toFixed(1)}s`}
+                icon={next}
+                editable={true}
+                onConfirm={(newVal) => setVolume(newVal)}
+              />
+
             </div>
         </div>
 
