@@ -48,36 +48,55 @@ export default function Tipografia() {
 
       {/* main */}
 
-      <div style={{ gridColumn: "2 / span 12", gridRow: "4", position: "relative" }}>
-        <div id="motoras"> 
-                            
-            <CollapseBox title="Pré-Visualização Tipográfica">
-                 <p>
-                    Nesta eleição, os cidadãos elegem os membros da Câmara Municipal, incluindo o/a <b>Presidente da Câmara</b>, que será responsável 
-                    pela gestão do município durante os próximos 4 anos.
-                    </p>
-                    
-            </CollapseBox>
-                
+      <div style={{ gridColumn: "2 / span 12", gridRow: "4 / span 8" }}>
+         <div> 
             <div className='pre-def-title'> 
-                <img src={tipo}></img>
-                <h3>Definições</h3>
+              <img src={tipo}></img>
+              <h3>Visualização Tipográfica</h3>
+          </div>
+            <div id="text-visualization-box">
+              <p> Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis porttitor, 
+                mi sit amet aliquet convallis, magna enim egestas tortor, vel laoreet lacus 
+                nisi porttitor augue. Sed eu ornare est. Fusce placerat non lacus quis auctor. 
+                Orci varius natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. 
+                
+                Praesent pretium libero mi, ac ultrices diam pulvinar id. Phasellus rutrum magna vitae sem efficitur, e
+                get ullamcorper sapien efficitur. Duis sed hendrerit turpis.</p>
             </div>
             
+          </div>
 
+          <div className='pre-def-title'> 
+            <img src={tipo}></img>
+            <h3>Definições</h3>
+          </div>
 
-            <div style={{ position: "absolute" }} className="adap-list">
+          <AdaptCell
+            title="Tamanho da tipografia"
+            value={`${tipografia.toFixed(1)}pts`}
+            icon={next}
+            editable={true}
+            onConfirm={(newVal) => setTipografia(newVal)}
+          />
 
-              <AdaptCell
-                title="Tamanho da tipografia"
-                value={`${tipografia.toFixed(1)}pts`}
-                icon={next}
-                editable={true}
-                onConfirm={(newVal) => setTipografia(newVal)}
-              />
+          <div className="type-btn-box">
+            <button className="custom-button secondary">
+              <p id="helvetica"> Aa </p>
+              <p> Helvetica</p>
+            </button>
 
-            </div>
-        </div>
+            <button className="custom-button secondary">
+              <p id="atkinson"> Aa </p>
+              <p> Atkinson <br/> Hyperlegible </p>
+            </button>
+
+            <button className="custom-button secondary">
+              <p id="dyslexic"> Aa </p>
+              <p> Open <br/> Dyslexic </p>
+            </button>
+
+          </div>
+          
 
       </div>
       

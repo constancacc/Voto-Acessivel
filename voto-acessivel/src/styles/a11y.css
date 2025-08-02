@@ -69,6 +69,7 @@ div.ativo > span > p {
     display: inline-flex;
     align-items: flex-end;
     gap: 16px;
+    margin-bottom: 20px;
 }
 .pre-def-content{
     display: flex;
@@ -153,3 +154,70 @@ div.ativo > span > p {
     margin-bottom: 1rem;
     padding: 5px 10px; 
 }
+
+/*TIPOGRAFIA*/
+
+.type-btn-box{
+    display: flex;
+    height: 69px;
+    justify-content: space-between;
+    align-items: center;
+    align-self: stretch;
+
+    margin-top: 40px;
+}
+
+#helvetica{
+    font-family: Helvetica;
+    font-size: 30.08px;
+
+}
+
+#atkinson{
+    font-family: "Atkinson Hyperlegible";
+    font-size: 32px;
+}
+
+#dyslexic{
+    font-family: OpenDyslexic;
+    font-size: 28.5px;
+    letter-spacing: -4.505px;
+}
+
+.type-name{
+    width: 65px;
+}
+
+:root {
+  --font-base-size: 16px;             
+  --line-height-multiplier: 1.5;     
+  --paragraph-margin-multiplier: 2;  
+  --max-text-width: 80ch;            
+  --font-family: 'Atkinson Hyperlegible', sans-serif;
+}
+
+#text-visualization-box {
+  background-color: white;
+  border: 2px solid var(--secundary-stroke);
+  box-sizing: border-box;
+  border-radius: 10px;
+  padding: 24px;
+
+  width: 100%;
+  height: 200px;
+
+  font-family: var(--font-family);
+  font-size: var(--font-base-size);
+  line-height: calc(var(--font-base-size) * var(--line-height-multiplier)); /* 24px */
+  color: #222;
+
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: normal;
+
+  margin-bottom: 40px;
+}
+
+
+
+

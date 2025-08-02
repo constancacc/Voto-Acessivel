@@ -39,7 +39,7 @@ export default function AdaptCell({ title, value, onConfirm, icon, editable = fa
   };
 
   return (
-    <div className="adapt-cell-wrapper" id="versao2" style={{ width: '100%' }}>
+    <div className="adapt-cell-wrapper" id="versao2">
       <div
         className={`adap-cell ${isOpen ? "expanded" : ""}`}
         role="button"

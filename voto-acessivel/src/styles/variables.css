@@ -57,7 +57,7 @@
   p{
     font-size: var(--font-base-size);
     line-height: calc(var(--font-base-size) * var(--line-height-multiplier));
-    margin-bottom: calc(var(--font-base-size) * var(--paragraph-margin-multiplier));
+    /*margin-bottom: calc(var(--font-base-size) * var(--paragraph-margin-multiplier));*/
     max-width: var(--max-text-width);
   }
 
