@@ -6,19 +6,26 @@
 
 .adap-list{
     display: flex;
-    width: 648px;
+    width: 100%;
     flex-direction: column;
-    align-items: flex-start;
     gap: 18px;
 }
 
-.adap-cell{
-    display: flex;
-    padding: 16px;
-    justify-content: space-between;
-    align-items: center;
-    align-self: stretch;
-   
+.adap-cell {
+  width: 100%;
+  max-width: 100%;
+  flex: 1 1 auto;
+  box-sizing: border-box;
+  padding: 16px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.adap-cell * {
+  max-width: 100%;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
 }
 
 #versao1{
@@ -93,6 +100,7 @@ div.ativo > span > p {
   width: 207px;
   width: calc((100% - 2 * 20px) / 3); /* 3 colunas, 2 gaps */
 }
+
 #motoras{
     margin-bottom: 2rem;
 }
