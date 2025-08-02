@@ -69,7 +69,7 @@ export default function BoletimVoto() {
 
         <div className="boletim-botoes">
           <button
-            className="custom-button secondary partido-anterior"
+            className="screen-reader-btn secondary partido-anterior"
             onClick={irParaAnterior}
           >
             <div className="custom-button-content-2">
@@ -88,7 +88,7 @@ export default function BoletimVoto() {
           </button>
 
           <button
-            className="custom-button secondary partido-anterior"
+            className="screen-reader-btn secondary partido-anterior"
             onClick={irParaSeguinte}
           >
             <div className="custom-button-content-2">
