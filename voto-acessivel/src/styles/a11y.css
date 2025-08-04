@@ -178,7 +178,7 @@ div.ativo > span > p {
 }
 
 #helvetica{
-    font-family: Helvetica;
+    font-family: "Helvetica";
     font-size: 30.08px;
 
 }
@@ -189,7 +189,7 @@ div.ativo > span > p {
 }
 
 #dyslexic{
-    font-family: OpenDyslexic;
+    font-family: "OpenDyslexic";
     font-size: 28.5px;
     letter-spacing: -4.505px;
 }

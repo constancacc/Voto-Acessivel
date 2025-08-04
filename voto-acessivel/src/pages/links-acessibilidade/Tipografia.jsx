@@ -33,12 +33,19 @@ export default function Tipografia() {
     return savedValue ? Number(savedValue) : 16;
   });
 
-  const [fontClass, setFontClass] = useState(""); 
+  const [fontClass, setFontClass] = useState(() => {
+    const savedFont = localStorage.getItem('fontClass');
+    return savedFont || "";  // "" para Atkinson por exemplo
+  });
 
   useEffect(() => {
     // Guardar sempre que tipografia muda
     localStorage.setItem('tipografia', tipografia);
   }, [tipografia]);
+
+    useEffect(() => {
+    localStorage.setItem('fontClass', fontClass);
+  }, [fontClass]);
 
 
     // 👇 Aqui vai o useEffect
@@ -46,17 +53,21 @@ export default function Tipografia() {
     const root = document.documentElement;
 
     // Limpar classes anteriores
-    root.classList.remove("font-helvetica", "font-dyslexic");
+    root.classList.remove("font-helvetica", "font-dyslexic", "font-atkinson");
 
     // Aplicar nova fonte (só se houver)
     if (fontClass) {
       root.classList.add(fontClass);
-    }
+    } else {
+    // Se for "", define como atkinson por padrão
+    root.classList.add("font-atkinson");
+  }
 
     // Aplicar novo tamanho
     root.style.setProperty('--font-base-size', `${tipografia}px`);
   }, [fontClass, tipografia]); // <- corre sempre que uma destas mudar
 
+  
 
   return (
     <div className="grid-container">

@@ -33,8 +33,6 @@ body {
 }
 
 
-
-
 /* Preferência para modo escuro */
 @media (prefers-color-scheme: dark) {
   :root {
