@@ -1,4 +1,3 @@
-
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';  // Faltava para navegar
 
@@ -38,17 +37,31 @@ export default function Tipografia() {
     return savedFont || "";  // "" para Atkinson por exemplo
   });
 
+  // Novo estado para o botão ativo
+  const [activeFontButton, setActiveFontButton] = useState(() => {
+    // define o botão ativo de acordo com o fontClass inicial
+    if (fontClass === "font-helvetica") return "helvetica";
+    if (fontClass === "font-dyslexic") return "dyslexic";
+    return "atkinson"; // padrão Atkinson para ""
+  });
+
   useEffect(() => {
     // Guardar sempre que tipografia muda
     localStorage.setItem('tipografia', tipografia);
   }, [tipografia]);
 
-    useEffect(() => {
+  useEffect(() => {
     localStorage.setItem('fontClass', fontClass);
   }, [fontClass]);
 
+  // Sincroniza botão ativo sempre que fontClass muda
+  useEffect(() => {
+    if (fontClass === "font-helvetica") setActiveFontButton("helvetica");
+    else if (fontClass === "font-dyslexic") setActiveFontButton("dyslexic");
+    else setActiveFontButton("atkinson");
+  }, [fontClass]);
 
-    // 👇 Aqui vai o useEffect
+  // Aplica classe ao root e tamanho da fonte
   useEffect(() => {
     const root = document.documentElement;
 
@@ -59,15 +72,15 @@ export default function Tipografia() {
     if (fontClass) {
       root.classList.add(fontClass);
     } else {
-    // Se for "", define como atkinson por padrão
-    root.classList.add("font-atkinson");
-  }
+      // Se for "", define como atkinson por padrão
+      root.classList.add("font-atkinson");
+    }
 
     // Aplicar novo tamanho
     root.style.setProperty('--font-base-size', `${tipografia}px`);
-  }, [fontClass, tipografia]); // <- corre sempre que uma destas mudar
+  }, [fontClass, tipografia]);
 
-  
+
 
   return (
     <div className="grid-container">
@@ -126,17 +139,26 @@ export default function Tipografia() {
           />
 
           <div className="type-btn-box">
-            <button className="custom-button secondary" onClick={() => setFontClass("font-helvetica")}>
+            <button
+              className={`custom-button secondary ${activeFontButton === "helvetica" ? "ativo" : ""}`}
+              onClick={() => setFontClass("font-helvetica")}
+            >
               <p id="helvetica"> Aa </p>
               <p> Helvetica</p>
             </button>
 
-            <button className="custom-button secondary" onClick={() => setFontClass("")}>
+            <button
+              className={`custom-button secondary ${activeFontButton === "atkinson" ? "ativo" : ""}`}
+              onClick={() => setFontClass("")}
+            >
               <p id="atkinson"> Aa </p>
               <p> Atkinson <br/> Hyperlegible </p>
             </button>
 
-            <button className="custom-button secondary" onClick={() => setFontClass("font-dyslexic")}>
+            <button
+              className={`custom-button secondary ${activeFontButton === "dyslexic" ? "ativo" : ""}`}
+              onClick={() => setFontClass("font-dyslexic")}
+            >
               <p id="dyslexic"> Aa </p>
               <p> Open <br/> Dyslexic </p>
             </button>
@@ -155,5 +177,3 @@ export default function Tipografia() {
     
   );
 }
-
-
