@@ -31,6 +31,8 @@
 #versao1{
     border: 2px solid var(--primary-stroke);
     background: var(--primary);
+    font-weight: 700;
+    border-radius: 10px;
 }
 
 #versao2{

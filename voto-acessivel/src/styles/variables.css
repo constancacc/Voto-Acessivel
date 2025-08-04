@@ -97,6 +97,7 @@
   background: var(--primary);
   font-weight: 700;
   line-height: normal;
+  border-radius: 10px;
 }
 
 .secondary{
