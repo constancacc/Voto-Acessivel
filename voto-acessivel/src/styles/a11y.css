@@ -198,14 +198,6 @@ div.ativo > span > p {
     width: 65px;
 }
 
-:root {
-  --font-base-size: 16px;             
-  --line-height-multiplier: 1.5;     
-  --paragraph-margin-multiplier: 2;  
-  --max-text-width: 80ch;            
-  --font-family: 'Atkinson Hyperlegible', sans-serif;
-}
-
 #text-visualization-box {
   background-color: white;
   border: 2px solid var(--secundary-stroke);

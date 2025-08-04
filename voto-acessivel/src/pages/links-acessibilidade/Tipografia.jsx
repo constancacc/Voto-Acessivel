@@ -1,5 +1,5 @@
 
-import React, { useState } from 'react'; // <- Importa useStatexs
+import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';  // Faltava para navegar
 
 /* botões */
@@ -26,8 +26,36 @@ import '../../styles/a11y.css';
 
 export default function Tipografia() {
   const navigate = useNavigate();
-  const [tipografia, setTipografia] = useState(16.0); // <- Valor inicial de 2.0 segundos
 
+  const [tipografia, setTipografia] = useState(() => {
+    // tenta buscar o valor guardado, se não existir, usa 16
+    const savedValue = localStorage.getItem('tipografia');
+    return savedValue ? Number(savedValue) : 16;
+  });
+
+  const [fontClass, setFontClass] = useState(""); 
+
+  useEffect(() => {
+    // Guardar sempre que tipografia muda
+    localStorage.setItem('tipografia', tipografia);
+  }, [tipografia]);
+
+
+    // 👇 Aqui vai o useEffect
+  useEffect(() => {
+    const root = document.documentElement;
+
+    // Limpar classes anteriores
+    root.classList.remove("font-helvetica", "font-dyslexic");
+
+    // Aplicar nova fonte (só se houver)
+    if (fontClass) {
+      root.classList.add(fontClass);
+    }
+
+    // Aplicar novo tamanho
+    root.style.setProperty('--font-base-size', `${tipografia}px`);
+  }, [fontClass, tipografia]); // <- corre sempre que uma destas mudar
 
 
   return (
@@ -73,24 +101,31 @@ export default function Tipografia() {
 
           <AdaptCell
             title="Tamanho da tipografia"
-            value={`${tipografia.toFixed(1)}pts`}
+            value={`${tipografia.toFixed(1)}px`}
             icon={next}
             editable={true}
-            onConfirm={(newVal) => setTipografia(newVal)}
+            onConfirm={(newVal) => {
+              const parsed = Number(newVal);
+              if (parsed >= 16 && parsed <= 24) {
+                setTipografia(parsed);
+              } else {
+                alert("O tamanho deve estar entre 12px e 24px.");
+              }
+            }}
           />
 
           <div className="type-btn-box">
-            <button className="custom-button secondary">
+            <button className="custom-button secondary" onClick={() => setFontClass("font-helvetica")}>
               <p id="helvetica"> Aa </p>
               <p> Helvetica</p>
             </button>
 
-            <button className="custom-button secondary">
+            <button className="custom-button secondary" onClick={() => setFontClass("")}>
               <p id="atkinson"> Aa </p>
               <p> Atkinson <br/> Hyperlegible </p>
             </button>
 
-            <button className="custom-button secondary">
+            <button className="custom-button secondary" onClick={() => setFontClass("font-dyslexic")}>
               <p id="dyslexic"> Aa </p>
               <p> Open <br/> Dyslexic </p>
             </button>
