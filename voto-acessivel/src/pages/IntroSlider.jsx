@@ -1,4 +1,6 @@
 import React, { useState, useEffect } from 'react';
+import { useNavigate } from "react-router-dom";
+
 
 import seta from "../assets/ArrowIcon.svg";
 import next from "../assets/collapse-open.svg";
@@ -13,6 +15,7 @@ import "../styles/variables.css";
 
 export default function IntroSlider() {
   const [activeIndex, setActiveIndex] = useState(0);
+  const navigate = useNavigate();
 
   const slides = [
     {
@@ -28,7 +31,6 @@ export default function IntroSlider() {
             </svg>
             <p tabindex="0" style={{
                 color: "#000",
-                fontFamily: "Atkinson Hyperlegible",
                 fontSize: "40px",
                 fontStyle: "normal",
                 fontWeight: 700,
@@ -96,7 +98,7 @@ export default function IntroSlider() {
           return prev + 1;
         } else {
           // Último slide → ir para página de eleição
-          window.location.href = "/eleicao";
+          navigate("/eleicao");
           return prev;
         }
       });
@@ -109,7 +111,7 @@ export default function IntroSlider() {
     if (activeIndex < slides.length - 1) {
       setActiveIndex(activeIndex + 1);
     } else {
-      window.location.href = "/eleicao";
+      navigate("/eleicao");
     }
   };
 
@@ -154,7 +156,7 @@ export default function IntroSlider() {
 
       {/* Footer */}
       <div style={{ gridColumn: "9 / span 5", gridRow: "12", justifySelf: "end", alignSelf: "end" }}>
-        <Button text="Começar eleição" variant="primary" icon={seta} onClick={() => window.location.href = "/eleicao"} />
+        <Button text="Começar eleição" variant="primary" icon={seta} onClick={() => navigate("/eleicao")} />
       </div>
 
       <div style={{ gridColumn: "2 / span 1", gridRow: "12", alignSelf: "end" }}>

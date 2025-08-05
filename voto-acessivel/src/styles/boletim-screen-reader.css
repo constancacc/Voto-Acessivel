@@ -23,9 +23,7 @@
 }
 
 .boletim-nome {
-  font-family: 'Atkinson_Hyperlegible-Bold', Helvetica, sans-serif;
   font-weight: bold;
-  font-size: 1rem;
   color: white;
   text-align: start;
 }
@@ -39,9 +37,7 @@
 
 .boletim-sigla {
   width: 100px;
-  font-family: 'Atkinson_Hyperlegible-Bold', Helvetica, sans-serif;
   font-weight: bold;
-  font-size: 1rem;
   color: white;
   text-align: center;
 }

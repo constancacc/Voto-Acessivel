@@ -64,7 +64,7 @@
     text-align: left;
     margin:0;
   }
-  
+  s
   h1{
     font-size: calc(var(--font-base-size) * var(--scale-h1));
     font-style: normal;
@@ -105,19 +105,19 @@
 
   /*primary*/
   .custom-button {
-  display: inline-flex;
-  align-items: center;
-  gap: 16px;
-  height: 75px;
-  padding: 10px 24px;
-  border-radius: 10px;
-  cursor: pointer;
-  flex-shrink: 0;
-}
+    font-family: inherit;
+    display: inline-flex;
+    align-items: center;
+    gap: 16px;
+    height: 75px;
+    padding: 10px 24px;
+    border-radius: 10px;
+    cursor: pointer;
+    flex-shrink: 0;
+  }
 
 .custom-button-text {
   color: #000;
-  font-family: "Atkinson Hyperlegible", sans-serif;
   font-size: 18px;
  
 }
@@ -141,6 +141,7 @@
   background: var(--secundary);
   font-weight: 400;
   line-height: normal;
+  font-family: inherit;
 }
 
 /*icon-btn*/

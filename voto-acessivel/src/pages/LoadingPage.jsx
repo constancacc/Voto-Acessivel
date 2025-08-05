@@ -65,7 +65,6 @@ export default function LoadingPage() {
             </svg>
         <p style={{
           color: "#000",
-          fontFamily: "Atkinson Hyperlegible",
           fontSize: "40px",
           fontStyle: "normal",
           fontWeight: 700,
