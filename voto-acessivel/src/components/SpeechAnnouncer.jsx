@@ -9,6 +9,11 @@ export default function SpeechAnnouncer() {
   const readingIndex = useRef(0);
   const elementsToRead = useRef([]);
 
+  // ON E OFF do varrimento - inicializa já ativo
+  if (typeof window.varrimentoAtivo === "undefined") {
+    window.varrimentoAtivo = true;  // <=== Aqui começa ativo
+  }
+
   // Função para falar texto e adicionar destaque visual
   const speak = (text, element, onEnd) => {
     if (!text) {
@@ -59,6 +64,7 @@ export default function SpeechAnnouncer() {
     readingIndex.current = 0;
 
     const readNext = () => {
+      if (!window.varrimentoAtivo) return; // Para varrimento se desligado
       if (readingIndex.current >= elementsToRead.current.length) return;
       const el = elementsToRead.current[readingIndex.current];
       readingIndex.current++;
@@ -90,20 +96,42 @@ export default function SpeechAnnouncer() {
     readNext();
   };
 
+  // Lida com mudanças na variável varrimentoAtivo
+  const handleVarrimentoChange = () => {
+    console.log("🔄 Varrimento mudou →", window.varrimentoAtivo ? "ON" : "OFF");
+
+    synth.current.cancel();
+    if (readingTimeout.current) clearTimeout(readingTimeout.current);
+    if (lastSpokenElement.current) lastSpokenElement.current.style.outline = "";
+
+    if (window.varrimentoAtivo) {
+      startReadingAll();
+    }
+  };
+
   useEffect(() => {
-    // Quando muda a rota, iniciar varrimento dos textos da página
-    startReadingAll();
+    // Inicia varrimento quando muda rota se estiver ativo
+    if (window.varrimentoAtivo) {
+      startReadingAll();
+      console.log("Varrimento ativo ao mudar rota");
+    }
+
+    // Escuta mudanças na ativação do varrimento
+    window.addEventListener("varrimentoChange", handleVarrimentoChange);
 
     return () => {
       synth.current.cancel();
       if (lastSpokenElement.current) lastSpokenElement.current.style.outline = "";
       if (readingTimeout.current) clearTimeout(readingTimeout.current);
+      window.removeEventListener("varrimentoChange", handleVarrimentoChange);
     };
   }, [location]);
 
   useEffect(() => {
-    // Ler apenas o elemento focado ao usar Tab
+    // Ler apenas o elemento focado ao usar Tab, se varrimento ativo
     const handleFocus = (e) => {
+      if (!window.varrimentoAtivo) return;
+
       synth.current.cancel();
       if (lastSpokenElement.current) {
         lastSpokenElement.current.style.outline = "";
