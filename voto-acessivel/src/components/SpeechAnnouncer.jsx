@@ -11,14 +11,18 @@ export default function SpeechAnnouncer() {
 
   // Inicializar estado global se ainda não estiver definido
   if (typeof window.varrimentoAtivo === "undefined") {
-    window.varrimentoAtivo = true; // Começa ativo
+    window.varrimentoAtivo = true;
   }
 
   if (typeof window.tempoVarrimento === "undefined") {
-    window.tempoVarrimento = 2.0; // Tempo padrão (segundos)
+    window.tempoVarrimento = 2.0;
   }
 
-  // Função para falar texto e adicionar destaque visual
+  if (typeof window.volumeLeitor === "undefined") {
+    window.volumeLeitor = 0.5; // volume por defeito (0.0 a 1.0)
+  }
+
+  // Fala e destaca
   const speak = (text, element, onEnd) => {
     if (!text) {
       if (onEnd) onEnd();
@@ -33,6 +37,7 @@ export default function SpeechAnnouncer() {
 
     const utterance = new SpeechSynthesisUtterance(text);
     utterance.lang = "pt-PT";
+    utterance.volume = window.volumeLeitor ?? 0.5;
 
     utterance.onend = () => {
       if (element) element.style.outline = "";
@@ -49,7 +54,7 @@ export default function SpeechAnnouncer() {
     }
   };
 
-  // Função para iniciar o varrimento sequencial dos textos na página
+  // Iniciar varrimento sequencial
   const startReadingAll = () => {
     const selectors = "h1, h2, h3, h4, h5, h6, p, span, li, strong, em, button, a[href], input, textarea";
 
@@ -100,7 +105,7 @@ export default function SpeechAnnouncer() {
     readNext();
   };
 
-  // Lida com mudanças na variável varrimentoAtivo
+  // Lidar com mudança de varrimento
   const handleVarrimentoChange = () => {
     console.log("🔄 Varrimento mudou →", window.varrimentoAtivo ? "ON" : "OFF");
 
@@ -129,6 +134,7 @@ export default function SpeechAnnouncer() {
     };
   }, [location]);
 
+  // Falar elementos ao focar com Tab
   useEffect(() => {
     const handleFocus = (e) => {
       if (!window.varrimentoAtivo) return;

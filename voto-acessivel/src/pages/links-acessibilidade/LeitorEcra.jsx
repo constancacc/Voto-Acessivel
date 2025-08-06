@@ -36,6 +36,10 @@ export default function LeitorEcra() {
   });
 
   const [volume, setVolume] = useState(50.0);
+  
+  useEffect(() => {
+    window.volumeLeitor = volume / 100; // valor entre 0.0 e 1.0
+  }, [volume]);
 
   // Efeito para escutar alterações externas (se algum outro componente mudar o window.varrimentoAtivo)
   useEffect(() => {
