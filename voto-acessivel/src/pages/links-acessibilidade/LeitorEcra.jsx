@@ -30,7 +30,11 @@ export default function LeitorEcra() {
 
   // Estado local sincronizado com window
   const [varrimentoAtivo, setVarrimentoAtivo] = useState(window.varrimentoAtivo);
-  const [tempo, setTempo] = useState(2.0);
+
+  const [tempo, setTempo] = useState(() => {
+    return window.tempoVarrimento ?? 2.0;
+  });
+
   const [volume, setVolume] = useState(50.0);
 
   // Efeito para escutar alterações externas (se algum outro componente mudar o window.varrimentoAtivo)
@@ -48,6 +52,12 @@ export default function LeitorEcra() {
     window.varrimentoAtivo = !window.varrimentoAtivo;
     console.log("Varrimento está agora", window.varrimentoAtivo ? "ATIVO" : "DESATIVADO");
     window.dispatchEvent(new Event("varrimentoChange"));
+  };
+
+  // Quando o tempo é alterado, atualizar o window
+  const handleTempoChange = (newVal) => {
+    setTempo(newVal);
+    window.tempoVarrimento = newVal;
   };
 
   return (
@@ -113,7 +123,7 @@ export default function LeitorEcra() {
             value={`${tempo.toFixed(1)}s`}
             icon={next}
             editable={true}
-            onConfirm={(newVal) => setTempo(newVal)}
+            onConfirm={handleTempoChange}
           />
 
           {/* Volume */}

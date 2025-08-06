@@ -9,9 +9,13 @@ export default function SpeechAnnouncer() {
   const readingIndex = useRef(0);
   const elementsToRead = useRef([]);
 
-  // ON E OFF do varrimento - inicializa já ativo
+  // Inicializar estado global se ainda não estiver definido
   if (typeof window.varrimentoAtivo === "undefined") {
-    window.varrimentoAtivo = true;  // <=== Aqui começa ativo
+    window.varrimentoAtivo = true; // Começa ativo
+  }
+
+  if (typeof window.tempoVarrimento === "undefined") {
+    window.tempoVarrimento = 2.0; // Tempo padrão (segundos)
   }
 
   // Função para falar texto e adicionar destaque visual
@@ -20,7 +24,9 @@ export default function SpeechAnnouncer() {
       if (onEnd) onEnd();
       return;
     }
+
     synth.current.cancel();
+
     if (lastSpokenElement.current) {
       lastSpokenElement.current.style.outline = "";
     }
@@ -45,7 +51,6 @@ export default function SpeechAnnouncer() {
 
   // Função para iniciar o varrimento sequencial dos textos na página
   const startReadingAll = () => {
-    // Seleciona elementos de texto e botões visíveis
     const selectors = "h1, h2, h3, h4, h5, h6, p, span, li, strong, em, button, a[href], input, textarea";
 
     let elems = Array.from(document.querySelectorAll(selectors)).filter(el => {
@@ -57,15 +62,15 @@ export default function SpeechAnnouncer() {
       );
     });
 
-    // Filtra para evitar elementos dentro de botões (exceto os próprios botões)
     elems = elems.filter(el => !el.closest('button') || el.tagName.toLowerCase() === 'button');
 
     elementsToRead.current = elems;
     readingIndex.current = 0;
 
     const readNext = () => {
-      if (!window.varrimentoAtivo) return; // Para varrimento se desligado
+      if (!window.varrimentoAtivo) return;
       if (readingIndex.current >= elementsToRead.current.length) return;
+
       const el = elementsToRead.current[readingIndex.current];
       readingIndex.current++;
 
@@ -75,7 +80,6 @@ export default function SpeechAnnouncer() {
         text = el.getAttribute("aria-label") || el.getAttribute("title") || el.textContent.trim();
       } else {
         if (el.closest("button")) {
-          // Não ler elementos dentro de botão
           readNext();
           return;
         }
@@ -88,8 +92,8 @@ export default function SpeechAnnouncer() {
       }
 
       speak(text, el, () => {
-        // Pausa de 500ms antes do próximo
-        readingTimeout.current = setTimeout(readNext, 500);
+        const delay = (window.tempoVarrimento ?? 2.0) * 1000;
+        readingTimeout.current = setTimeout(readNext, delay);
       });
     };
 
@@ -110,13 +114,11 @@ export default function SpeechAnnouncer() {
   };
 
   useEffect(() => {
-    // Inicia varrimento quando muda rota se estiver ativo
     if (window.varrimentoAtivo) {
       startReadingAll();
       console.log("Varrimento ativo ao mudar rota");
     }
 
-    // Escuta mudanças na ativação do varrimento
     window.addEventListener("varrimentoChange", handleVarrimentoChange);
 
     return () => {
@@ -128,7 +130,6 @@ export default function SpeechAnnouncer() {
   }, [location]);
 
   useEffect(() => {
-    // Ler apenas o elemento focado ao usar Tab, se varrimento ativo
     const handleFocus = (e) => {
       if (!window.varrimentoAtivo) return;
 
@@ -143,7 +144,7 @@ export default function SpeechAnnouncer() {
       if (el.tagName.toLowerCase() === "button") {
         text = el.getAttribute("aria-label") || el.getAttribute("title") || el.textContent.trim();
       } else {
-        if (el.closest("button")) return; // não ler texto interno do botão
+        if (el.closest("button")) return;
         text = el.getAttribute("aria-label") || el.getAttribute("title") || el.textContent.trim();
       }
 
