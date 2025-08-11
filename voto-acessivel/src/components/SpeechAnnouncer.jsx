@@ -56,7 +56,7 @@ export default function SpeechAnnouncer() {
 
   // Iniciar varrimento sequencial da página toda
   const startReadingAll = () => {
-    const selectors = "h1, h2, h3, h4, h5, h6, p, span, li, strong, em, button, a[href], input, textarea";
+    const selectors = "h1, h2, h3, h4, h5, h6, p, strong, em, button, a[href], input, textarea";
 
     let elems = Array.from(document.querySelectorAll(selectors)).filter(el => {
       const style = window.getComputedStyle(el);

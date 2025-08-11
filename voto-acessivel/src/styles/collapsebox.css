@@ -34,3 +34,7 @@
 .collapse-icon-wrapper.open {
   transform: rotate(180deg);
 }
+
+.collapse-content:not(.expanded) {
+  display: none; /* essencial para leitores de ecrã ignorarem */
+}
