@@ -54,7 +54,7 @@ export default function SpeechAnnouncer() {
     }
   };
 
-  // Iniciar varrimento sequencial
+  // Iniciar varrimento sequencial da página toda
   const startReadingAll = () => {
     const selectors = "h1, h2, h3, h4, h5, h6, p, span, li, strong, em, button, a[href], input, textarea";
 
@@ -117,6 +117,54 @@ export default function SpeechAnnouncer() {
       startReadingAll();
     }
   };
+
+  // Novo: ler o conteúdo do slide ativo quando evento slideChange é disparado
+  useEffect(() => {
+    const handleSlideChange = (e) => {
+      const slideElement = e.detail.slideElement;
+      if (!slideElement) return;
+
+      synth.current.cancel();
+      if (lastSpokenElement.current) {
+        lastSpokenElement.current.style.outline = "";
+      }
+
+      // Seleciona elementos dentro do slide para ler
+      const selectors = "h1, h2, h3, p, span, li, strong, em";
+      const elems = Array.from(slideElement.querySelectorAll(selectors))
+        .filter(el => el.textContent.trim() !== "");
+
+      let index = 0;
+      const readNext = () => {
+        if (!window.varrimentoAtivo) return;
+        if (index >= elems.length) {
+          lastSpokenElement.current = null;
+          return;
+        }
+        const el = elems[index];
+        index++;
+
+        const text = el.getAttribute("aria-label") || el.getAttribute("title") || el.textContent.trim();
+
+        if (!text) {
+          readNext();
+          return;
+        }
+
+        speak(text, el, () => {
+          const delay = (window.tempoVarrimento ?? 2.0) * 1000;
+          readingTimeout.current = setTimeout(readNext, delay);
+        });
+      };
+
+      readNext();
+    };
+
+    window.addEventListener("slideChange", handleSlideChange);
+    return () => {
+      window.removeEventListener("slideChange", handleSlideChange);
+    };
+  }, []);
 
   useEffect(() => {
     if (window.varrimentoAtivo) {

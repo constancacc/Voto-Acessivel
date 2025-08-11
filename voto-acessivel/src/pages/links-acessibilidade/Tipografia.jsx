@@ -97,11 +97,11 @@ export default function Tipografia() {
           editable={true}
           onConfirm={(newVal) => {
             const parsed = Number(newVal);
-            if (parsed >= 16 && parsed <= 24) {
+            if (parsed >= 12 && parsed <= 24) {
               setTipografia(parsed);
             } else {
-              alert("O tamanho deve estar entre 16px e 24px.");
-            }
+              alert("O tamanho deve estar entre 12px e 24px.");
+            } 
           }}
         />
 

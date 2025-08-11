@@ -21,6 +21,7 @@ export default function IntroSlider() {
     {
       content: (
         <>
+         <div className="slide-content" data-slide-index={0}>
           <div style={{ gridColumn: "3 / span 8", gridRow: "3" }}>
             <h1 tabindex="0" >Bem-vind@ à plataforma:</h1>
           </div>
@@ -45,12 +46,14 @@ export default function IntroSlider() {
               Criada para garantir que <b>todos</b> podem votar de forma <b>segura</b>, <b>independente</b> e adaptada às <b>suas necessidades</b>.
             </p>
           </div>
+          </div>
         </>
       ),
     },
     {
       content: (
         <>
+        <div className="slide-content" data-slide-index={1}>
             <div style={{ gridColumn: "3 / span 9", gridRow: "3" }}>
                 <h1>Informações de Leitor de Ecrã</h1>
             </div>
@@ -66,12 +69,14 @@ export default function IntroSlider() {
               <b> lendo todos os elementos</b> apresentados.
             </p>
           </div>
+          </div>
         </>
       ),
     },
     {
       content: (
         <>
+        <div className="slide-content" data-slide-index={2}>
           <div style={{ gridColumn: "3 / span 9", gridRow: "3" }}>
             <h1>Definições de Acessibilidade</h1>
           </div>
@@ -83,12 +88,14 @@ export default function IntroSlider() {
           </div>
           <div style={{ gridColumn: "3 / span 10", gridRow: "9" }}>
             <p>Pode ajustar o <b>tamanho</b> e o <b>tipo de letra</b>, as <b>cores</b> e o <b>idioma</b> de leitura.
-            Todas estas opções foram pensadas para melhorar a leitura e a navegação na plataforma.</p>
+            Todas estas opções foram pensadas para melhorar a compreensão e navegação na plataforma.</p>
+          </div>
           </div>
         </>
       ),
     },
   ];
+
 
   // Timer automático de 40 segundos para avançar slides
   useEffect(() => {
@@ -106,6 +113,18 @@ export default function IntroSlider() {
 
     return () => clearInterval(timer);
   }, [activeIndex]);
+
+  useEffect(() => {
+  // Busca o container do slide atual
+  const slideElement = document.querySelector(`.slide-content[data-slide-index="${activeIndex}"]`);
+  
+  if (slideElement) {
+    // Dispara evento customizado com o elemento do slide atual
+    const event = new CustomEvent('slideChange', { detail: { slideElement } });
+    window.dispatchEvent(event);
+  }
+  }, [activeIndex]);
+
 
   const goToNext = () => {
     if (activeIndex < slides.length - 1) {
@@ -150,7 +169,7 @@ export default function IntroSlider() {
       )}
 
       {/* SliderIndicators */}
-      <div style={{ gridColumn: "7 / span 3", gridRow: "11" }}>
+      <div style={{ gridColumn: "7 / span 3", gridRow: "10", marginTop: "1rem"}}>
         <SliderIndicators activeIndex={activeIndex} total={slides.length} onSelect={setActiveIndex} />
       </div>
 

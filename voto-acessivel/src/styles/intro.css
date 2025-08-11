@@ -6,3 +6,7 @@
 p{
     font-size: 20px;
 }
+
+.slide-content{
+    display:contents;
+}
