@@ -16,6 +16,7 @@ import "../styles/variables.css";
 export default function IntroSlider() {
   const [activeIndex, setActiveIndex] = useState(0);
   const navigate = useNavigate();
+  const [timeLeft, setTimeLeft] = useState(40);
 
   const slides = [
     {
@@ -97,22 +98,30 @@ export default function IntroSlider() {
   ];
 
 
-  // Timer automático de 40 segundos para avançar slides
-  useEffect(() => {
-    const timer = setInterval(() => {
-      setActiveIndex((prev) => {
-        if (prev < slides.length - 1) {
-          return prev + 1;
-        } else {
-          // Último slide → ir para página de eleição
-          navigate("/eleicao");
-          return prev;
-        }
-      });
-    }, 40000);
 
-    return () => clearInterval(timer);
-  }, [activeIndex]);
+  useEffect(() => {
+    // A cada mudança de activeIndex, resetamos o timer
+    setTimeLeft(40);
+
+    // Intervalo que diminui o tempo a cada segundo
+    const countdown = setInterval(() => {
+      setTimeLeft((prev) => {
+        if (prev <= 1) {
+          // Quando o tempo chegar a zero, avançar slide ou navegar
+          if (activeIndex < slides.length - 1) {
+            setActiveIndex((prevIndex) => prevIndex + 1);
+          } else {
+            navigate("/eleicao");
+          }
+          return 40; // resetar para próximo slide
+        }
+        return prev - 1;
+      });
+    }, 1000);
+
+    // Limpar intervalo ao desmontar ou ao mudar de slide
+    return () => clearInterval(countdown);
+  }, [activeIndex, navigate, slides.length]);
 
   useEffect(() => {
   // Busca o container do slide atual
@@ -171,6 +180,10 @@ export default function IntroSlider() {
       {/* SliderIndicators */}
       <div style={{ gridColumn: "7 / span 3", gridRow: "10", marginTop: "1rem"}}>
         <SliderIndicators activeIndex={activeIndex} total={slides.length} onSelect={setActiveIndex} />
+      </div>
+
+      <div style={{ gridColumn: "5 / span 5", gridRow: "11", marginTop: "1rem"}}>
+         <p className="slider-page-text" style={{marginLeft: "1rem"}}> Faltam {timeLeft}s para o próximo slide </p>
       </div>
 
       {/* Footer */}
