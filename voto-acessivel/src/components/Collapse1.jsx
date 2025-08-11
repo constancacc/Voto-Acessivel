@@ -5,11 +5,15 @@ import "../styles/collapsebox.css";
 
 export default function CollapseBox({ title, children, isOpen, onToggle }) {
   const contentRef = useRef(null);
+  const buttonRef = useRef(null);
 
   useEffect(() => {
     if (isOpen && contentRef.current) {
       // Coloca foco no container do conteúdo aberto para leitores de tela
       contentRef.current.focus();
+    } else if (!isOpen && buttonRef.current) {
+      // Ao fechar, foca no botão para que o leitor pare de ler o conteúdo
+      buttonRef.current.focus();
     }
   }, [isOpen]);
 
@@ -22,6 +26,7 @@ export default function CollapseBox({ title, children, isOpen, onToggle }) {
         aria-expanded={isOpen}
         aria-controls="collapse-content"
         aria-label={`${title}`}
+        ref={buttonRef}
       >
         <div className={`collapse-icon-wrapper ${isOpen ? "open" : ""}`} aria-hidden="true">
           <IconButton icon={collapse} alt="Abrir secção" />
