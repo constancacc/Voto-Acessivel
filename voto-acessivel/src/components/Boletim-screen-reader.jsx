@@ -45,10 +45,11 @@ export default function BoletimVoto() {
 
   // Leitura do partido atual para leitor de ecrã
   useEffect(() => {
-    if (window.speakText && partido) {
-      const texto = ` ${partido.id}, ${partido.nome},  ${partido.sigla}`;
-      window.speakText(texto, partidoRef.current);
-    }
+      if (window.varrimentoAtivo && window.speakText && partido) {
+        const texto = ` ${partido.id}, ${partido.nome},  ${partido.sigla}, clique para selecionar`;
+        window.speakText(texto, partidoRef.current);
+      
+      }
   }, [partido]);
 
   return (
