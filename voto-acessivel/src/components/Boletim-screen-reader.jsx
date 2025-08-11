@@ -6,8 +6,9 @@ import seta from "../assets/ArrowIcon.svg";
 
 export default function BoletimVoto() {
   const [index, setIndex] = useState(0);
+  const [tempoRestante, setTempoRestante] = useState(10); // tempo em segundos para o próximo partido
   const navigate = useNavigate();
-  const partidoRef = useRef(null); // Para associar o elemento DOM
+  const partidoRef = useRef(null);
 
   const partido = partidosData[index];
 
@@ -15,21 +16,37 @@ export default function BoletimVoto() {
     setIndex((prevIndex) =>
       prevIndex === 0 ? partidosData.length - 1 : prevIndex - 1
     );
+    setTempoRestante(10); // resetar timer ao navegar manualmente
   };
 
   const irParaSeguinte = () => {
     setIndex((prevIndex) =>
       prevIndex === partidosData.length - 1 ? 0 : prevIndex + 1
     );
+    setTempoRestante(10); // resetar timer ao navegar automaticamente
   };
 
   const selecionarVoto = () => {
     navigate('/confirmacao', { state: { partido: partido.id } });
   };
 
+  // Contador regressivo que aciona avanço automático
+  useEffect(() => {
+    if (tempoRestante === 0) {
+      irParaSeguinte();
+      return;
+    }
+    const interval = setInterval(() => {
+      setTempoRestante((t) => t - 1);
+    }, 1000);
+
+    return () => clearInterval(interval);
+  }, [tempoRestante]);
+
+  // Leitura do partido atual para leitor de ecrã
   useEffect(() => {
     if (window.speakText && partido) {
-      const texto = `Candidato ${partido.id}, ${partido.nome}, sigla ${partido.sigla}`;
+      const texto = ` ${partido.id}, ${partido.nome},  ${partido.sigla}`;
       window.speakText(texto, partidoRef.current);
     }
   }, [partido]);
@@ -41,7 +58,7 @@ export default function BoletimVoto() {
         onClick={selecionarVoto}
         style={{ cursor: "pointer" }}
         tabIndex={0}
-        ref={partidoRef} // <-- Aqui a referência
+        ref={partidoRef}
       >
         <div className="boletim-content">
           <div className="boletim-nome">
@@ -66,11 +83,17 @@ export default function BoletimVoto() {
             {index + 1} de {partidosData.length} candidatos
           </p>
         </div>
+          {/* Indicador do tempo restante para o próximo partido */}
+          <div className="partido-indicador" aria-live="polite" style={{ marginTop: "1rem", fontWeight: '600' }}>
+            Faltam {tempoRestante}s para o próximo candidato
+          </div>
 
         <div className="boletim-botoes">
           <button
             className="screen-reader-btn secondary partido-anterior"
             onClick={irParaAnterior}
+            tabIndex={0}
+            
           >
             <div className="custom-button-content-2">
               <img
@@ -90,6 +113,7 @@ export default function BoletimVoto() {
           <button
             className="screen-reader-btn secondary partido-anterior"
             onClick={irParaSeguinte}
+            tabIndex={0}
           >
             <div className="custom-button-content-2">
               <img src={seta} alt="Seguinte" />

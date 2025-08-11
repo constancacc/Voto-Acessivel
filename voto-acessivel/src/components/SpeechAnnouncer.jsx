@@ -173,6 +173,7 @@ export default function SpeechAnnouncer() {
     }
 
     window.addEventListener("varrimentoChange", handleVarrimentoChange);
+    
 
     return () => {
       synth.current.cancel();
