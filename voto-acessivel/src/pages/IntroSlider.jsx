@@ -21,7 +21,7 @@ export default function IntroSlider() {
     {
       content: (
         <>
-          <div style={{ gridColumn: "3 / span 12", gridRow: "3" }}>
+          <div style={{ gridColumn: "3 / span 8", gridRow: "3" }}>
             <h1 tabindex="0" >Bem-vind@ à plataforma:</h1>
           </div>
           <div style={{ gridColumn: "5 / span 6", gridRow: "5 / span 4", display: "flex", flexDirection: "column", alignItems: "center" }}>
@@ -51,7 +51,7 @@ export default function IntroSlider() {
     {
       content: (
         <>
-            <div style={{ gridColumn: "3 / span 12", gridRow: "3" }}>
+            <div style={{ gridColumn: "3 / span 9", gridRow: "3" }}>
                 <h1>Informações de Leitor de Ecrã</h1>
             </div>
           <div style={{ gridColumn: "5 / span 6", gridRow: "5", padding: "1rem" }}>
@@ -72,7 +72,7 @@ export default function IntroSlider() {
     {
       content: (
         <>
-          <div style={{ gridColumn: "3 / span 12", gridRow: "3" }}>
+          <div style={{ gridColumn: "3 / span 9", gridRow: "3" }}>
             <h1>Definições de Acessibilidade</h1>
           </div>
           <div style={{ gridColumn: "4 / span 6", gridRow: "5", padding: "1rem" }}>
@@ -150,7 +150,7 @@ export default function IntroSlider() {
       )}
 
       {/* SliderIndicators */}
-      <div style={{ gridColumn: "7 / span 3", gridRow: "10" }}>
+      <div style={{ gridColumn: "7 / span 3", gridRow: "11" }}>
         <SliderIndicators activeIndex={activeIndex} total={slides.length} onSelect={setActiveIndex} />
       </div>
 

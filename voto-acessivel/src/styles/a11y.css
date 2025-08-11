@@ -1,5 +1,15 @@
 @import './variables.css';
 
+@font-face {
+  font-family: 'OpenDyslexic';
+  src: url('/src/assets/fonts/OpenDyslexic-Regular.woff2') format('woff2'),
+       url('/src/assets/fonts/OpenDyslexic-Regular.woff') format('woff');
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
+
+
 #root{
     text-align: left;
 }
@@ -196,7 +206,7 @@ div.ativo > span > p {
 }
 
 #dyslexic{
-    font-family: "OpenDyslexic";
+    font-family: 'OpenDyslexic', sans-serif;
     font-size: 28.5px;
     letter-spacing: -4.505px;
 }

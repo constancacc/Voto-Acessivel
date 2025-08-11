@@ -20,33 +20,20 @@
     --line-height-multiplier: 1.5;     /* altura da linha: 16px * 1.5 = 24px */
     --paragraph-margin-multiplier: 2;  /* margem inferior do parágrafo: 16px * 2 = 32px */ 
     --max-text-width: 80ch;  /*  largura máxima do texto para legibilidade 50-80 caracteres */
-
-    --scale-h1: 1.875; /* 30/16 */
-    --scale-h2: 1.75;  /* 28/16 */
-    --scale-h3: 1.625; /* 26/16 */
   }
 
   /*------- TIPOGRAFIA -------------------*/
   
   .font-atkinson {
     font-family: 'Atkinson Hyperlegible', sans-serif;
-    --scale-h1: 1.875; /* 30/16 */
-    --scale-h2: 1.75;  /* 28/16 */
-    --scale-h3: 1.625; /* 26/16 */
   }
 
   .font-helvetica {
     font-family: 'Helvetica', Arial, sans-serif;
-    --scale-h1: 1.754; /* 28.08/16 */
-    --scale-h2: 1.625;
-    --scale-h3: 1.5;
   }
 
   .font-dyslexic {
     font-family: 'OpenDyslexic';
-    --scale-h1: 1.656; /* 26.5/16 */
-    --scale-h2: 1.531;
-    --scale-h3: 1.406;
   }
 
   .font-helvetica p {
@@ -64,23 +51,23 @@
     text-align: left;
     margin:0;
   }
-  s
+  
   h1{
-    font-size: calc(var(--font-base-size) * var(--scale-h1));
+    font-size: 30px;
     font-style: normal;
     font-weight: 700;
     line-height: 60px; /* 200% */
   }
 
   h2{
-    font-size: calc(var(--font-base-size) * var(--scale-h2));
+    font-size: 28px;
     font-style: normal;
     font-weight: 400;
     line-height: normal;
   }
 
   h3{
-    font-size: calc(var(--font-base-size) * var(--scale-h3));
+    font-size: 26px;
     font-style: normal;
     font-weight: 400;
     line-height: normal;
