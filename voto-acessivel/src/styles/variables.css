@@ -50,6 +50,9 @@
     color:#000;
     text-align: left;
     margin:0;
+    
+    width: fit-content; 
+    height: fit-content;
   }
   
   h1{

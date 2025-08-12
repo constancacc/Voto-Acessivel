@@ -7,7 +7,6 @@ html, body, #root {
   height: 100dvh;
 }
 
-
 .loading-wrapper {
   background-color: var(--primary); /* amarelo */
   width: 100vw;
@@ -24,8 +23,15 @@ html, body, #root {
 }
 
 .logo-container {
-  width: 280px;
-  height: 251.13px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 40px;
+
+  width: 412px;
+  height: 290.706px;
+  flex-shrink: 0;
 }
 
 .logo-svg {
@@ -35,7 +41,7 @@ html, body, #root {
 
 .loading_title {
   font-family: var(--font-family);
-  font-size: 2.5rem; /* ~40px */
+  font-size: 40px; /* ~40px */
   font-weight: 700;
   color: black;
   margin: 0;
@@ -44,37 +50,39 @@ html, body, #root {
 
 .loading_subtitle {
   font-family: var(--font-family);
-  font-size: 1.7rem; /* ~27px */
   font-weight: 400;
   color: black;
-  margin-top: 0.5rem;
   max-width: 90vw;
   word-wrap: break-word;
+  text-align: center;
 }
 
-/* Responsividade para tablets verticais (480px até 768px) */
-@media (max-width: 768px) {
-  .title {
-    font-size: 2rem;
-  }
-
-  .subtitle {
-    font-size: 1.4rem;
-  }
+.tipo-logo {
+  display: flex;
+  width: 412px;
+  flex-direction: column;
+  align-items: center;
+  gap: 0px;
 }
 
-@media (max-width: 480px) {
-  .logo-container {
-    width: 100px;
-    height: 78px;
-    margin-bottom: 1rem;
-  }
+.click-text {
+  position: absolute;
+  bottom: 10rem;
+  font-weight: bold;
+  font-size: var(--font-size);
+  font-family: var(--font-family);
 
-  .title {
-    font-size: 1.5rem;
-  }
+  color: black;
+  text-align: center;
+  cursor: pointer;
+  animation: piscar 3s infinite;
+}
 
-  .subtitle {
-    font-size: 1.1rem;
+@keyframes piscar {
+  0%, 100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0;
   }
 }

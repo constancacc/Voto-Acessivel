@@ -49,8 +49,8 @@ export default function FullscreenButton() {
   if (isFullscreen) return null;
 
   return (
-    <button onClick={goFullScreen} style={{ padding: '10px 20px', fontSize: 16 }}>
-      Entrar em Fullscreen
+    <button onClick={goFullScreen} className="custom-button secondary" style={{ marginTop: "100px", color: "black", fontSize: "var(--font-size)" }}>
+      Entrar em Tela Cheia
     </button>
   );
 }

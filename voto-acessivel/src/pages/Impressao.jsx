@@ -45,7 +45,7 @@ export default function Impressao() {
       </div>
 
         <div style={{ gridColumn: "2 / span 12", gridRow: "5" }} className="print-cell">
-            <p>Eleição para a Aseembleia da Republica</p>
+            <p>Eleição para a Assembleia da Republica</p>
             <img src={printCheck}></img>
       </div>
 
