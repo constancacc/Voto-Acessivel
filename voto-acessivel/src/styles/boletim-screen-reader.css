@@ -13,6 +13,8 @@
   background: #004682;
   border-radius: 0;
   box-shadow: none;
+
+  height: 82px;
 }
 
 .boletim-content {
