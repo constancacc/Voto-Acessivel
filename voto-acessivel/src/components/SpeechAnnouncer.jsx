@@ -117,46 +117,17 @@ export default function SpeechAnnouncer() {
     }
   };
 
-  // Novo: ler o conteúdo do slide ativo quando evento slideChange é disparado
+  // ler slides automaticamente 
   useEffect(() => {
     const handleSlideChange = (e) => {
-      const slideElement = e.detail.slideElement;
-      if (!slideElement) return;
-
+      // Só reinicia o varrimento da página inteira
       synth.current.cancel();
-      if (lastSpokenElement.current) {
-        lastSpokenElement.current.style.outline = "";
+      if (readingTimeout.current) clearTimeout(readingTimeout.current);
+      if (lastSpokenElement.current) lastSpokenElement.current.style.outline = "";
+
+      if (window.varrimentoAtivo) {
+        startReadingAll();
       }
-
-      // Seleciona elementos dentro do slide para ler
-      const selectors = "h1, h2, h3, p, span, li, strong, em";
-      const elems = Array.from(slideElement.querySelectorAll(selectors))
-        .filter(el => el.textContent.trim() !== "");
-
-      let index = 0;
-      const readNext = () => {
-        if (!window.varrimentoAtivo) return;
-        if (index >= elems.length) {
-          lastSpokenElement.current = null;
-          return;
-        }
-        const el = elems[index];
-        index++;
-
-        const text = el.getAttribute("aria-label") || el.getAttribute("title") || el.textContent.trim();
-
-        if (!text) {
-          readNext();
-          return;
-        }
-
-        speak(text, el, () => {
-          const delay = (window.tempoVarrimento ?? 2.0) * 1000;
-          readingTimeout.current = setTimeout(readNext, delay);
-        });
-      };
-
-      readNext();
     };
 
     window.addEventListener("slideChange", handleSlideChange);
