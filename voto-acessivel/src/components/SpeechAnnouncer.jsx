@@ -40,7 +40,7 @@ export default function SpeechAnnouncer() {
       if (element.tagName === "BUTTON" ) {
         element.focus(); // foco real em elementos clicáveis
       } else {
-        element.style.outline = "2px solid blue"; // destaque visual
+        element.style.outline = "3px dashed blue"; // destaque visual
       }
       lastSpokenElement.current = element;
     }
@@ -55,7 +55,6 @@ export default function SpeechAnnouncer() {
              (el.textContent.trim() !== "" || el.getAttribute("aria-label") || el.getAttribute("title"));
     });
     elems = elems.filter(el => el.getAttribute("aria-hidden") !== "true");
-    
     elementsToRead.current = elems;
     readingIndex.current = 0;
 
@@ -73,18 +72,12 @@ export default function SpeechAnnouncer() {
 
     console.log("🔊 Lendo elemento:", el.tagName, "Texto:", text);
 
-    const focaveis = ["BUTTON", "A", "INPUT", "TEXTAREA"];
-
-    // Se o próximo elemento NÃO for focável, remove o foco do anterior
-    if (!focaveis.includes(el.tagName)) {
-      if (lastSpokenElement.current && document.activeElement === lastSpokenElement.current) {
-        lastSpokenElement.current.blur();
-      }
-      el.style.outline = "2px solid blue"; // destaque visual
+    // Mantém o foco nos elementos interativos, mas continua a leitura
+    if (el.tagName === "BUTTON" || el.tagName === "A" || el.tagName === "INPUT" || el.tagName === "TEXTAREA") {
+      el.focus();
     } else {
-      el.focus(); // mantém o foco em elementos interativos
+      el.style.outline = "2px solid blue";
     }
-
     lastSpokenElement.current = el;
 
     speak(text, el, () => {
@@ -94,8 +87,8 @@ export default function SpeechAnnouncer() {
   };
 
 
-        readNext();
-      };
+      readNext();
+    };
 
   // Atualizar leitura quando a rota mudar
   useEffect(() => {

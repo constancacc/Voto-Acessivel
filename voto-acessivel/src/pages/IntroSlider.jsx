@@ -13,7 +13,7 @@ import "../styles/variables.css";
 
 export default function IntroSlider() {
   const [activeIndex, setActiveIndex] = useState(0);
-  const [timeLeft, setTimeLeft] = useState(40);
+  const [timeLeft, setTimeLeft] = useState(60);
   const navigate = useNavigate();
 
   // refs para timers
@@ -101,8 +101,8 @@ export default function IntroSlider() {
 
   const startTimers = () => {
     clearTimers();
-    setTimeLeft(40);
-    const deadline = Date.now() + 40000;
+    setTimeLeft(60);
+    const deadline = Date.now() + 60000;
     deadlineRef.current = deadline;
 
     countdownRef.current = setInterval(() => {
@@ -116,7 +116,7 @@ export default function IntroSlider() {
         navigate("/eleicao");
         return prev;
       });
-    }, 40000);
+    }, 60000);
   };
 
   useEffect(() => {
@@ -156,30 +156,70 @@ export default function IntroSlider() {
     <div className="grid-container">
       {slides[activeIndex].content}
 
-      {activeIndex < slides.length - 1 && (
-        <div style={{ gridColumn: "13 / span 1", gridRow: "7", rotate: "-90deg" }}>
-          <button tabIndex={0} onClick={goToNext}  aria-label="botão de avançar à página seguinte" >
-            <img src={next} alt="Avançar"/>
-          </button>
-        </div>
-      )}
+      {/*INDICADOR DE SLIDE */}      
+      <div style={{ gridColumn: "7 / span 3", gridRow: "10", marginTop: "1rem"}}>
+            <SliderIndicators
+              activeIndex={activeIndex}
+              total={slides.length}
+              onSelect={handleIndicatorSelect}
+            />
+      </div>
 
+      {/*Botão de Voltar ao slide anterior*/ }
       {activeIndex > 0 && (
-        <div style={{ gridColumn: "2 / span 1", gridRow: "7", rotate: "90deg" }}>
-          <button tabIndex={0} onClick={goToPrevious}  aria-label="botão de voltar à página anterior">
+        <div 
+          style={{ 
+            gridColumn: "2 / span 1", 
+            gridRow: "7", 
+            display: "flex", 
+            alignItems: "center", 
+            justifyContent: "center",
+            transform: "rotate(90deg)",
+            transformOrigin: "center"
+          }}
+        >
+          <button tabIndex={0} onClick={goToPrevious} aria-label="botão de voltar à página anterior"
+          style={{
+              width: "44px",   // acessível
+              height: "4px",  // acessível
+              display: "flex",
+              alignItems: "center",
+              justifyContent: "center",
+              padding: "8px"
+            }}>
             <img src={next} alt="Voltar"/>
           </button>
         </div>
       )}
 
-      <div style={{ gridColumn: "7 / span 3", gridRow: "10", marginTop: "1rem"}}>
-        <SliderIndicators
-          activeIndex={activeIndex}
-          total={slides.length}
-          onSelect={handleIndicatorSelect}
-        />
-      </div>
+      {/*Botão de Avançar ao slide seguinte*/ }
+      {activeIndex < slides.length - 1 && (
+        <div 
+          style={{ 
+            gridColumn: "13 / span 1", 
+            gridRow: "7", 
+            display: "flex", 
+            alignItems: "center", 
+            justifyContent: "center",
+            transform: "rotate(-90deg)",
+            transformOrigin: "center"
+          }}
+        >
+          <button tabIndex={0} onClick={goToNext} aria-label="botão de avançar à página seguinte"
+          style={{
+              width: "44px",   // acessível
+              height: "44px",  // acessível
+              display: "flex",
+              alignItems: "center",
+              justifyContent: "center",
+              padding: "8px"
+            }}>
+            <img src={next} alt="Avançar"/>
+          </button>
+        </div>
+      )}
 
+      {/* Contador de tempo restante */}
       <div style={{ gridColumn: "5 / span 5", gridRow: "11", marginTop: "1rem"}}>
         <p className="slider-page-text" tabIndex={0} style={{ marginLeft: "1rem" }}>
           {activeIndex < slides.length - 1
@@ -188,7 +228,7 @@ export default function IntroSlider() {
         </p>
       </div>
 
-
+      {/* footer */}
       <div style={{ gridColumn: "2 / span 1", gridRow: "12", alignSelf: "end" }}>
         <IconButton alt="botão de definições de acessibilidade" ariaLabel = "botão de definições de acessibilidade" icon={accessibility} />
       </div>
