@@ -8,7 +8,6 @@ export default function SpeechAnnouncer() {
   const readingTimeout = useRef(null);
   const readingIndex = useRef(0);
   const elementsToRead = useRef([]);
-  const userClicked = useRef(false); // 🔹 Novo: marca clique do usuário
 
   if (typeof window.varrimentoAtivo === "undefined") window.varrimentoAtivo = true;
   if (typeof window.tempoVarrimento === "undefined") window.tempoVarrimento = 2.0;
@@ -32,16 +31,16 @@ export default function SpeechAnnouncer() {
     utterance.onend = () => {
       if (element) element.style.outline = "";
       lastSpokenElement.current = null;
-      if (onEnd && !userClicked.current) onEnd(); // 🔹 Só continua se não houve clique
+      if (onEnd) onEnd(); // 🔹 Sempre continua
     };
 
     synth.current.speak(utterance);
 
     if (element) {
-      if (element.tagName === "BUTTON" || element.tagName === "A") {
-        element.focus(); // foco real que permite clicar
+      if (element.tagName === "BUTTON" ) {
+        element.focus(); // foco real em elementos clicáveis
       } else {
-        element.style.outline = "2px solid blue"; // destaque visual só
+        element.style.outline = "2px solid blue"; // destaque visual
       }
       lastSpokenElement.current = element;
     }
@@ -66,7 +65,6 @@ export default function SpeechAnnouncer() {
       readingIndex.current++;
 
       let text = el.getAttribute("aria-label") || el.getAttribute("title") || el.textContent.trim();
-
       if (!text) {
         readNext();
         return;
@@ -74,14 +72,23 @@ export default function SpeechAnnouncer() {
 
       console.log("🔊 Lendo elemento:", el.tagName, "Texto:", text);
 
+      // Mantém o foco nos elementos interativos, mas continua a leitura
+      if (el.tagName === "BUTTON" || el.tagName === "A" || el.tagName === "INPUT" || el.tagName === "TEXTAREA") {
+        el.focus();
+      } else {
+        el.style.outline = "2px solid blue";
+      }
+      lastSpokenElement.current = el;
+
       speak(text, el, () => {
         const delay = (window.tempoVarrimento ?? 2.0) * 1000;
         readingTimeout.current = setTimeout(readNext, delay);
       });
     };
 
-    readNext();
-  };
+
+        readNext();
+      };
 
   // Atualizar leitura quando a rota mudar
   useEffect(() => {
@@ -111,24 +118,6 @@ export default function SpeechAnnouncer() {
 
     document.addEventListener("focus", handleFocus, true);
     return () => document.removeEventListener("focus", handleFocus, true);
-  }, []);
-
-  // 🔹 Interromper varrimento se o usuário clicar
-  useEffect(() => {
-    const handleClick = () => {
-      if (!window.varrimentoAtivo) return;
-
-      userClicked.current = true;
-      synth.current.cancel();
-      if (readingTimeout.current) clearTimeout(readingTimeout.current);
-      if (lastSpokenElement.current) lastSpokenElement.current.style.outline = "";
-
-      // Reinicia apenas quando mudar de rota/slide
-      setTimeout(() => { userClicked.current = false; }, 0);
-    };
-
-    document.addEventListener("click", handleClick, true);
-    return () => document.removeEventListener("click", handleClick, true);
   }, []);
 
   // 🔹 Reiniciar leitura quando o slide mudar
