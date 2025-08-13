@@ -8,21 +8,13 @@ export default function SpeechAnnouncer() {
   const readingTimeout = useRef(null);
   const readingIndex = useRef(0);
   const elementsToRead = useRef([]);
+  const userClicked = useRef(false); // 🔹 Novo: marca clique do usuário
 
-  // Inicializar estado global se ainda não estiver definido
-  if (typeof window.varrimentoAtivo === "undefined") {
-    window.varrimentoAtivo = true;
-  }
+  if (typeof window.varrimentoAtivo === "undefined") window.varrimentoAtivo = true;
+  if (typeof window.tempoVarrimento === "undefined") window.tempoVarrimento = 2.0;
+  if (typeof window.volumeLeitor === "undefined") window.volumeLeitor = 0.5;
 
-  if (typeof window.tempoVarrimento === "undefined") {
-    window.tempoVarrimento = 2.0;
-  }
-
-  if (typeof window.volumeLeitor === "undefined") {
-    window.volumeLeitor = 0.5; // volume por defeito (0.0 a 1.0)
-  }
-
-  // Fala e destaca
+  // Função de leitura com destaque
   const speak = (text, element, onEnd) => {
     if (!text) {
       if (onEnd) onEnd();
@@ -31,9 +23,7 @@ export default function SpeechAnnouncer() {
 
     synth.current.cancel();
 
-    if (lastSpokenElement.current) {
-      lastSpokenElement.current.style.outline = "";
-    }
+    if (lastSpokenElement.current) lastSpokenElement.current.style.outline = "";
 
     const utterance = new SpeechSynthesisUtterance(text);
     utterance.lang = "pt-PT";
@@ -42,58 +32,47 @@ export default function SpeechAnnouncer() {
     utterance.onend = () => {
       if (element) element.style.outline = "";
       lastSpokenElement.current = null;
-      if (onEnd) onEnd();
+      if (onEnd && !userClicked.current) onEnd(); // 🔹 Só continua se não houve clique
     };
 
     synth.current.speak(utterance);
 
     if (element) {
-      element.style.outline = "3px solid blue";
+      if (element.tagName === "BUTTON" || element.tagName === "A") {
+        element.focus(); // foco real que permite clicar
+      } else {
+        element.style.outline = "2px solid blue"; // destaque visual só
+      }
       lastSpokenElement.current = element;
     }
   };
 
-  // Iniciar varrimento sequencial da página toda
+  // Iniciar leitura sequencial
   const startReadingAll = () => {
-    const selectors = "h1, h2, h3, h4, h5, h6, p, strong, em, button, a[href], input, textarea";
-
+    const selectors = 'h1, h2, h3, h4, h5, h6, p, strong, em, button, a[href], input, textarea, [tabindex="0"]';
     let elems = Array.from(document.querySelectorAll(selectors)).filter(el => {
       const style = window.getComputedStyle(el);
-      return (
-        style.display !== "none" &&
-        style.visibility !== "hidden" &&
-        el.textContent.trim() !== ""
-      );
+      return style.display !== "none" && style.visibility !== "hidden" &&
+             (el.textContent.trim() !== "" || el.getAttribute("aria-label") || el.getAttribute("title"));
     });
-
-    elems = elems.filter(el => !el.closest('button') || el.tagName.toLowerCase() === 'button');
 
     elementsToRead.current = elems;
     readingIndex.current = 0;
 
     const readNext = () => {
-      if (!window.varrimentoAtivo) return;
-      if (readingIndex.current >= elementsToRead.current.length) return;
+      if (!window.varrimentoAtivo || readingIndex.current >= elementsToRead.current.length) return;
 
       const el = elementsToRead.current[readingIndex.current];
       readingIndex.current++;
 
-      let text = "";
-
-      if (el.tagName.toLowerCase() === "button") {
-        text = el.getAttribute("aria-label") || el.getAttribute("title") || el.textContent.trim();
-      } else {
-        if (el.closest("button")) {
-          readNext();
-          return;
-        }
-        text = el.getAttribute("aria-label") || el.getAttribute("title") || el.textContent.trim();
-      }
+      let text = el.getAttribute("aria-label") || el.getAttribute("title") || el.textContent.trim();
 
       if (!text) {
         readNext();
         return;
       }
+
+      console.log("🔊 Lendo elemento:", el.tagName, "Texto:", text);
 
       speak(text, el, () => {
         const delay = (window.tempoVarrimento ?? 2.0) * 1000;
@@ -104,52 +83,14 @@ export default function SpeechAnnouncer() {
     readNext();
   };
 
-  // Lidar com mudança de varrimento
-  const handleVarrimentoChange = () => {
-    console.log("🔄 Varrimento mudou →", window.varrimentoAtivo ? "ON" : "OFF");
-
-    synth.current.cancel();
-    if (readingTimeout.current) clearTimeout(readingTimeout.current);
-    if (lastSpokenElement.current) lastSpokenElement.current.style.outline = "";
-
-    if (window.varrimentoAtivo) {
-      startReadingAll();
-    }
-  };
-
-  // ler slides automaticamente 
+  // Atualizar leitura quando a rota mudar
   useEffect(() => {
-    const handleSlideChange = (e) => {
-      // Só reinicia o varrimento da página inteira
-      synth.current.cancel();
-      if (readingTimeout.current) clearTimeout(readingTimeout.current);
-      if (lastSpokenElement.current) lastSpokenElement.current.style.outline = "";
-
-      if (window.varrimentoAtivo) {
-        startReadingAll();
-      }
-    };
-
-    window.addEventListener("slideChange", handleSlideChange);
-    return () => {
-      window.removeEventListener("slideChange", handleSlideChange);
-    };
-  }, []);
-
-  useEffect(() => {
-    if (window.varrimentoAtivo) {
-      startReadingAll();
-      console.log("Varrimento ativo ao mudar rota");
-    }
-
-    window.addEventListener("varrimentoChange", handleVarrimentoChange);
-    
+    if (window.varrimentoAtivo) startReadingAll();
 
     return () => {
       synth.current.cancel();
       if (lastSpokenElement.current) lastSpokenElement.current.style.outline = "";
       if (readingTimeout.current) clearTimeout(readingTimeout.current);
-      window.removeEventListener("varrimentoChange", handleVarrimentoChange);
     };
   }, [location]);
 
@@ -158,31 +99,50 @@ export default function SpeechAnnouncer() {
     const handleFocus = (e) => {
       if (!window.varrimentoAtivo) return;
 
-      synth.current.cancel();
-      if (lastSpokenElement.current) {
-        lastSpokenElement.current.style.outline = "";
-      }
-
       const el = e.target;
-      let text = "";
-
-      if (el.tagName.toLowerCase() === "button") {
-        text = el.getAttribute("aria-label") || el.getAttribute("title") || el.textContent.trim();
-      } else {
-        if (el.closest("button")) return;
-        text = el.getAttribute("aria-label") || el.getAttribute("title") || el.textContent.trim();
-      }
-
+      let text = el.getAttribute("aria-label") || el.getAttribute("title") || el.textContent.trim();
       if (!text) return;
+
+      synth.current.cancel();
+      if (lastSpokenElement.current) lastSpokenElement.current.style.outline = "";
 
       speak(text, el);
     };
 
     document.addEventListener("focus", handleFocus, true);
+    return () => document.removeEventListener("focus", handleFocus, true);
+  }, []);
 
-    return () => {
-      document.removeEventListener("focus", handleFocus, true);
+  // 🔹 Interromper varrimento se o usuário clicar
+  useEffect(() => {
+    const handleClick = () => {
+      if (!window.varrimentoAtivo) return;
+
+      userClicked.current = true;
+      synth.current.cancel();
+      if (readingTimeout.current) clearTimeout(readingTimeout.current);
+      if (lastSpokenElement.current) lastSpokenElement.current.style.outline = "";
+
+      // Reinicia apenas quando mudar de rota/slide
+      setTimeout(() => { userClicked.current = false; }, 0);
     };
+
+    document.addEventListener("click", handleClick, true);
+    return () => document.removeEventListener("click", handleClick, true);
+  }, []);
+
+  // 🔹 Reiniciar leitura quando o slide mudar
+  useEffect(() => {
+    const handleSlideChange = () => {
+      synth.current.cancel();
+      if (readingTimeout.current) clearTimeout(readingTimeout.current);
+      if (lastSpokenElement.current) lastSpokenElement.current.style.outline = "";
+
+      if (window.varrimentoAtivo) startReadingAll();
+    };
+
+    window.addEventListener("slideChange", handleSlideChange);
+    return () => window.removeEventListener("slideChange", handleSlideChange);
   }, []);
 
   return null;
