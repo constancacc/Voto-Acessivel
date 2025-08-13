@@ -14,7 +14,7 @@ export default function SliderIndicators({ activeIndex = 0, total = 3, onSelect 
           />
         ))}
       </div>
-      <div className="slider-page-text">
+      <div className="slider-page-text" tabIndex={0} aria-label={`Página ${activeIndex + 1} de ${total}`}>
         {activeIndex + 1}/{total}
       </div>
     </div>

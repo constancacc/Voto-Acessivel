@@ -38,10 +38,10 @@ export default function IntroSlider() {
             </p>
           </div>
           <div style={{ gridColumn: "3 / span 7", gridRow: "8", alignSelf: "end" }}>
-            <h3>Sobre a plataforma...</h3>
+            <h3 tabIndex={0}>Sobre a plataforma...</h3>
           </div>
           <div style={{ gridColumn: "3 / span 10", gridRow: "9" }}>
-            <p>
+            <p tabIndex={0}>
               Criada para garantir que <b>todos</b> podem votar de forma <b>segura</b>, <b>independente</b> e adaptada às <b>suas necessidades</b>.
             </p>
           </div>
@@ -52,16 +52,16 @@ export default function IntroSlider() {
       content: (
         <div className="slide-content" data-slide-index={1}>
           <div style={{ gridColumn: "3 / span 9", gridRow: "3" }}>
-            <h1>Informações de Leitor de Ecrã</h1>
+            <h1 tabIndex={0}>Informações de Leitor de Ecrã</h1>
           </div>
           <div style={{ gridColumn: "5 / span 6", gridRow: "5", padding: "1rem" }}>
-            <img src="/imagens/instrucoes/leitor-de-ecra.svg" alt="Leitor de Ecrã"/>
+            <img tabIndex={0} src="/imagens/instrucoes/leitor-de-ecra.svg" alt="Leitor de Ecrã"/>
           </div>
           <div style={{ gridColumn: "3 / span 7", gridRow: "8", alignSelf: "end" }}>
-            <h3>Navegação com leitor de ecrã</h3>
+            <h3 tabIndex={0}>Navegação com leitor de ecrã</h3>
           </div>
           <div style={{ gridColumn: "3 / span 10", gridRow: "9" }}>
-            <p>
+            <p tabIndex={0}>
               A plataforma possui um <b>leitor de ecrã</b> que é ativado <b>automaticamente</b> ao iniciar,
               <b> lendo todos os elementos</b> apresentados.
             </p>
@@ -105,13 +105,11 @@ export default function IntroSlider() {
     const deadline = Date.now() + 40000;
     deadlineRef.current = deadline;
 
-    // Atualiza o contador visual
     countdownRef.current = setInterval(() => {
       const secs = Math.max(0, Math.ceil((deadlineRef.current - Date.now()) / 1000));
       setTimeLeft(secs);
     }, 1000);
 
-    // Avanço automático ao fim de 40s
     autoAdvanceRef.current = setTimeout(() => {
       setActiveIndex((prev) => {
         if (prev < slides.length - 1) return prev + 1;
@@ -121,18 +119,16 @@ export default function IntroSlider() {
     }, 40000);
   };
 
-  // (Re)inicia timers ao entrar num slide
   useEffect(() => {
     startTimers();
-    return clearTimers; // limpeza ao sair do slide/unmount
-    // eslint-disable-next-line react-hooks/exhaustive-deps
+    return clearTimers;
   }, [activeIndex]);
 
-  // Evento de acessibilidade ao trocar de slide
+  // Evento de acessibilidade disparando para todos os elementos da página
   useEffect(() => {
-    const slideElement = document.querySelector(`.slide-content[data-slide-index="${activeIndex}"]`);
-    if (slideElement) {
-      const event = new CustomEvent('slideChange', { detail: { slideElement } });
+    const container = document.querySelector('.grid-container'); // toda a página
+    if (container) {
+      const event = new CustomEvent('slideChange', { detail: { container } });
       window.dispatchEvent(event);
     }
   }, [activeIndex]);
@@ -160,45 +156,48 @@ export default function IntroSlider() {
     <div className="grid-container">
       {slides[activeIndex].content}
 
-      {/* Avançar */}
       {activeIndex < slides.length - 1 && (
         <div style={{ gridColumn: "13 / span 1", gridRow: "7", rotate: "-90deg" }}>
-          <img src={next} onClick={goToNext} style={{ cursor: "pointer" }} alt="Avançar" />
+          <button tabIndex={0} onClick={goToNext}  aria-label="botão de avançar ao slide seguinte" >
+            <img src={next} alt="Avançar"/>
+          </button>
         </div>
       )}
 
-      {/* Voltar */}
       {activeIndex > 0 && (
         <div style={{ gridColumn: "2 / span 1", gridRow: "7", rotate: "90deg" }}>
-          <img src={next} onClick={goToPrevious} style={{ cursor: "pointer" }} alt="Voltar" />
+          <button tabIndex={0} onClick={goToPrevious}  aria-label="botão de voltar ao slide anterior">
+            <img src={next} alt="Voltar"/>
+          </button>
         </div>
       )}
 
-      {/* Indicadores */}
       <div style={{ gridColumn: "7 / span 3", gridRow: "10", marginTop: "1rem"}}>
         <SliderIndicators
           activeIndex={activeIndex}
           total={slides.length}
-          onSelect={handleIndicatorSelect} // importante: limpar timers aqui também
+          onSelect={handleIndicatorSelect}
         />
       </div>
 
       <div style={{ gridColumn: "5 / span 5", gridRow: "11", marginTop: "1rem"}}>
-        <p className="slider-page-text" style={{ marginLeft: "1rem" }}>
-           {activeIndex < slides.length - 1
-            ? `Faltam ${timeLeft}s para o próximo slide`
+        <p className="slider-page-text" tabIndex={0} style={{ marginLeft: "1rem" }}>
+          {activeIndex < slides.length - 1
+            ? `Faltam ${timeLeft}s para a próxima página`
             : `Faltam ${timeLeft}s para escolher a eleição`}
         </p>
       </div>
 
-      {/* Footer */}
-      <div style={{ gridColumn: "9 / span 5", gridRow: "12", justifySelf: "end", alignSelf: "end" }}>
-        <Button text="Começar eleição" variant="primary" icon={seta} onClick={() => { clearTimers(); navigate("/eleicao"); }} />
-      </div>
 
       <div style={{ gridColumn: "2 / span 1", gridRow: "12", alignSelf: "end" }}>
-        <IconButton alt="botão de definições de acessibilidade" icon={accessibility} />
+        <IconButton alt="botão de definições de acessibilidade" ariaLabel = "botão de definições de acessibilidade" icon={accessibility} />
       </div>
+
+      <div style={{ gridColumn: "9 / span 5", gridRow: "12", justifySelf: "end", alignSelf: "end" }}>
+        <Button text="Começar eleição" aria-label="Começar eleição" variant="primary" icon={seta} onClick={() => { clearTimers(); navigate("/eleicao"); }} />
+      </div>
+
+
     </div>
   );
 }

@@ -21,7 +21,8 @@ export default function Button({ text, icon, variant, onClick, legenda }) {
   return (
     <button
       className={`custom-button ${variant || ""}`}
-      onClick={handleClick} 
+      onClick={handleClick}
+      tabIndex={0}
     >
       <span className="custom-button-text">{text}</span>
       {icon && <img src={icon} alt="" className="custom-button-icon" />}

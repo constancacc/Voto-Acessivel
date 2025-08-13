@@ -18,8 +18,9 @@ export default function IconButton({ icon, alt = "", onClick, ariaLabel, type = 
     <button
       className={`icon-button ${className}`}
       onClick={handleClick}
-      aria-label={ariaLabel || alt}
+      aria-label={ariaLabel}
       type={type}
+      tabIndex={0} 
     >
       <img src={icon} alt={alt} className="icon-button-img" />
     </button>
