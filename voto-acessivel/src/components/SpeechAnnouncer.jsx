@@ -49,7 +49,6 @@ export default function SpeechAnnouncer() {
 
     if (element) {
       element.style.outline = "3px solid blue";
-      element.scrollIntoView({ behavior: "smooth", block: "center" });
       lastSpokenElement.current = element;
     }
   };
