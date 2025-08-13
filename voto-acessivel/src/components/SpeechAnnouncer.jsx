@@ -48,7 +48,7 @@ export default function SpeechAnnouncer() {
 
   // Iniciar leitura sequencial
   const startReadingAll = () => {
-    const selectors = 'h1, h2, h3, h4, h5, h6, p, strong, em, button, a[href], input, textarea, [tabindex="0"]';
+    const selectors = 'h1, h2, h3, h4, h5, h6, p, strong, ol, em, button, a[href], input, textarea, [tabindex="0"]';
     let elems = Array.from(document.querySelectorAll(selectors)).filter(el => {
       const style = window.getComputedStyle(el);
       return style.display !== "none" && style.visibility !== "hidden" &&

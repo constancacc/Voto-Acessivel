@@ -33,15 +33,17 @@ export default function Legislativas() {
       </div>
 
       <div style={{ gridColumn: "2 / span 12", gridRow: "3" }}>
-        <h1>Legislativas 2025</h1>
+        <h1 tabIndex={0} aria-label="Legislativas 2025">Legislativas 2025</h1>
       </div>
 
       <div style={{ gridColumn: "2 / span 12", gridRow: "4", alignSelf: "start", position: "relative" }}>
         <div style={{ position: "absolute" }}>
           <CollapseBox
             title="Sobre esta Eleição"
+            aria-label="Clicar para saber mais sobre as eleições legislativas de 2025"
             isOpen={openIndex === 0}
             onToggle={() => handleToggle(0)}
+            tabIndex={0}
           >
             <p style={{ marginLeft: "3.5rem" }}>
               Nesta eleição, os cidadãos elegem os <b>230 deputados à Assembleia da República</b>, que terão a responsabilidade de representar o país,
@@ -57,13 +59,15 @@ export default function Legislativas() {
             title="Lista de Candidatos"
             isOpen={openIndex === 1}
             onToggle={() => handleToggle(1)}
+            aria-label="Clicar para saber os candidatos e opções de voto"
+            tabIndex={0}
           >
             <ol style={{ marginLeft: "2.5rem" }}>
               {partidosData.map((partido) => (
-                <li key={partido.id}>
-                  <p style={{ marginBottom: "0" }}>{partido.nome} ({partido.sigla})</p>
+                <li key={partido.id} style={{listStyleType: "none"}}>
+                  {partido.id}. {partido.nome} ({partido.sigla})
                 </li>
-              ))}
+              ))} 
             </ol>
           </CollapseBox>
         </div>
