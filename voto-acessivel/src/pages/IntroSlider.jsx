@@ -41,7 +41,7 @@ export default function IntroSlider() {
             <h3 tabIndex={0} aria-label="Sobre a plataforma" >Sobre a plataforma...</h3>
           </div>
           <div style={{ gridColumn: "3 / span 10", gridRow: "9" }}>
-            <p tabIndex={0} aria-label="Bem-vindo/a à plataforma">
+            <p tabIndex={0}>
               Criada para garantir que <b>todos</b> podem votar de forma <b>segura</b>, <b>independente</b> e adaptada às <b>suas necessidades</b>.
             </p>
           </div>

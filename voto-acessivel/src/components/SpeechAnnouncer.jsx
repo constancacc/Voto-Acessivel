@@ -54,37 +54,44 @@ export default function SpeechAnnouncer() {
       return style.display !== "none" && style.visibility !== "hidden" &&
              (el.textContent.trim() !== "" || el.getAttribute("aria-label") || el.getAttribute("title"));
     });
-
+    elems = elems.filter(el => el.getAttribute("aria-hidden") !== "true");
+    
     elementsToRead.current = elems;
     readingIndex.current = 0;
 
     const readNext = () => {
-      if (!window.varrimentoAtivo || readingIndex.current >= elementsToRead.current.length) return;
+    if (!window.varrimentoAtivo || readingIndex.current >= elementsToRead.current.length) return;
 
-      const el = elementsToRead.current[readingIndex.current];
-      readingIndex.current++;
+    const el = elementsToRead.current[readingIndex.current];
+    readingIndex.current++;
 
-      let text = el.getAttribute("aria-label") || el.getAttribute("title") || el.textContent.trim();
-      if (!text) {
-        readNext();
-        return;
+    let text = el.getAttribute("aria-label") || el.getAttribute("title") || el.textContent.trim();
+    if (!text) {
+      readNext();
+      return;
+    }
+
+    console.log("🔊 Lendo elemento:", el.tagName, "Texto:", text);
+
+    const focaveis = ["BUTTON", "A", "INPUT", "TEXTAREA"];
+
+    // Se o próximo elemento NÃO for focável, remove o foco do anterior
+    if (!focaveis.includes(el.tagName)) {
+      if (lastSpokenElement.current && document.activeElement === lastSpokenElement.current) {
+        lastSpokenElement.current.blur();
       }
+      el.style.outline = "2px solid blue"; // destaque visual
+    } else {
+      el.focus(); // mantém o foco em elementos interativos
+    }
 
-      console.log("🔊 Lendo elemento:", el.tagName, "Texto:", text);
+    lastSpokenElement.current = el;
 
-      // Mantém o foco nos elementos interativos, mas continua a leitura
-      if (el.tagName === "BUTTON" || el.tagName === "A" || el.tagName === "INPUT" || el.tagName === "TEXTAREA") {
-        el.focus();
-      } else {
-        el.style.outline = "2px solid blue";
-      }
-      lastSpokenElement.current = el;
-
-      speak(text, el, () => {
-        const delay = (window.tempoVarrimento ?? 2.0) * 1000;
-        readingTimeout.current = setTimeout(readNext, delay);
-      });
-    };
+    speak(text, el, () => {
+      const delay = (window.tempoVarrimento ?? 2.0) * 1000;
+      readingTimeout.current = setTimeout(readNext, delay);
+    });
+  };
 
 
         readNext();
