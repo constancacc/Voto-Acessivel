@@ -6,25 +6,46 @@ import seta from "../assets/ArrowIcon.svg";
 
 export default function BoletimVoto() {
   const [index, setIndex] = useState(0);
-  const [tempoRestante, setTempoRestante] = useState(10); // tempo em segundos para o próximo partido
+  const [tempoRestante, setTempoRestante] = useState(80); // tempo em segundos para o próximo partido
   const navigate = useNavigate();
   const partidoRef = useRef(null);
 
   const partido = partidosData[index];
 
-  const irParaAnterior = () => {
-    setIndex((prevIndex) =>
-      prevIndex === 0 ? partidosData.length - 1 : prevIndex - 1
-    );
-    setTempoRestante(10); // resetar timer ao navegar manualmente
-  };
+const [primeiroCarregamento, setPrimeiroCarregamento] = useState(true);
 
-  const irParaSeguinte = () => {
-    setIndex((prevIndex) =>
-      prevIndex === partidosData.length - 1 ? 0 : prevIndex + 1
-    );
-    setTempoRestante(10); // resetar timer ao navegar automaticamente
-  };
+const irParaAnterior = () => {
+  setIndex((prevIndex) => {
+    const novoIndex = prevIndex === 0 ? partidosData.length - 1 : prevIndex - 1;
+    setTimeout(() => {
+      if (partidoRef.current) {
+        partidoRef.current.focus();
+      }
+    }, 0);
+    return novoIndex;
+  });
+  // No primeiro carregamento, manter 80s; depois 20s
+  setTempoRestante(primeiroCarregamento ? 80 : 20);
+};
+
+const irParaSeguinte = () => {
+  setIndex((prevIndex) => {
+    const novoIndex = prevIndex === partidosData.length - 1 ? 0 : prevIndex + 1;
+    setTimeout(() => {
+      if (partidoRef.current) {
+        partidoRef.current.focus();
+      }
+    }, 0);
+    return novoIndex;
+  });
+  // No primeiro carregamento, manter 80s e depois mudar a flag para false
+  if (primeiroCarregamento) {
+    setTempoRestante(20);
+    setPrimeiroCarregamento(false);
+  } else {
+    setTempoRestante(20);
+  }
+};
 
   const selecionarVoto = () => {
     navigate('/confirmacao', { state: { partido: partido.id } });
@@ -42,15 +63,6 @@ export default function BoletimVoto() {
 
     return () => clearInterval(interval);
   }, [tempoRestante]);
-
-  // Leitura do partido atual para leitor de ecrã
-  useEffect(() => {
-      if (window.varrimentoAtivo && window.speakText && partido) {
-        const texto = ` ${partido.id}, ${partido.nome},  ${partido.sigla}, clique para selecionar`;
-        window.speakText(texto, partidoRef.current);
-      
-      }
-  }, [partido]);
 
   return (
     <div className="boletim-wrapper">
@@ -79,12 +91,12 @@ export default function BoletimVoto() {
 
       <div className="boletim-botoes-container">
         <div className="boletim-indicador">
-          <p className="partido-indicador">
+          <p className="partido-indicador" tabIndex={0}>
             {index + 1} de {partidosData.length} candidatos
           </p>
         </div>
           {/* Indicador do tempo restante para o próximo partido */}
-          <div className="partido-indicador" aria-live="polite" style={{ marginTop: "1rem", fontWeight: '600' }}>
+          <div className="partido-indicador" tabIndex={0} style={{ marginTop: "1rem", fontWeight: '600' }}>
             Faltam {tempoRestante}s para o próximo candidato
           </div>
 
@@ -105,7 +117,7 @@ export default function BoletimVoto() {
                 Partido Anterior
               </span>
             </div>
-            <p className="button-leg" style={{ fontSize: "16px" }}>
+            <p className="button-leg" style={{ fontSize: "16px" }} aria-hidden="true">
               {`${partidosData[(index - 1 + partidosData.length) % partidosData.length].nome}`}
             </p>
           </button>
@@ -121,7 +133,7 @@ export default function BoletimVoto() {
                 Partido Seguinte
               </span>
             </div>
-            <p className="button-leg" style={{ fontSize: "16px" }}>
+            <p className="button-leg" style={{ fontSize: "16px" }} aria-hidden="true">
               {`${partidosData[(index + 1) % partidosData.length].nome}`}
             </p>
           </button>
