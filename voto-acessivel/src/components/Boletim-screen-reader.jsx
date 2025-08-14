@@ -33,7 +33,8 @@ const irParaSeguinte = () => {
     const novoIndex = prevIndex === partidosData.length - 1 ? 0 : prevIndex + 1;
     setTimeout(() => {
       if (partidoRef.current) {
-        partidoRef.current.focus();
+        partidoRef.current.blur();
+        setTimeout(() => partidoRef.current.focus(), 0);
       }
     }, 0);
     return novoIndex;
@@ -71,6 +72,7 @@ const irParaSeguinte = () => {
         onClick={selecionarVoto}
         tabIndex={0}
         ref={partidoRef}
+        aria-live="assertive"
       >
         <div className="boletim-content">
           <div className="boletim-nome">
