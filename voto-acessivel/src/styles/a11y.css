@@ -189,13 +189,11 @@ div.ativo > span > p {
 /*TIPOGRAFIA*/
 
 .type-btn-box{
-    display: flex;
-    height: 69px;
-    justify-content: space-between;
-    align-items: center;
-    align-self: stretch;
-
-    margin-top: 40px;
+  display: flex;
+  flex-wrap: wrap; /* permite quebrar só se necessário */
+  gap: 40px;
+  align-items: center;
+  margin-top: 40px;
 }
 
 #helvetica{
