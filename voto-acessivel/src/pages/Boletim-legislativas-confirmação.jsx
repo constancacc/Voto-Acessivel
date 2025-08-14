@@ -47,7 +47,7 @@ export default function Confirmacao() {
 
       {/* Botão voltar */}
       <div style={{ gridColumn: "2", gridRow: "2", display: "flex", alignItems: "center" }}>
-        <button onClick={() => navigate(-1)} className="back-container" aria-label="Voltar à página anterior">
+        <button onClick={() => navigate(-1)} className="back-container" tabIndex={0} aria-label="Voltar à página anterior">
           <svg className="back-btn" xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 22 22" fill="none">
             <path d="M10.9992 2.2002L2.19922 11.0002M2.19922 11.0002L10.9992 19.8002M2.19922 11.0002H19.7992" stroke="#1E1E1E" strokeWidth="2.8" strokeLinecap="round" strokeLinejoin="round"/>
           </svg>
@@ -71,7 +71,7 @@ export default function Confirmacao() {
 
       {/* Célula do partido */}
       <div style={{ gridColumn: "2 / span 12", gridRow: "6", display: "flex", justifyContent: "center" }}>
-        <div className="boletim-card" style={{ cursor: "default" }}>
+        <div className="boletim-card" tabIndex={0} style={{ cursor: "default" }}>
           <div className="boletim-content">
             <div className="boletim-nome">{partido.id}. {partido.nome}</div>
             <div className="boletim-info">
@@ -92,6 +92,11 @@ export default function Confirmacao() {
         </div>
       </div>
 
+      {/* Botão acessibilidade */}
+      <div style={{ gridColumn: "2 / span 1", gridRow: "12", alignSelf: "end" }}>
+        <IconButton ariaLabel="botão de definições de acessibilidade" icon={accessibility} />
+      </div>
+
       {/* Botões de confirmação e anulação */}
       <div style={{ gridColumn: "4 / span 5", gridRow: "12", justifySelf: "end", display: "flex", gap: "1rem" }}>
         <Button text="Anular Voto" variant="secondary" icon={x} onClick={handleAnular} />
@@ -101,10 +106,7 @@ export default function Confirmacao() {
         <Button text="Confirmar Voto" variant="primary" icon={seta} onClick={handleConfirmar} />
       </div>
 
-      {/* Botão acessibilidade */}
-      <div style={{ gridColumn: "2 / span 1", gridRow: "12", alignSelf: "end" }}>
-        <IconButton alt="botão de definições de acessibilidade" icon={accessibility} />
-      </div>
+      
     </div>
   );
 }
