@@ -12,6 +12,7 @@ export default function SpeechAnnouncer() {
   if (typeof window.varrimentoAtivo === "undefined") window.varrimentoAtivo = true;
   if (typeof window.tempoVarrimento === "undefined") window.tempoVarrimento = 2.0;
   if (typeof window.volumeLeitor === "undefined") window.volumeLeitor = 0.5;
+  if (typeof window.varrimentoPausado === "undefined") window.varrimentoPausado = false;
 
   // Função de leitura com destaque
   const speak = (text, element, onEnd) => {
@@ -59,40 +60,42 @@ export default function SpeechAnnouncer() {
     readingIndex.current = 0;
 
     const readNext = () => {
-    if (!window.varrimentoAtivo || readingIndex.current >= elementsToRead.current.length) return;
+      if (!window.varrimentoAtivo || window.varrimentoPausado || readingIndex.current >= elementsToRead.current.length) return;
 
-    const el = elementsToRead.current[readingIndex.current];
-    readingIndex.current++;
+      const el = elementsToRead.current[readingIndex.current];
+      readingIndex.current++;
 
-    let text = el.getAttribute("aria-label") || el.getAttribute("title") || el.textContent.trim();
-    if (!text) {
-      readNext();
-      return;
-    }
+      let text = el.getAttribute("aria-label") || el.getAttribute("title") || el.textContent.trim();
+      if (!text) {
+        readNext();
+        return;
+      }
 
-    console.log("🔊 Lendo elemento:", el.tagName, "Texto:", text);
+      console.log("🔊 Lendo elemento:", el.tagName, "Texto:", text);
 
-    // Mantém o foco nos elementos interativos, mas continua a leitura
-    if (el.tagName === "BUTTON" || el.tagName === "A" || el.tagName === "INPUT" || el.tagName === "TEXTAREA") {
-      el.focus();
-    } else {
-      el.style.outline = "2px solid blue";
-    }
-    lastSpokenElement.current = el;
+      // Mantém o foco nos elementos interativos, mas continua a leitura
+      if (el.tagName === "BUTTON" || el.tagName === "A" || el.tagName === "INPUT" || el.tagName === "TEXTAREA") {
+        el.focus();
+      } else {
+        el.style.outline = "2px solid blue";
+      }
+      lastSpokenElement.current = el;
 
-    speak(text, el, () => {
-      const delay = (window.tempoVarrimento ?? 2.0) * 1000;
-      readingTimeout.current = setTimeout(readNext, delay);
-    });
-  };
-
-
-      readNext();
+      speak(text, el, () => {
+        const delay = (window.tempoVarrimento ?? 2.0) * 1000;
+        readingTimeout.current = setTimeout(readNext, delay);
+      });
     };
+
+    readNext();
+  };
 
   // Atualizar leitura quando a rota mudar
   useEffect(() => {
-    if (window.varrimentoAtivo) startReadingAll();
+    if (window.varrimentoAtivo) {
+      window.varrimentoPausado = false; // retoma varrimento
+      startReadingAll();
+    }
 
     return () => {
       synth.current.cancel();
@@ -127,11 +130,35 @@ export default function SpeechAnnouncer() {
       if (readingTimeout.current) clearTimeout(readingTimeout.current);
       if (lastSpokenElement.current) lastSpokenElement.current.style.outline = "";
 
-      if (window.varrimentoAtivo) startReadingAll();
+      if (window.varrimentoAtivo) {
+        window.varrimentoPausado = false; // retoma varrimento
+        startReadingAll();
+      }
     };
 
     window.addEventListener("slideChange", handleSlideChange);
     return () => window.removeEventListener("slideChange", handleSlideChange);
+  }, []);
+
+  // 🔹 Pausar varrimento quando o utilizador pressionar Tab
+  useEffect(() => {
+    const handleKeyDown = (e) => {
+      if (e.key === "Tab") {
+        console.log("⏸ Varrimento pausado pelo utilizador");
+        window.varrimentoPausado = true;
+        synth.current.cancel();
+
+        if (readingTimeout.current) clearTimeout(readingTimeout.current);
+
+        if (lastSpokenElement.current) {
+          lastSpokenElement.current.style.outline = "";
+          lastSpokenElement.current = null;
+        }
+      }
+    };
+
+    document.addEventListener("keydown", handleKeyDown, true);
+    return () => document.removeEventListener("keydown", handleKeyDown, true);
   }, []);
 
   return null;
