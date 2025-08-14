@@ -16,6 +16,7 @@ import Acessibilidade from './pages/Acessibilidade';
 import PreDefinicoes from './pages/links-acessibilidade/PreDefinicoes';
 import LeitorEcra from './pages/links-acessibilidade/LeitorEcra';
 import Tipografia from './pages/links-acessibilidade/Tipografia';
+import PagBoletim from './pages/Boletim-legislativas';
 
 
 function App() {
@@ -31,7 +32,7 @@ function App() {
         <Route path="/eleicao" element={<Eleicao />} />
         <Route path="/legislativas" element={<Legislativas />} />
         <Route path="/autarquicas" element={<Autarquicas />} />
-        <Route path="/boletim-legislativas" element={<Boletim />} />
+        <Route path="/boletim-legislativas" element={<PagBoletim />} />
         <Route path="/confirmacao" element={<Confirmacao />} />
         <Route path="/impressao" element={<Impressao />} />
         <Route path="/conclusao" element={<ConclusaoPage />} />

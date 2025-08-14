@@ -12,7 +12,7 @@ import BoletimVoto from '../components/Boletim-screen-reader.jsx';
 import '../styles/intro.css';
 import '../styles/variables.css';
 
-export default function Boletim() {
+export default function PagBoletim() {
   const navigate = useNavigate();
 
   const handleBack = () => {
@@ -54,13 +54,15 @@ export default function Boletim() {
       </div>
 
       {/*footer*/}
+      <div style={{gridColumn: "2/ span 1", gridRow: "12", alignSelf: "end"}}>
+        <IconButton ariaLabel="botão de definições de acessibilidade" icon={accessibility}/> 
+      </div>
+
       <div style={{gridColumn: "9 /span 5", gridRow: "12", justifySelf: "end"}}>
         <Button text="Selecionar" variant="primary" icon={seta}/> 
       </div>
       
-      <div style={{gridColumn: "2/ span 1", gridRow: "12", alignSelf: "end"}}>
-        <IconButton alt="botão de definições de acessibilidade" icon={accessibility}/> 
-      </div>
+
     </div>
   );
 }
