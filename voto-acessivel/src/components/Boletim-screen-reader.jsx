@@ -95,7 +95,7 @@ export default function BoletimVoto() {
             tabIndex={0}
             
           >
-            <div className="custom-button-content-2">
+            <div className="custom-button-content-2" style={{ marginBottom: "0.5rem" }}>
               <img
                 src={seta}
                 alt="Anterior"
@@ -115,7 +115,7 @@ export default function BoletimVoto() {
             onClick={irParaSeguinte}
             tabIndex={0}
           >
-            <div className="custom-button-content-2">
+            <div className="custom-button-content-2" style={{ marginBottom: "0.5rem" }}>
               <img src={seta} alt="Seguinte" />
               <span className="custom-button-text" style={{ fontWeight: 700 }}>
                 Partido Seguinte

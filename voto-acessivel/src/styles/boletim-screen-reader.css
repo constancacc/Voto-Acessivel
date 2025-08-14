@@ -122,9 +122,6 @@
 .button-leg{
   color: #000;
   text-align: center;
-  font-style: normal;
-  font-size: 5px;
-  line-height: normal;
 
   display: flex;
   flex-direction: column;
