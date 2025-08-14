@@ -45,117 +45,111 @@ export default function Acessibilidade() {
 
      {/*botões de adaptação*/}
 
-      <div style={{ gridColumn: "2 / span 12", gridRow: "4", alignSelf: "start", position: "relative" }}>
+      <div style={{ gridColumn: "2 / span 12", gridRow: "5", alignSelf: "start", position: "relative" }}>
       
-        <div style={{ position: "absolute" }} className="adap-list">
+        <div style={{ position: "absolute", top: "-2rem" }} className="adap-list">
 
             {/*pre-def*/}
-            <div
+            <button
             className="adap-cell"
             id="versao1"
             onClick={() => navigate("/pre-definicoes")}
             role="button"
             tabIndex="0"
-            onKeyDown={(e) => { if (e.key === 'Enter') navigate("/pre-definicoes") }}
             >
                 <span className="adap-title">    
                     <img src={preDef}></img>
-                    <p>Pré-definições de perfil</p>
+                    <p aria-hidden="true">Pré-definições de perfil</p>
                 </span>
             
                 <img src={next} style={{rotate: "-90deg"}}></img>
-            </div>
+            </button>
 
             {/*codigo*/}
-           <div
+           <button
             className="adap-cell"
             id="versao2"
             onClick={() => navigate("/pre-definicoes")}
             role="button"
             tabIndex="0"
-            onKeyDown={(e) => { if (e.key === 'Enter') navigate("/pre-definicoes") }}
             >
                 <span className="adap-title">    
                     <img src={codigo}></img>
-                    <p>Inserir código de perfil</p>
+                    <p aria-hidden="true">Inserir código de perfil</p>
                 </span>
             
                 <img src={next} style={{rotate: "-90deg"}}></img>
-            </div>
+            </button>
 
             {/*leitor de ecrã*/}
-            <div
+            <button
             className="adap-cell"
             id="versao2"
             onClick={() => navigate("/leitor-ecra")}
             role="button"
             tabIndex="0"
-            onKeyDown={(e) => { if (e.key === 'Enter') navigate("/leitor-ecra") }}
             >
                 <span className="adap-title">    
                     <img src={leitor}></img>
-                    <p>Definições de leitor de ecrã </p>
+                    <p aria-hidden="true">Definições de leitor de ecrã </p>
                 </span>
             
                 <img src={next} style={{rotate: "-90deg"}}></img>
-            </div>
+            </button>
 
             {/*mudança de cor*/}
-             <div
+             <button
             className="adap-cell"
             id="versao2"
             onClick={() => navigate("/pre-definicoes")}
             role="button"
             tabIndex="0"
-            onKeyDown={(e) => { if (e.key === 'Enter') navigate("/pre-definicoes") }}
             >
                 <span className="adap-title">    
                     <img src={cor}></img>
-                    <p>Mudança de Cor</p>
+                    <p aria-hidden="true">Mudança de Cor</p>
                 </span>
             
                 <img src={next} style={{rotate: "-90deg"}}></img>
-            </div>
+            </button>
           
           {/*mudança idioma*/}
-            <div
+            <button
             className="adap-cell"
             id="versao2"
             onClick={() => navigate("/pre-definicoes")}
             role="button"
             tabIndex="0"
-            onKeyDown={(e) => { if (e.key === 'Enter') navigate("/pre-definicoes") }}
             >
                 <span className="adap-title">    
                     <img src={idioma}></img>
-                    <p>Mudança de Idioma</p>
+                    <p aria-hidden="true">Mudança de Idioma</p>
                 </span>
             
                 <img src={next} style={{rotate: "-90deg"}}></img>
-            </div>
+            </button>
 
             {/*mudança tipografia*/}
-             <div
+             <button
             className="adap-cell"
             id="versao2"
             onClick={() => navigate("/tipografia")}
             role="button"
             tabIndex="0"
-            onKeyDown={(e) => { if (e.key === 'Enter') navigate("/tipografia") }}
             >
                 <span className="adap-title">    
                     <img src={tipografia}></img>
-                    <p>Mudança de tipografia</p>
+                    <p aria-hidden="true">Mudança de tipografia</p>
                 </span>
             
                 <img src={next} style={{rotate: "-90deg"}}></img>
-            </div>
+            </button>
 
         </div>
       </div>
       
 
-      <div style={{gridColumn: "9 /span 5", gridRow: "11", justifySelf: "end"}}>
+      <div style={{gridColumn: "9 /span 5", gridRow: "12", justifySelf: "end"}}>
         <Button text="Começar eleição" icon={seta}  variant="primary"/> 
       </div>
     </div>

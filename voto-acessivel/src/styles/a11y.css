@@ -18,7 +18,7 @@
     display: flex;
     width: 100%;
     flex-direction: column;
-    gap: 18px;
+    gap: 40px;
 }
 
 .adap-cell {
@@ -42,13 +42,15 @@
     border: 2px solid var(--primary-stroke);
     background: var(--primary);
     font-weight: 700;
+    font-family: var(--font-family);
     border-radius: 10px;
 }
 
 #versao2{
     border: 2px solid var(--secundary-stroke);
     background: var(--secundary);
-    font-weight: 200;
+    font-weight: 400;
+    font-family: var(--font-family);
     border-radius: 10px;
 }
 
