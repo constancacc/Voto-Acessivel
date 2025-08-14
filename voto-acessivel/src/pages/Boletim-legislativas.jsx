@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 
 /*botões*/
@@ -14,16 +14,11 @@ import '../styles/variables.css';
 
 export default function PagBoletim() {
   const navigate = useNavigate();
+  const [partidoAtual, setPartidoAtual] = useState(null);
 
-  const handleBack = () => {
-    navigate(-1); // Volta para a página anterior no histórico
-  };
-
-  // Função que recebe o partido selecionado e navega para confirmação
-  const handleSelecionarVoto = (partidoSelecionado) => {
-    // Vai para a página de confirmação, passando o partido no state
-    navigate('/confirmacao', { state: { partido: partidoSelecionado } });
-  };
+    const handleBack = () => {
+      navigate(-1);
+    };
 
   return (
     <div className="grid-container">
@@ -50,7 +45,12 @@ export default function PagBoletim() {
 
       <div style={{ gridColumn: "2 / span 12", gridRow: "6"}}>
         {/* Passa a função para tratar voto selecionado */}
-        <BoletimVoto onSelecionarVoto={handleSelecionarVoto} />
+        <BoletimVoto
+          onSelecionarVoto={(partidoId) => {
+            navigate('/confirmacao', { state: { partido: partidoId } });
+          }}
+          onChangePartido={(partido) => setPartidoAtual(partido)}
+        />
       </div>
 
       {/*footer*/}
@@ -59,7 +59,12 @@ export default function PagBoletim() {
       </div>
 
       <div style={{gridColumn: "9 /span 5", gridRow: "12", justifySelf: "end"}}>
-        <Button text="Selecionar" variant="primary" icon={seta}/> 
+        <Button text="Selecionar" variant="primary" icon={seta}
+          onClick={() => {
+          if (partidoAtual) {
+            navigate('/confirmacao', { state: { partido: partidoAtual.id } });
+          }
+        }}/> 
       </div>
       
 

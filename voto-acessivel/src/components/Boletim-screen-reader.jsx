@@ -4,7 +4,7 @@ import partidosData from "../assets/legislativas.json";
 import "../styles/boletim-screen-reader.css";
 import seta from "../assets/ArrowIcon.svg";
 
-export default function BoletimVoto() {
+export default function BoletimVoto({ onSelecionarVoto, onChangePartido }) {
   const [index, setIndex] = useState(0);
   const [tempoRestante, setTempoRestante] = useState(80); // tempo em segundos para o próximo partido
   const navigate = useNavigate();
@@ -13,6 +13,12 @@ export default function BoletimVoto() {
   const partido = partidosData[index];
 
 const [primeiroCarregamento, setPrimeiroCarregamento] = useState(true);
+
+useEffect(() => {
+    if (onChangePartido) {
+      onChangePartido(partido);
+    }
+  }, [partido, onChangePartido]);
 
 const irParaAnterior = () => {
   setIndex((prevIndex) => {
@@ -50,6 +56,9 @@ const irParaSeguinte = () => {
 
   const selecionarVoto = () => {
     navigate('/confirmacao', { state: { partido: partido.id } });
+    if (onSelecionarVoto) {
+      onSelecionarVoto(partido.id);
+    }
   };
 
   // Contador regressivo que aciona avanço automático
