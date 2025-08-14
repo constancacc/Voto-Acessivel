@@ -63,7 +63,7 @@ export default function Tipografia() {
       </div>
 
       <div style={{ gridColumn: "2 / span 12", gridRow: "3" }}>
-        <h1>Mudanças de Tipografia</h1>
+        <h1 tabIndex={0} >Mudanças de Tipografia</h1>
       </div>
 
       {/* Conteúdo principal */}
@@ -71,11 +71,11 @@ export default function Tipografia() {
         <div>
           <div className='pre-def-title'>
             <img src={tipo} alt="Tipo" />
-            <h3>Visualização Tipográfica</h3>
+            <h3 tabIndex={0}>Visualização Tipográfica</h3>
           </div>
 
           <div id="text-visualization-box">
-            <p>
+            <p aria-hidden="true">
               Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis porttitor, mi sit amet aliquet convallis,
               magna enim egestas tortor, vel laoreet lacus nisi porttitor augue. Sed eu ornare est. Fusce placerat non
               lacus quis auctor. Orci varius natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus.
@@ -87,7 +87,7 @@ export default function Tipografia() {
 
         <div className='pre-def-title'>
           <img src={tipo} alt="Tipo" />
-          <h3>Definições</h3>
+          <h3 tabIndex={0}>Definir Tipografia</h3>
         </div>
 
         <AdaptCell
@@ -110,32 +110,38 @@ export default function Tipografia() {
           <button
             className={`custom-button secondary ${fontClass === "font-helvetica" ? "ativo" : ""}`}
             onClick={() => setFontClass("font-helvetica")}
+            aria-label="Alterar para Helvetica"
+            tabIndex={0}
           >
-            <p id="helvetica">Aa</p>
-            <p>Helvetica</p>
+            <p aria-hidden="true" id="helvetica">Aa</p>
+            <p aria-hidden="true" >Helvetica</p>
           </button>
 
           <button
             className={`custom-button secondary ${fontClass === "font-atkinson" ? "ativo" : ""}`}
             onClick={() => setFontClass("font-atkinson")}
+            aria-label="Alterar para Atkinson Hyperlegible"
+            tabIndex={0}
           >
-            <p id="atkinson">Aa</p>
-            <p>Atkinson <br /> Hyperlegible</p>
+            <p aria-hidden="true" id="atkinson">Aa</p>
+            <p aria-hidden="true" >Atkinson <br /> Hyperlegible</p>
           </button>
 
           <button
             className={`custom-button secondary ${fontClass === "font-dyslexic" ? "ativo" : ""}`}
             onClick={() => setFontClass("font-dyslexic")}
+            aria-label="Alterar para Open Dyslexic"
+            tabIndex={0}
           >
-            <p id="dyslexic">Aa</p>
-            <p>Open <br /> Dyslexic</p>
+            <p aria-hidden="true" id="dyslexic">Aa</p>
+            <p aria-hidden="true">Open <br /> Dyslexic</p>
           </button>
         </div>
       </div>
 
       {/* Footer */}
       <div style={{ gridColumn: "9 / span 5", gridRow: "12", justifySelf: "end" }}>
-        <Button text="Iniciar boletim" variant="primary" icon={seta} />
+        <Button text="Iniciar boletim" variant="primary" icon={seta}/>
       </div>
     </div>
   );

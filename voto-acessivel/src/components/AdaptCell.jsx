@@ -1,4 +1,6 @@
 import { useState, useEffect, useRef } from "react";
+import Button from "../components/Button.jsx";
+import check from "../assets/a11y/check.svg";
 import '../styles/a11y.css';
 
 export default function AdaptCell({ title, value, onConfirm, icon, editable = false }) {
@@ -8,15 +10,8 @@ export default function AdaptCell({ title, value, onConfirm, icon, editable = fa
 
   // Atualiza tempValue quando value externo mudar
   useEffect(() => {
-    setTempValue(parseFloat(value));
+    setTempValue(parseFloat(value));  
   }, [value]);
-
-  // Coloca foco no botão "-" quando abre
-  useEffect(() => {
-    if (isOpen && minusBtnRef.current) {
-      minusBtnRef.current.focus();
-    }
-  }, [isOpen]);
 
   const handleConfirm = () => {
     onConfirm(tempValue);
@@ -36,7 +31,18 @@ export default function AdaptCell({ title, value, onConfirm, icon, editable = fa
       e.preventDefault();
       handleClick();
     }
+    if (e.key === "Escape" && isOpen) {
+      setIsOpen(false);
+    }
   };
+
+  // Foco programático no conteúdo aberto
+  const contentRef = useRef(null);
+  useEffect(() => {
+    if (isOpen && contentRef.current) {
+      contentRef.current.focus();
+    }
+  }, [isOpen]);
 
   return (
     <div className="adapt-cell-wrapper" id="versao2">
@@ -48,55 +54,65 @@ export default function AdaptCell({ title, value, onConfirm, icon, editable = fa
         aria-controls={`controls-${title.replace(/\s+/g, "-").toLowerCase()}`}
         onClick={handleClick}
         onKeyDown={handleKeyDown}
-        style={{ cursor: editable ? 'pointer' : 'default' }}
       >
         <span className="adap-title">
-          <p>{title}</p>
-          <p>{value}</p>
+          <p aria-hidden="true">{title}</p>
+          <p aria-hidden="true">{value}</p>
         </span>
 
-        {/* Ícone com rotação e alt dinâmico */}
         <img
           src={icon}
-          alt={isOpen ? "Fechar opções" : "Abrir opções"}
+          aria-label={isOpen ? "Fechar opções" : "Abrir opções"}
           className={`icon-arrow ${isOpen ? "rotated" : ""}`}
-          aria-hidden="true"
-          focusable="false"
         />
       </div>
 
-      {/* Área animada para os controles */}
-      <div
-        id={`controls-${title.replace(/\s+/g, "-").toLowerCase()}`}
-        className={`controls-container ${isOpen ? "open" : "closed"}`}
-        onClick={(e) => e.stopPropagation()}
-      >
-        <div className="buttons-row">
-          <button
-            ref={minusBtnRef}
-            className="circle-btn"
-            aria-label={`Diminuir valor de ${title}`}
-            onClick={() => setTempValue(prev => prev - 1)}
-          >-</button>
-
-          <span className="temp-value" aria-live="polite" aria-atomic="true">{tempValue}</span>
-
-          <button
-            className="circle-btn"
-            aria-label={`Aumentar valor de ${title}`}
-            onClick={() => setTempValue(prev => prev + 1)}
-          >+</button>
-        </div>
-
-        <button
-          className="custom-button primary"
-          id="confirmacao-a11y"
-          aria-label={`Confirmar alteração de ${title}`}
-          onClick={handleConfirm}
+      {isOpen && (
+        <div
+          id={`controls-${title.replace(/\s+/g, "-").toLowerCase()}`}
+          className={`controls-container open`}
+          tabIndex={-1}   // foco programático
+          ref={contentRef}
+          aria-hidden={!isOpen}
+          aria-label="alterar tamanho da tipografia"
         >
-          Confirmar alteração
-        </button>
-      </div>
+          <div className="buttons-row">
+            <button
+              ref={minusBtnRef}
+              className="circle-btn"
+              aria-label={`Diminuir valor de ${title}`}
+              onClick={() => setTempValue(prev => prev - 1)}
+              tabIndex={0}
+            >-</button>
+
+            <span
+              className="temp-value"
+              aria-live="polite"
+              aria-atomic="true"
+            >
+              {tempValue}
+            </span>
+
+            <button
+              className="circle-btn"
+              aria-label={`Aumentar valor de ${title}`}
+              onClick={() => setTempValue(prev => prev + 1)}
+              tabIndex={0}
+            >+</button>
+          </div>
+
+          <button
+            className="custom-button primary"
+            id="confirmacao-a11y"
+            aria-label={`Confirmar alteração de ${title}`}
+            onClick={handleConfirm}
+            tabIndex={0}
+          >
+            Confirmar alteração
+            <img src={check} alt="Confirmar" width={25} />
+          </button>
+        </div>
+      )}
     </div>
   );
 }

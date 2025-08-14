@@ -167,8 +167,8 @@ div.ativo > span > p {
   color: white;
   border: none;
   border-radius: 50%;
-  width: 36px;
-  height: 36px;
+  width: 44px;
+  height: 44px;
   font-size: 24px;
   font-weight: bold;
   cursor: pointer;
@@ -180,6 +180,8 @@ div.ativo > span > p {
 }
 
 #confirmacao-a11y{
+    font-size: 14px;
+    color: black;
     margin-bottom: 1rem;
     padding: 5px 10px; 
 }
