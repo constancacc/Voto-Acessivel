@@ -8,16 +8,27 @@
 }
 
 .boletim-card {
+  all: unset; /* remove estilos nativos do botão */
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
   width: 100%;
   max-width: 650px;
   background: #004682;
+  height: 82px;
+  cursor: pointer; /* mantém cursor de pointer */
   border-radius: 0;
   box-shadow: none;
 
-  height: 82px;
+  font-family: var(--font-family); /* garante tipografia */
+  font-size: var(--font-size);
+  color: white; /* se quiseres */
 }
 
 .boletim-content {
+  font-size: var(--font-size);
+  font-family: var(--font-family);
+
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -112,8 +123,7 @@
   color: #000;
   text-align: center;
   font-style: normal;
-  font-weight: 400;
-  font-size: 14px;
+  font-size: 5px;
   line-height: normal;
 
   display: flex;

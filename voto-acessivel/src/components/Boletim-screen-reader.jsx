@@ -54,10 +54,9 @@ export default function BoletimVoto() {
 
   return (
     <div className="boletim-wrapper">
-      <div
+      <button
         className="boletim-card"
         onClick={selecionarVoto}
-        style={{ cursor: "pointer" }}
         tabIndex={0}
         ref={partidoRef}
       >
@@ -76,7 +75,7 @@ export default function BoletimVoto() {
             <div className="boletim-checkbox" />
           </div>
         </div>
-      </div>
+      </button>
 
       <div className="boletim-botoes-container">
         <div className="boletim-indicador">
@@ -106,7 +105,7 @@ export default function BoletimVoto() {
                 Partido Anterior
               </span>
             </div>
-            <p className="button-leg">
+            <p className="button-leg" style={{ fontSize: "16px" }}>
               {`${partidosData[(index - 1 + partidosData.length) % partidosData.length].nome}`}
             </p>
           </button>
@@ -122,7 +121,7 @@ export default function BoletimVoto() {
                 Partido Seguinte
               </span>
             </div>
-            <p className="button-leg">
+            <p className="button-leg" style={{ fontSize: "16px" }}>
               {`${partidosData[(index + 1) % partidosData.length].nome}`}
             </p>
           </button>
