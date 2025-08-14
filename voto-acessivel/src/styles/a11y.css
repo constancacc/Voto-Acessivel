@@ -191,7 +191,7 @@ div.ativo > span > p {
 .type-btn-box{
   display: flex;
   flex-wrap: wrap; /* permite quebrar só se necessário */
-  gap: 40px;
+  gap: 51px;
   align-items: center;
   margin-top: 40px;
 }
