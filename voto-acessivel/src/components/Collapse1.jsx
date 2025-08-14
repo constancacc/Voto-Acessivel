@@ -7,31 +7,36 @@ export default function CollapseBox({ title, children, isOpen, onToggle }) {
   const contentRef = useRef(null);
   const buttonRef = useRef(null);
 
-  useEffect(() => {
-    if (isOpen && contentRef.current) {
-      // Coloca foco no container do conteúdo aberto para leitores de tela
-      contentRef.current.focus();
-    } else if (!isOpen && buttonRef.current) {
-      // Ao fechar, foca no botão para que o leitor pare de ler o conteúdo
-      buttonRef.current.focus();
-    }
-  }, [isOpen]);
+  const handleClick = () => {
+    onToggle();
+
+    // esperar o React atualizar o DOM
+    setTimeout(() => {
+      if (!isOpen && contentRef.current) {
+        contentRef.current.focus(); // foco no conteúdo recém-aberto
+      } else if (isOpen && buttonRef.current) {
+        buttonRef.current.focus(); // foco no botão se fechou
+      }
+    }, 0);
+  };
+
 
   return (
     <div className="collapse-box">
       <button
         type="button"
         className="collapse-toggle"
-        onClick={onToggle}
+        onClick={handleClick}
         aria-expanded={isOpen}
         aria-controls="collapse-content"
-        aria-label={`${title}`}
         ref={buttonRef}
+        aria-hidden="true"
       >
-        <div className={`collapse-icon-wrapper ${isOpen ? "open" : ""}`} aria-hidden="true">
-          <IconButton icon={collapse} alt="Abrir secção" />
+        <div className={`collapse-icon-wrapper ${isOpen ? "open" : ""}`}>
+          <IconButton icon={collapse} ariaLabel={`${isOpen ? "Fechar" : "Abrir"}: ${title}`} />
         </div>
-        <h3 className="collapse-title">{title}</h3>
+
+        <h3 aria-hidden="true" className="collapse-title">{title}</h3>
       </button>
 
       {isOpen && (
