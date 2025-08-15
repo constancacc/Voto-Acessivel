@@ -28,21 +28,10 @@ export default function ConclusaoPage() {
     <div 
       className="loading-wrapper" 
       onClick={() => {
-        // Desliga o varrimento
-        window.varrimentoAtivo = false;
-        window.dispatchEvent(new Event("varrimentoChange"));
-
-        // Cancela o leitor de voz
-        if (window.speechSynthesis) {
-          window.speechSynthesis.cancel();
-        }
-
         // Navega para a próxima página
         navigate("/");
       }} 
-      role="button" 
-      tabIndex={0}
-    >
+    >   
 
       <div className="logo-container" aria-label="Logo Voto Acessível">
          <svg xmlns="http://www.w3.org/2000/svg" width="109" height="85" viewBox="0 0 109 85" fill="none">
