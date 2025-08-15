@@ -35,7 +35,9 @@ export default function LeitorEcra() {
     return window.tempoVarrimento ?? 2.0;
   });
 
-  const [volume, setVolume] = useState(50.0);
+  const [volume, setVolume] = useState(() => {
+  return (window.volumeLeitor ?? 0.5) * 100; // converte para 0-100%
+});
   
   useEffect(() => {
     window.volumeLeitor = volume / 100; // valor entre 0.0 e 1.0
@@ -97,6 +99,7 @@ export default function LeitorEcra() {
             role="button"
             tabIndex="0"
             onClick={toggleVarrimento}
+            style={{ borderRadius: "10px" }}
             onKeyDown={(e) => {
               if (e.key === "Enter" || e.key === " ") {
                 e.preventDefault();
@@ -105,7 +108,7 @@ export default function LeitorEcra() {
             }}
           >
             <span className="adap-title">
-              <p>{window.varrimentoAtivo ? "Ativo" : "Inativo"}</p>
+              <p aria-hidden="true">{window.varrimentoAtivo ? "Ativo" : "Inativo"}</p>
             </span>
 
             {window.varrimentoAtivo && (

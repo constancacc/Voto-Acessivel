@@ -16,6 +16,16 @@ export default function AdaptCell({ title, value, onConfirm, icon, editable = fa
   const handleConfirm = () => {
     onConfirm(tempValue);
     setIsOpen(false);
+
+    // Cria temporariamente um span com a mensagem e dá foco
+    const span = document.createElement("span");
+    span.setAttribute("tabindex", "-1");
+    span.setAttribute("aria-label", `Alterou ${title} para ${tempValue}`);
+    document.body.appendChild(span);
+    span.focus();   // SpeechAnnouncer vai ler o foco
+    setTimeout(() => {
+      document.body.removeChild(span);
+    }, 1000);
   };
 
   const handleClick = () => {
@@ -74,7 +84,7 @@ export default function AdaptCell({ title, value, onConfirm, icon, editable = fa
           tabIndex={-1}   // foco programático
           ref={contentRef}
           aria-hidden={!isOpen}
-          aria-label="alterar tamanho da tipografia"
+          aria-label={`Clique no Tab para alterar ${title}`}
         >
           <div className="buttons-row">
             <button
