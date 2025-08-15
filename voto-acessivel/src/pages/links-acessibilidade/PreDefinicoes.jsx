@@ -51,12 +51,12 @@ export default function PreDefinicoes() {
             aria-label="Informações sobre o leitor de ecrã"
           >
             <div className="adapt-info">
-              <p>Leitor de Ecrã: <strong>ON</strong></p>
-              <p>Tempo de Varrimento: <strong>2.0s</strong></p>
-              <p>Volume: <strong>50%</strong></p>
-              <p>Cor: <strong>Normal</strong></p>
-              <p>Idioma: <strong>Português</strong></p>
-              <p>Tamanho de Texto: <strong>16px</strong></p>
+              <span aria-label="Leitor de Ecrã ligado">Leitor de Ecrã: <strong>Ativo</strong></span>
+              <p aria-label="Tempo de varrimento de 2 segundos">Tempo de Varrimento: <strong>2s</strong></p>
+              <p aria-label="Volume de 50 por cento">Volume: <strong>50%</strong></p>
+              <p aria-label="Cor normal">Cor: <strong>Normal</strong></p>
+              <p aria-label="Idioma português">Idioma: <strong>Português</strong></p>
+              <p aria-label="Tamanho de texto 16 pixels">Tamanho de Texto: <strong>16px</strong></p>
             </div>
           </CollapseBox>
 
@@ -90,13 +90,13 @@ export default function PreDefinicoes() {
             tabIndex={0}
             aria-label="Informações sobre o leitor de ecrã"
           >
-            <div className="adapt-info">
-              <p>Leitor de Ecrã: <strong>ON</strong></p>
-              <p>Tempo de Varrimento: <strong>1.5s</strong></p>
-              <p>Volume: <strong>50%</strong></p>
-              <p>Cor: <strong>Alto Contraste</strong></p>
-              <p>Idioma: <strong>Português</strong></p>
-              <p>Tamanho de Texto: <strong>20px</strong></p>
+            <div className="adapt-info" aria-hidden="true">
+              <p aria-label="Leitor de Ecrã ligado">Leitor de Ecrã: <strong>Ativo</strong></p>
+              <p aria-label="Tempo de Varrimento de 1.5 segundos">Tempo de Varrimento: <strong>1.5s</strong></p>
+              <p aria-label="Volume em 50%">Volume: <strong>50%</strong></p>
+              <p aria-label="Cor em modo de alto contraste">Cor: <strong>Alto Contraste</strong></p>
+              <p aria-label="Idioma Português">Idioma: <strong>Português</strong></p>
+              <p aria-label="Tamanho de Texto 20 pixeis">Tamanho de Texto: <strong>20px</strong></p>
             </div>
           </CollapseBox>
 
