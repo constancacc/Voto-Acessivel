@@ -72,7 +72,8 @@ export default function Eleicao() {
             <path d="M90.3262 34.9877C90.4977 34.9877 90.6477 34.9877 90.8193 34.9663C90.6477 34.9663 90.4977 34.9663 90.3262 34.9877Z" fill="#DC3626"/>
           </svg>
           <p className="btn-title" aria-hidden="true"> Eleições Legislativas</p>
-           <p aria-hidden="true">18 de Maio de 2025 <br/> <i>Distrito de Coimbra</i> </p>
+           <p aria-hidden="true">18 de Maio de 2025</p>
+           <p aria-hidden="true"> <i>Coimbra</i> </p>
         </button>
 
         <button className="election-btn" tabIndex={0} onClick={() => navigate("/autarquicas")}>
@@ -84,7 +85,8 @@ export default function Eleicao() {
             <path d="M25.8945 116.187H39.1432V133.133H70.9703V146.263H25.8945V116.187Z" fill="#FFEC00"/>
           </svg>
           <p className="btn-title" aria-hidden="true"> Eleições Autarquicas</p>
-           <p aria-hidden="true">26 setembro 2021 <br/> <i>Concelho de Miranda</i> </p>
+           <p aria-hidden="true">26 setembro 2021</p>
+           <p aria-hidden="true"> <i>Miranda</i> </p>
         </button>
       </div>
 

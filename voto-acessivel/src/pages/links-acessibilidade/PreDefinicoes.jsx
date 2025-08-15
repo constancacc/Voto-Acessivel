@@ -1,29 +1,20 @@
-import React from 'react';
-import { useNavigate } from 'react-router-dom';  // Faltava para navegar
-
-/* botões */
+import React, { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import seta from "../../assets/ArrowIcon.svg";
 import accessibility from "../../assets/accessibility.svg";
 import Button from '../../components/Button.jsx';
 import CollapseBox from '../../components/Collapse1.jsx';
-
-/* imagens */
 import preDef from "../../assets/a11y/pre-def.svg";
 import Visuais from "../../assets/a11y/visuais.svg";
-
-
 import next from "../../assets/collapse-open.svg";
-
-/* partidos */
-import partidosData from "../../assets/autarquicas.json";
-
-/* styles */
-import '../../styles/intro.css';
-import '../../styles/variables.css';
-import '../../styles/a11y.css';
 
 export default function PreDefinicoes() {
   const navigate = useNavigate();
+  const [openIndex, setOpenIndex] = useState(null);
+
+  const handleToggle = (index) => {
+    setOpenIndex(prev => (prev === index ? null : index));
+  };
 
   return (
     <div className="grid-container">
@@ -36,87 +27,95 @@ export default function PreDefinicoes() {
         </button>
       </div>
 
+      {/* Título */}
       <div style={{ gridColumn: "2 / span 12", gridRow: "3"}}>
         <h1>Pré-definições de perfil</h1>
-       
       </div>
 
-      {/* main */}
-
+      {/* Conteúdo principal */}
       <div style={{ gridColumn: "2 / span 12", gridRow: "4", position: "relative" }}>
-            {/*motoras*/}
+
+        {/* Motoras */}
         <div id="motoras"> 
-            <div className='pre-def-title'> 
-                <img src={preDef}></img>
-                <h3>Parâmetros Motores</h3>
+          <div className='pre-def-title'> 
+            <img src={preDef} alt="Ícone de parâmetros motores"/>
+            <h3>Parâmetros Motores</h3>
+          </div>
+          <p style={{ marginBottom: "1rem" }}>As adaptações ativas foram pensadas para responder às necessidades de pessoas com incapacidade motora.</p>
+          
+          <CollapseBox
+            title="parâmetros motores"
+            isOpen={openIndex === 0}
+            onToggle={() => handleToggle(0)}
+            tabIndex={0}
+            aria-label="Informações sobre o leitor de ecrã"
+          >
+            <div className="adapt-info">
+              <p>Leitor de Ecrã: <strong>ON</strong></p>
+              <p>Tempo de Varrimento: <strong>2.0s</strong></p>
+              <p>Volume: <strong>50%</strong></p>
+              <p>Cor: <strong>Normal</strong></p>
+              <p>Idioma: <strong>Português</strong></p>
+              <p>Tamanho de Texto: <strong>16px</strong></p>
             </div>
-            
-            <div className='pre-def-content'> 
-                <p> As adaptações ativas foram pensadas para responder às necessidades de pessoas com incapacidade motora, nomeadamente: </p>
-                <div className="adapt-info">
-                <p>Leitor de Ecrã: <strong>ON</strong> </p>
-                <p>Tempo de Varrimento: <strong>2.0s</strong>   </p>
-                <p>Volume: <strong>50%</strong> </p>
-                <p>Cor: <strong>Normal</strong>   </p>
-                <p>Idioma: <strong>Português</strong>   </p>
-                <p>Tamanho de Texto: <strong>16px</strong> </p>
-                </div>
-             </div>
+          </CollapseBox>
 
-            <div
+          <button
             className="adap-cell"
             id="versao2"
-            onClick={() => navigate("/pre-definicoes")}
+            onClick={() => navigate("/boletim-legislativas")}
             role="button"
-            tabIndex="0"
-            onKeyDown={(e) => { if (e.key === 'Enter') navigate("/pre-definicoes") }}
-            >
-                <span className="adap-title">    
-                    <p>Selecionar</p>
-                </span>
-            
-                <img src={next} style={{rotate: "-90deg"}}></img>
-            </div>
+            tabIndex={0}
+            style={{ marginTop: "1rem" }}
+          >
+            <span className="adap-title">    
+              <p>Selecionar</p>
+            </span>
+            <img src={next} style={{rotate: "-90deg"}} alt="seta para selecionar"/>
+          </button>
         </div>
-        
-            {/*visuais*/}
-            <div className='pre-def-title'> 
-                <img src={Visuais}></img>
-                <h3>Parâmetros Visuais</h3>
-            </div>
-            
-            <div className='pre-def-content'> 
-                <p> As adaptações ativas foram pensadas para responder às necessidades de pessoas com incapacidade visual, nomeadamente: </p>
-                <div className="adapt-info">
-                <p>Leitor de Ecrã: <strong>ON</strong> </p>
-                <p>Tempo de Varrimento: <strong>1.5s</strong>   </p>
-                <p>Volume: <strong>50%</strong> </p>
-                <p>Cor: <strong>Alto Contraste</strong>   </p>
-                <p>Idioma: <strong>Português</strong>   </p>
-                <p>Tamanho de Texto: <strong>20px</strong> </p>
-                </div>
-             </div>
 
-            <div
+        {/* Visuais */}
+        <div id="visuais">
+          <div className='pre-def-title'> 
+            <img src={Visuais} alt="Ícone de parâmetros visuais"/>
+            <h3>Parâmetros Visuais</h3>
+          </div>
+          <p style={{ marginBottom: "1rem" }}>As adaptações ativas foram pensadas para responder às necessidades de pessoas com incapacidade visual.</p>
+          
+          <CollapseBox
+            title="parâmetros visuais"
+            isOpen={openIndex === 1}
+            onToggle={() => handleToggle(1)}
+            tabIndex={0}
+            aria-label="Informações sobre o leitor de ecrã"
+          >
+            <div className="adapt-info">
+              <p>Leitor de Ecrã: <strong>ON</strong></p>
+              <p>Tempo de Varrimento: <strong>1.5s</strong></p>
+              <p>Volume: <strong>50%</strong></p>
+              <p>Cor: <strong>Alto Contraste</strong></p>
+              <p>Idioma: <strong>Português</strong></p>
+              <p>Tamanho de Texto: <strong>20px</strong></p>
+            </div>
+          </CollapseBox>
+
+          <button
             className="adap-cell"
             id="versao2"
-            onClick={() => navigate("/pre-definicoes")}
+            onClick={() => navigate("/boletim-legislativas")}
             role="button"
-            tabIndex="0"
-            onKeyDown={(e) => { if (e.key === 'Enter') navigate("/pre-definicoes") }}
-            >
-                <span className="adap-title">    
-                    <p>Selecionar</p>
-                </span>
-            
-                <img src={next} style={{rotate: "-90deg"}}></img>
-            </div>
+            tabIndex={0}
+             style={{ marginTop: "1rem" }}
+          >
+            <span className="adap-title">    
+              <p>Selecionar</p>
+            </span>
+            <img src={next} style={{rotate: "-90deg"}} alt="seta para selecionar"/>
+          </button>
 
+        </div>
       </div>
-
-     
     </div>
   );
 }
-
-

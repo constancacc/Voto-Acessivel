@@ -45,7 +45,7 @@ export default function Acessibilidade() {
 
      {/*botões de adaptação*/}
 
-      <div style={{ gridColumn: "2 / span 12", gridRow: "5", alignSelf: "start", position: "relative" }}>
+      <div style={{ gridColumn: "2 / span 12", gridRow: "5", position: "relative", top: "-2rem" }}>
       
         <div className="adap-list">
 
