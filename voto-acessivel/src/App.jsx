@@ -17,6 +17,7 @@ import PreDefinicoes from './pages/links-acessibilidade/PreDefinicoes';
 import LeitorEcra from './pages/links-acessibilidade/LeitorEcra';
 import Tipografia from './pages/links-acessibilidade/Tipografia';
 import PagBoletim from './pages/Boletim-legislativas';
+import PorImplementar from './pages/links-acessibilidade/Por Implementar';
 
 
 function App() {
@@ -42,13 +43,8 @@ function App() {
          <Route path="/pre-definicoes" element={<PreDefinicoes />} />
            <Route path="/leitor-ecra" element={<LeitorEcra />} />
            <Route path="/tipografia" element={<Tipografia />} />
-         {/*
-        <Route path="/codigo-perfil" element={<CodigoPerfil />} />
-      
-        <Route path="/mudanca-cor" element={<MudancaCor />} />
-        <Route path="/mudanca-idioma" element={<MudancaIdioma />} />
-        <Route path="/mudanca-tipografia" element={<MudancaTipografia />} />
-        */}
+            <Route path="/brevemente" element={<PorImplementar />} />
+
 
 
       </Routes>

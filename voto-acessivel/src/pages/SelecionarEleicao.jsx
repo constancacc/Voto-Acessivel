@@ -76,7 +76,7 @@ export default function Eleicao() {
            <p aria-hidden="true"> <i>Coimbra</i> </p>
         </button>
 
-        <button className="election-btn" tabIndex={0} onClick={() => navigate("/autarquicas")}>
+        <button className="election-btn" tabIndex={0} onClick={() => navigate("/brevemente")}>
           <svg className="logo-autarquicas" xmlns="http://www.w3.org/2000/svg" width="151" height="172" viewBox="0 0 151 172" fill="none">
             <path d="M39.1432 105.212V92.0631V13.1303H137.575V133.135H81.8395V146.266H137.575H150.824V0H25.8945V92.0631V105.212" fill="#D20A11"/>
             <path d="M150.825 158.642H87.666V171.785H150.825V158.642Z" fill="#005F30"/>

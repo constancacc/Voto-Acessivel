@@ -69,7 +69,7 @@ export default function Acessibilidade() {
            <button
             className="adap-cell"
             id="versao2"
-            onClick={() => navigate("/pre-definicoes")}
+            onClick={() => navigate("/brevemente")}
             role="button"
             tabIndex="0"
             >
@@ -101,7 +101,7 @@ export default function Acessibilidade() {
              <button
             className="adap-cell"
             id="versao2"
-            onClick={() => navigate("/pre-definicoes")}
+            onClick={() => navigate("/brevemente")}
             role="button"
             tabIndex="0"
             >
@@ -117,7 +117,7 @@ export default function Acessibilidade() {
             <button
             className="adap-cell"
             id="versao2"
-            onClick={() => navigate("/pre-definicoes")}
+            onClick={() => navigate("/brevemente")}
             role="button"
             tabIndex="0"
             >
