@@ -38,7 +38,7 @@ export default function Acessibilidade() {
         </button>
       </div>
 
-      <div style={{ gridColumn: "2 / span 12", gridRow: "3"}}>
+      <div style={{ gridColumn: "2 / span 14", gridRow: "3"}}>
         <h1>Definições de Acessibilidade</h1>
         <h2>Adaptar a plataforma às suas necessidades</h2>
       </div>
@@ -47,7 +47,7 @@ export default function Acessibilidade() {
 
       <div style={{ gridColumn: "2 / span 12", gridRow: "5", alignSelf: "start", position: "relative" }}>
       
-        <div style={{ position: "absolute", top: "-2rem" }} className="adap-list">
+        <div className="adap-list">
 
             {/*pre-def*/}
             <button
