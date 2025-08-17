@@ -4,8 +4,6 @@ import './App.css'
 import LoadingPage from './pages/LoadingPage';
 import Eleicao from "./pages/SelecionarEleicao";
 import Legislativas from "./pages/Legislativas";
-import Autarquicas from "./pages/Autarquicas";
-import Boletim from './pages/Boletim-legislativas';
 import IntroSlider from './pages/IntroSlider';
 import Confirmacao from './pages/Boletim-legislativas-confirmação';
 import Impressao from './pages/Impressao';
@@ -32,7 +30,6 @@ function App() {
         <Route path="/intro" element={<IntroSlider />} />
         <Route path="/eleicao" element={<Eleicao />} />
         <Route path="/legislativas" element={<Legislativas />} />
-        <Route path="/autarquicas" element={<Autarquicas />} />
         <Route path="/boletim-legislativas" element={<PagBoletim />} />
         <Route path="/confirmacao" element={<Confirmacao />} />
         <Route path="/impressao" element={<Impressao />} />

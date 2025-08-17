@@ -93,7 +93,7 @@ export default function LeitorEcra() {
           <p>Estas opções dizem respeito à ativação da opção de varrimento e do seu tempo entre células.</p>
         </div>
 
-        <div className="adap-list">
+        <div className="adap-list" style={{ marginTop: "40px" }}>
           <div
             className={`adap-cell ${window.varrimentoAtivo ? "ativo" : "secondary"}`}
             role="button"
@@ -144,10 +144,9 @@ export default function LeitorEcra() {
         </div>
       </div>
 
-      {/* Footer */}
-      <div style={{ gridColumn: "9 /span 5", gridRow: "12", justifySelf: "end" }}>
-        <Button text="Iniciar boletim" variant="primary" icon={seta} />
-      </div>
+      <div style={{gridColumn: "9 /span 5", gridRow: "12", justifySelf: "end"}}>
+              <Button text="Começar eleição" icon={seta}  variant="primary"/> 
+            </div>
     </div>
   );
 }

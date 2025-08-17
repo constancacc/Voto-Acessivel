@@ -60,7 +60,7 @@ export default function IntroSlider() {
           <div style={{ gridColumn: "3 / span 14", gridRow: "8", alignSelf: "end" }}>
             <h3 tabIndex={0}>Navegação com leitor de ecrã</h3>
           </div>
-          <div style={{ gridColumn: "3 / span 14", gridRow: "9" }}>
+          <div style={{ gridColumn: "3 / span 10", gridRow: "9" }}>
             <p tabIndex={0}>
               A plataforma possui um <b>leitor de ecrã</b> que é ativado <b>automaticamente</b> ao iniciar,
               <b> lendo todos os elementos</b> apresentados.

@@ -55,7 +55,7 @@ export default function AdaptCell({ title, value, onConfirm, icon, editable = fa
   }, [isOpen]);
 
   return (
-    <div className="adapt-cell-wrapper" id="versao2">
+    <button className="adapt-cell-wrapper" id="versao2">
       <div
         className={`adap-cell ${isOpen ? "expanded" : ""}`}
         role="button"
@@ -67,7 +67,7 @@ export default function AdaptCell({ title, value, onConfirm, icon, editable = fa
       >
         <span className="adap-title">
           <p aria-hidden="true">{title}</p>
-          <p aria-hidden="true">{value}</p>
+          <p aria-hidden="true"><strong>{value}</strong></p>
         </span>
 
         <img
@@ -97,8 +97,8 @@ export default function AdaptCell({ title, value, onConfirm, icon, editable = fa
 
             <span
               className="temp-value"
-              aria-live="polite"
-              aria-atomic="true"
+              aria-label={`Valor atual de ${title} é ${tempValue}`}
+              style={{ color:"black", fontWeight: "bold", fontSize: "20px" }}
             >
               {tempValue}
             </span>
@@ -123,6 +123,6 @@ export default function AdaptCell({ title, value, onConfirm, icon, editable = fa
           </button>
         </div>
       )}
-    </div>
+    </button>
   );
 }

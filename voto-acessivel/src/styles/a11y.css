@@ -241,6 +241,11 @@ div.ativo > span > p {
   margin-bottom: 40px;
 }
 
+.adapt-cell-wrapper{
+  display: block;
+  width: 100%;
+}
+
 
 
 

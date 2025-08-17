@@ -140,9 +140,9 @@ export default function Tipografia() {
       </div>
 
       {/* Footer */}
-      <div style={{ gridColumn: "9 / span 5", gridRow: "12", justifySelf: "end" }}>
-        <Button text="Iniciar boletim" variant="primary" icon={seta}/>
+<div style={{gridColumn: "9 /span 5", gridRow: "12", justifySelf: "end"}}>
+        <Button text="Começar eleição" icon={seta}  variant="primary"/> 
       </div>
-    </div>
+    </div>  
   );
 }
