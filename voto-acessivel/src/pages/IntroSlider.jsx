@@ -60,10 +60,10 @@ export default function IntroSlider() {
           <div style={{ gridColumn: "3 / span 14", gridRow: "8", alignSelf: "end" }}>
             <h3 tabIndex={0}>Navegação com leitor de ecrã</h3>
           </div>
-          <div style={{ gridColumn: "3 / span 10", gridRow: "9" }}>
+          <div style={{ gridColumn: "3 / span 11", gridRow: "9" }}>
             <p tabIndex={0}>
-              A plataforma possui um <b>leitor de ecrã</b> que é ativado <b>automaticamente</b> ao iniciar,
-              <b> lendo todos os elementos</b> apresentados.
+              A plataforma possui um <b>sistema de varrimento</b> que é ativado <b>automaticamente</b> ao iniciar,
+              <b> lendo todos os elementos</b> apresentados na página. Além disso, se clicar no <b>TAB</b> funciona como um <b>leitor de ecrã</b>.
             </p>
           </div>
         </div>
@@ -83,8 +83,7 @@ export default function IntroSlider() {
           </div>
           <div style={{ gridColumn: "3 / span 10", gridRow: "9" }}>
             <p tabIndex={0}>
-              Pode ajustar o <b>tamanho</b> e o <b>tipo de letra</b>, as <b>cores</b> e o <b>idioma</b> de leitura.
-              
+              Se clicar no <b>Botão de Definições de Acessibilidade</b>, a plataforma disponibiliza adaptações de <b>tipografia</b>, <b>leitor de ecrã</b>, <b>cores</b> e de <b>idioma</b> de leitura.
             </p>
           </div>
         </div>
