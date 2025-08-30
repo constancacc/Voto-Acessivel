@@ -51,13 +51,13 @@ export default function IntroSlider() {
     {
       content: (
         <div className="slide-content" data-slide-index={1}>
-          <div style={{ gridColumn: "3 / span 14", gridRow: "3" }}>
+          <div style={{ gridColumn: "3 / span 11", gridRow: "3" }}>
             <h1 tabIndex={0}>Informações de Leitor de Ecrã</h1>
           </div>
-          <div style={{ gridColumn: "5 / span 14", gridRow: "5", padding: "1rem" }}>
+          <div style={{ gridColumn: "5 / span 6", gridRow: "5 / span 2", padding: "1rem" }}>
             <img tabIndex={0} src="/imagens/instrucoes/leitor-de-ecra.svg" alt="Leitor de Ecrã"/>
           </div>
-          <div style={{ gridColumn: "3 / span 14", gridRow: "8", alignSelf: "end" }}>
+          <div style={{ gridColumn: "3 / span 11", gridRow: "8", alignSelf: "end" }}>
             <h3 tabIndex={0}>Navegação com leitor de ecrã</h3>
           </div>
           <div style={{ gridColumn: "3 / span 11", gridRow: "9" }}>
@@ -78,7 +78,7 @@ export default function IntroSlider() {
           <div style={{ gridColumn: "4 / span 6", gridRow: "5", padding: "1rem" }}>
             <img tabIndex={0} src="/imagens/instrucoes/definicoes de acessibilidade.svg" alt="Logo Voto Acessível" className="logo-svg"/>
           </div>
-          <div style={{ gridColumn: "3 / span 14", gridRow: "8", alignSelf: "end" }}>
+          <div style={{ gridColumn: "3 / span 11", gridRow: "8", alignSelf: "end" }}>
             <h3 tabIndex={0}>Personalize a sua experiência</h3>
           </div>
           <div style={{ gridColumn: "3 / span 10", gridRow: "9" }}>
