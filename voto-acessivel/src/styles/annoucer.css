@@ -1,6 +1,4 @@
 .reading {
-  outline: 2px solid blue;
+  outline: 2px solid #004682;
   outline-offset: 2px;
-  /* Ou se preferir stroke no texto (para SVG ou texto) */
-  /* text-stroke não é suportado em todos os navegadores, então o outline é mais seguro */
 }

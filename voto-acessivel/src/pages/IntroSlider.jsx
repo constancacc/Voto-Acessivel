@@ -63,7 +63,7 @@ export default function IntroSlider() {
           <div style={{ gridColumn: "3 / span 11", gridRow: "9" }}>
             <p tabIndex={0}>
               A plataforma possui um <b>sistema de varrimento</b> que é ativado <b>automaticamente</b> ao iniciar,
-              <b> lendo todos os elementos</b> apresentados na página. Além disso, se clicar no <b>TAB</b> funciona como um <b>leitor de ecrã</b>.
+              <b> lendo todos os elementos</b> apresentados na página, se clicar no <b>TAB</b> funciona como um <b>leitor de ecrã</b>.
             </p>
           </div>
         </div>
@@ -156,7 +156,7 @@ export default function IntroSlider() {
       {slides[activeIndex].content}
 
       {/*INDICADOR DE SLIDE */}      
-      <div style={{ gridColumn: "7 / span 3", gridRow: "10", marginTop: "1rem"}}>
+      <div style={{ gridColumn: "7", gridRow: "10", marginTop: "1rem", alignSelf: "end" }}>
             <SliderIndicators
               activeIndex={activeIndex}
               total={slides.length}

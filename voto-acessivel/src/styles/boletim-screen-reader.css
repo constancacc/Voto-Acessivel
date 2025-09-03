@@ -25,6 +25,11 @@
   color: white; /* se quiseres */
 }
 
+.boletim-card:focus {
+  outline: 3px solid #004682 !important;
+}
+
+
 .boletim-content {
   font-size: var(--font-size);
   font-family: var(--font-family);

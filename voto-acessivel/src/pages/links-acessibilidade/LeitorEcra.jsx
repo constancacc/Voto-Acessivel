@@ -4,9 +4,11 @@ import { useNavigate } from 'react-router-dom';
 /* botões */
 import seta from "../../assets/ArrowIcon.svg";
 import accessibility from "../../assets/accessibility.svg";
+import backBtn from "../../assets/back-btn.svg";
 import Button from '../../components/Button.jsx';
 import CollapseBox from '../../components/Collapse1.jsx';
 import AdaptCell from '../../components/AdaptCell.jsx'
+import IconButton from '../../components/IconButton.jsx';
 
 /* imagens */
 import varrimento from "../../assets/a11y/varrimento.svg";
@@ -70,11 +72,13 @@ export default function LeitorEcra() {
     <div className="grid-container">
       {/* Botão voltar */}
       <div style={{ gridColumn: "2", gridRow: "2", display: "flex", alignItems: "center" }}>
-        <button onClick={() => navigate(-1)} className="back-container" tabIndex={0} aria-label="Voltar à página anterior">
-          <svg className="back-btn" xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 22 22" fill="none">
-            <path d="M10.9992 2.2002L2.19922 11.0002M2.19922 11.0002L10.9992 19.8002M2.19922 11.0002H19.7992" stroke="#1E1E1E" strokeWidth="2.8" strokeLinecap="round" strokeLinejoin="round"/>
-          </svg>
-        </button>
+        <IconButton
+          icon={backBtn}
+          alt="Botão de voltar à página anterior"
+          ariaLabel="Voltar à página anterior"
+          onClick={() => navigate(-1)}
+          className="back-container"
+          />
       </div>
 
       {/* Título */}

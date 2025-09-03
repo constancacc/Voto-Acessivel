@@ -240,7 +240,7 @@
 button:focus,
 input:focus,
 a:focus {
-  outline: 3px solid blue;
+  outline: 3px solid #004682;
 }
 
 

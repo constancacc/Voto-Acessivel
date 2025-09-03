@@ -41,7 +41,7 @@ export default function SpeechAnnouncer() {
       if (element.tagName === "BUTTON" ) {
         element.focus(); // foco real em elementos clicáveis
       } else {
-        element.style.outline = "3px dashed blue"; // destaque visual
+        element.style.outline = "3px dashed #004682"; // destaque visual
       }
       lastSpokenElement.current = element;
     }
@@ -77,7 +77,7 @@ export default function SpeechAnnouncer() {
       if (el.tagName === "BUTTON" || el.tagName === "A" || el.tagName === "INPUT" || el.tagName === "TEXTAREA") {
         el.focus();
       } else {
-        el.style.outline = "2px solid blue";
+        el.style.outline = "2px solid #004682";
       }
       lastSpokenElement.current = el;
 
